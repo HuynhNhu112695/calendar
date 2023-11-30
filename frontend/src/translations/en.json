@@ -1,0 +1,168 @@
+{
+    "common": {
+        "titleHome": "Welcome to Paris Nails of Falmouth",
+        "add": "Add",
+        "edit": "Edit",
+        "delete": "Delete",
+        "decentralize": "Decentralize",
+        "close": "Close",
+        "save": "Save",
+        "refresh": "Refresh",
+        "accept": "Accept",
+        "confirm": "Confirm",
+        "confirm-this-task": "Are you sure to process this task?",
+        "fail-to-load-data": "Fail to load data",
+        "unknown-error": "There was an error",
+        "internal-server-error": "Internal server error",
+        "bad-request": "Bad request",
+        "forbiden-request": "Invalid input data",
+        "fail-to-load-all-code": "Fail to load data from allcode",
+        "sum": "Sum",
+        "date-range-invalid": "Date range invalid"
+    },
+    "login": {
+        "login": "Login",
+        "username": "Username",
+        "password": "Password",
+        "userpass-wrong": "Invalid username or password!"
+    },
+    "menu": {
+        "admin": {
+            "home-manage": {
+                "header": "Home",
+                "home": "Callback Home",
+                "calendar": "Quản lý công việc",
+                "deadline": "Quản lý việc sắp đến hạn"
+            },
+            "manage-user": {
+                "header": "Users",
+                "crud-user": "Manage Login Accounts"
+            },
+            "manage-staff": {
+                "header": "Staffs",
+                "crud-staff": "Manage Staffs",
+                "rest-schedule": "Rest Schedule",
+                "salary-staff": "Manage Salary"
+            },
+            "manage-customer": {
+                "header": "Customers",
+                "crud-customer": "Manage Customer"
+            },
+            "manage-product": {
+                "header": "Products",
+                "crud-product": "Manage Product",
+                "update-quantity": "Update Quantity"
+            },
+            "manage-service": {
+                "header": "Services",
+                "crud-service": "Manage Service",
+                "crud-type": "Manage Service Type"
+            },
+            "manage-order": {
+                "header": "Order",
+                "crud-order": "Manage Order",
+                "call-booking": "Manage Service Booking"
+            },
+            "manage-tax": {
+                "header": "Tax",
+                "crud-tax": "Manage Tax"
+            }
+        },
+        "welcome": "Welcome, "
+    },
+    "manage-user": {
+        "header": "Manage Users",
+        "add": "Add a new user",
+        "edit": "Edit",
+        "delete": "Delete",
+        "save": "Save",
+        "cancel": "Cancel",
+        "exit": "Exit",
+        "email": "Email",
+        "password": "Password",
+        "firstname": "First Name",
+        "lastname": "Last Name",
+        "role": "Role",
+        "phonenumber": "Phone Number",
+        "birthday": "Birthday",
+        "gender": "Gender",
+        "address": "Address",
+        "choose": "Choose",
+        "enterFirstname": "Enter first name",
+        "enterLastname": "Enter last name",
+        "enterEmail": "Enter email",
+        "enterPassword": "Enter password",
+        "action": "Action",
+        "dataEmpty": "The data is empty",
+        "search": "Search"
+    },
+    "manage-staff": {
+        "header": "Manage Staff",
+        "header-schedule": "Rest Schedule",
+        "staffName": "Staff Name",
+        "restDate": "Rest Date",
+        "timeType": "Time",
+        "dataEmpty": "Data empty, please add a new data!"
+    },
+    "manage-customer": {
+        "header": "Manage Customer"
+    },
+    "manage-product": {
+        "header": "Manage Product",
+        "productName": "Product Name",
+        "productImport": "Product Import",
+        "quantity": "Quantity",
+        "unit": "Unit",
+        "price": "Price ($)",
+        "importDate": "Import Date",
+        "exportDate": "Export Date",
+        "description": "Note",
+        "nowQuantity": "Now",
+        "exportQuantity": "Export",
+        "remainQuantity": "Remain",
+        "unitManage": "Unit Manage",
+        "quantityMin": "Quantity Min",
+        "valueEN": "English Name",
+        "valueVI": "Vietnamese Name",
+        "buyPro": "List Products Need Buy",
+        "importQuantity": "Quantity Import"
+    },
+    "manage-service": {
+        "header": "Manage Service",
+        "serviceName": "Service Name",
+        "theme": "Service Type",
+        "addServiceType": "Add Service Type"
+    },
+    "manage-order": {
+        "header": "Manage Order",
+        "customerName": "Customer Name",
+        "discount": "Discount ($)",
+        "total": "Total",
+        "cashPay": "Cash Payment",
+        "cardPay": "Card Payment",
+        "choose": "Choose service type",
+        "dateWork": "Date",
+        "buttonAdd": "Add service",
+        "delete": "Delete service",
+        "percent": "Percent (%)",
+        "addService": "  Add service",
+        "time": "Time",
+        "peopleNumber": "People number",
+        "searchPhone": "Search by phone number"
+    },
+    "manage-salary": {
+        "startDay": "start date",
+        "endDay": "end date",
+        "tax": "Tax (%)",
+        "note": "Note",
+        "bonus": "Bonus ($)",
+        "total": "Total ($)",
+        "totalCard": "Total card payment ($)",
+        "totalCash": "Total cash payment ($)",
+        "receivedCard": "Salary received by the card ($)",
+        "receivedCash": "Salary received by the cash ($)",
+        "receivedStore": "Total store received ($)",
+        "receivedStaff": "Total staff received ($)",
+        "staffReceivedAfterTax": "Salary received by the card after tax ($)"
+    }
+}

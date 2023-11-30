@@ -1,0 +1,168 @@
+{
+    "common": {
+        "titleHome": "Chào mừng đến Paris Nails of Falmouth",
+        "add": "Thêm",
+        "edit": "Sửa",
+        "delete": "Xóa",
+        "decentralize": "Phân quyền",
+        "close": "Đóng",
+        "save": "Lưu",
+        "refresh": "Refresh",
+        "accept": "Chấp nhận",
+        "confirm": "Xác nhận",
+        "confirm-this-task": "Bạn có chắc chắn thực hiện tác vụ này?",
+        "fail-to-load-data": "Không thể tải về dữ liệu",
+        "unknown-error": "Có lỗi xảy ra",
+        "internal-server-error": "Lỗi kết nối",
+        "bad-request": "Yêu cầu không hợp lệ",
+        "forbiden-request": "Thông tin truyền vào không hợp lệ",
+        "fail-to-load-all-code": "Không thể tải về dữ liệu allcode",
+        "sum": "Tổng",
+        "date-range-invalid": "Khoảng thời gian không hợp lệ"
+    },
+    "login": {
+        "login": "Đăng nhập",
+        "username": "Tên đăng nhập",
+        "password": "Mật khẩu",
+        "userpass-wrong": "Sai tên đăng nhập hoặc mật khẩu!"
+    },
+    "menu": {
+        "admin": {
+            "home-manage": {
+                "header": "Trang chủ",
+                "home": "Quay lại trang chủ",
+                "calendar": "Quản lý công việc",
+                "deadline": "Quản lý việc sắp đến hạn"
+            },
+            "manage-user": {
+                "header": "Người dùng",
+                "crud-user": "Quản lý taì khoản đăng nhập"
+            },
+            "manage-staff": {
+                "header": "Nhân viên",
+                "crud-staff": "Quản lý nhân viên",
+                "rest-schedule": "Lịch nghỉ",
+                "salary-staff": "Quản lý lương",
+                "tax": "Quản lý thuế"
+            },
+            "manage-customer": {
+                "header": "Khách hàng",
+                "crud-customer": "Quản lý khách hàng"
+            },
+            "manage-product": {
+                "header": "Sản phẩm",
+                "crud-product": "Quản lý sản phẩm",
+                "update-quantity": "Cập nhật số lượng"
+            },
+            "manage-service": {
+                "header": "Dịch vụ",
+                "crud-service": "Quản lý dịch vụ",
+                "crud-type": "Quản lý loại dịch vụ"
+            },
+            "manage-order": {
+                "header": "Đơn hàng",
+                "crud-order": "Quản lý đơn hàng",
+                "call-booking": "Quản lý đặt dịch vụ"
+            },
+            "manage-tax": {
+                "header": "Thuế",
+                "crud-tax": "Quản lý thuế"
+            }
+        },
+        "welcome": "Xin chào, "
+    },
+    "manage-user": {
+        "header": "Quản lý người dùng",
+        "edit": "Sửa",
+        "delete": "Xóa",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "exit": "Thoát",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "firstname": "Tên",
+        "lastname": "Họ",
+        "role": "Vai trò",
+        "phonenumber": "Số điện thoại",
+        "birthday": "Ngày sinh",
+        "gender": "Giới tính",
+        "address": "Địa chỉ",
+        "choose": "Chọn",
+        "enterFirstname": "Nhập tên",
+        "enterLastname": "Nhập họ",
+        "enterEmail": "Nhập email",
+        "enterPassword": "Nhập mật khẩu",
+        "action": "Hành động",
+        "dataEmpty": "Dữ liệu rỗng",
+        "search": "Tìm"
+    },
+    "manage-staff": {
+        "header": "Quản lý nhân viên",
+        "header-schedule": "Lịch nghỉ",
+        "staffName": "Họ tên nhân viên",
+        "restDate": "Ngày nghỉ",
+        "timeType": "Thời gian",
+        "dataEmpty": "Chưa có dữ liệu, vui lòng thêm mới!"
+    },
+    "manage-customer": {
+        "header": "Quản lý khách hàng"
+    },
+    "manage-product": {
+        "header": "Quản lý sản phẩm",
+        "productName": "Tên sản phẩm",
+        "productImport": "Sản phẩm cần nhập",
+        "quantity": "Số lượng",
+        "unit": "Đơn vị",
+        "price": "Giá ($)",
+        "importDate": "Ngày nhập",
+        "exportDate": "Ngày xuất",
+        "description": "Chú thích",
+        "nowQuantity": "Hiện tại",
+        "exportQuantity": "Xuất",
+        "remainQuantity": "Còn lại",
+        "unitManage": "Quản lý đơn vị",
+        "quantityMin": "Số lượng tối thiểu",
+        "valueEN": "Tên tiếng Anh",
+        "valueVI": "Tên tiếng Việt",
+        "buyPro": "Danh sách sản phẩm cần mua",
+        "importQuantity": "Số lượng nhập"
+    },
+    "manage-service": {
+        "header": "Quản lý dịch vụ",
+        "serviceName": "Tên dịch vụ",
+        "theme": "Loại dịch vụ",
+        "addServiceType": "Thêm loại dịch vụ"
+    },
+    "manage-order": {
+        "header": "Quản lý đơn hàng",
+        "customerName": "Họ tên khách hàng",
+        "discount": "Giảm giá ($)",
+        "total": "Tổng",
+        "cashPay": "Thanh toán tiền mặt",
+        "cardPay": "Thanh toán thẻ",
+        "choose": "Chọn loại dịch vụ",
+        "dateWork": "Ngày",
+        "buttonAdd": "Thêm dịch vụ",
+        "delete": "Xóa dịch vụ",
+        "percent": "Phần trăm (%)",
+        "addService": "  Thêm dịch vụ",
+        "time": "Giờ",
+        "peopleNumber": "Số người đặt",
+        "searchPhone": "Tìm kiếm bằng số điện thoại"
+    },
+    "manage-salary": {
+        "startDay": "Ngày bắt đầu",
+        "endDay": "Ngày kết thúc",
+        "tax": "Thuế (%)",
+        "note": "Ghi chú",
+        "bonus": "Thưởng ($)",
+        "total": "Tổng ($)",
+        "totalCard": "Tổng khách trả thẻ ($)",
+        "totalCash": "Tổng khách trả tiền mặt ($)",
+        "receivedCard": "Lương nhận qua thẻ ($)",
+        "receivedCash": "Lương nhận tiền mặt ($)",
+        "receivedStore": "Tổng cửa hàng nhận ($)",
+        "receivedStaff": "Tổng nhân viên nhận ($)",
+        "staffReceivedAfterTax": "Lương nhận bằng thẻ sau thuế ($)"
+    }
+}

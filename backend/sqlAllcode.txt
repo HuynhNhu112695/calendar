@@ -1,0 +1,32 @@
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('ROLE','R1','Admin', 'Quản trị viên' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('ROLE','R2','Manager Branch 1', 'Quản lý chí nhánh 1' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('ROLE','R3','Staff Branch 1', 'Nhân viên chi nhánh 1' );
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('ROLE','R4','Customer Branch 1', 'Khách hàng chi nhánh 1' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('ROLE','R5','Manager Branch 2', 'Quản lý chí nhánh 2' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('ROLE','R6','Staff Branch 2', 'Nhân viên chi nhánh 2' );
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('ROLE','R7','Customer Branch 2', 'Khách hàng chi nhánh 2' ); 
+
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('TIME','T1','Full time', 'Cả ngày' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('TIME','T2','8:00 AM - 9:00 AM', '8:00 - 9:00' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('TIME','T3','9:00 AM - 10:00 AM', '9:00 - 10:00' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('TIME','T4','10:00 AM - 11:00 AM', '10:00 - 11:00' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('TIME','T5','11:00 AM - 0:00 PM', '11:00 - 12:00' ); 
+
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('TIME','T6','1:00 PM - 2:00 PM', '13:00 - 14:00' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('TIME','T7','2:00 PM - 3:00 PM', '14:00 - 15:00' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('TIME','T8','3:00 PM - 4:00 PM', '15:00 - 16:00' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('TIME','T9','4:00 PM - 5:00 PM', '16:00 - 17:00' ); 
+
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('GENDER','M','Male', 'Nam' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('GENDER','F','Female', 'Nữ' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('GENDER','O','Other', 'Khác' );
+
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('SERVICE','S1','WAXING SERVICE', 'WAXING SERVICE' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('SERVICE','S2','DIPPING MANICURE', 'DIPPING MANICURE' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('SERVICE','S3','SCULPTURE NAILS', 'SCULPTURE NAILS' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('SERVICE','S4','NATURAL NAILS MANICUR', 'NATURAL NAILS MANICUR' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('SERVICE','S5','NATURAL NAILS PEDICURE', 'NATURAL NAILS PEDICURE' );
+
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('UNIT','U1','Pieces', 'Cái' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('UNIT','U2','Bottle', 'Chai' ); 
+INSERT INTO ALLCODE (ALLCODE.type,ALLCODE.key, ALLCODE.valueEn, ALLCODE.valueVi) values ('UNIT','U3','Box', 'Thùng' ); 

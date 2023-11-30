@@ -1,0 +1,274 @@
+#customers {
+    font-family: 'Times New Roman', Times, serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.s-time {
+    position: absolute;
+    top: 40%;
+}
+
+.t-time {
+    position: relative;
+    margin: 0;
+}
+
+.nhaclai {
+    padding: 15px 0 0 40px
+}
+
+.subnhaclai {
+    margin-right: 50px;
+}
+
+.rad {
+    margin-right: 10px;
+}
+
+#customers td,
+#customers th {
+    border: 1px solid #ddd;
+    padding: 8px 8px 16px 8px;
+}
+
+#customers tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+    background-color: #ddd;
+}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #0040b8;
+    color: white;
+}
+
+.custom-input-password {
+    position: relative;
+
+    i {
+        position: absolute;
+        right: 20px;
+        top: 40px;
+        cursor: pointer;
+    }
+}
+
+.btn-edit {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: orange;
+    margin-right: 4px;
+
+    &:hover {
+        background-color: transparent;
+        color: #d78d03;
+    }
+}
+
+.btn-delete {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: red;
+
+    &:hover {
+        background-color: transparent;
+        color: rgb(212, 2, 2);
+    }
+}
+
+.btn-detail {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #0dcaf0;
+    margin-right: 4px;
+
+    &:hover {
+        background-color: transparent;
+        color: #07869f;
+    }
+}
+
+.overflow-auto {
+    height: 100vh;
+
+    .pagination {
+        margin-top: 10px;
+        margin-bottom: 50px;
+        justify-content: center;
+    }
+}
+
+.divAdd {
+    position: relative;
+
+    .btnAdd {
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+.is-disabled {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+[aria-disabled="true"] {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.hidden {
+    display: none;
+}
+
+.btn-export {
+    background-color: green;
+    width: 60px;
+    color: white;
+
+    &:hover {
+        color: #fff;
+        background-color: #025b02;
+    }
+}
+
+.note-buy {
+    height: 150px;
+}
+
+.input-quantity,
+.input-note {
+    border: none;
+}
+
+.title-quantity {
+    width: 10%;
+}
+
+.title-note {
+    width: 40%;
+}
+
+.input-note {
+    width: 450px;
+}
+
+.btn-delete-import {
+    background-color: red;
+    width: 60px;
+    color: white;
+    margin-top: 4px;
+
+    &:hover {
+        color: #fff;
+        background-color: #b20303;
+    }
+}
+
+.import {
+    width: 75px;
+}
+
+.btn-import {
+    background-color: rgb(0, 2, 128);
+    width: 60px;
+    color: white;
+
+    &:hover {
+        color: #fff;
+        background-color: #0505b7;
+    }
+}
+
+.afterTax {
+    width: 141px;
+}
+
+.byCash {
+    width: 110px;
+}
+
+.reStaff,
+.reStore {
+    width: 90px;
+}
+
+.size-text {
+    font-size: 14px;
+}
+
+.icon-plus {
+    padding-left: 10px;
+    color: green;
+}
+
+.t-time {
+    width: 80px;
+    font-weight: bold;
+}
+
+.styleRow {
+    position: relative;
+}
+
+.widthDate {
+    width: 100px;
+}
+
+.spanRow {
+    position: absolute;
+    top: 25%;
+}
+
+.icon-close {
+    margin-left: 262px;
+    color: red;
+}
+
+.texttrangthai {
+    color: #f45151;
+}
+
+@media only screen and (max-width: 767px) {
+    .container {
+        max-width: 740px !important;
+    }
+
+    .table-head {
+        width: 800px;
+        overflow-x: auto;
+    }
+}
+
+.text-search {
+    text-align: right;
+    padding-top: 7px;
+}
+
+.note {
+    margin-bottom: 32px;
+}
+
+@media only screen and (min-width: 768px) {
+    .table-head {
+        width: 100%;
+
+        .tr-title {
+            height: 30px;
+        }
+
+        .tr-btn {
+            height: 40px;
+        }
+    }
+}
