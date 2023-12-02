@@ -38,6 +38,9 @@ module.exports = {
             douutien: {
                 type: Sequelize.INTEGER
             },
+            userIdCreate: {
+                type: Sequelize.INTEGER
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE

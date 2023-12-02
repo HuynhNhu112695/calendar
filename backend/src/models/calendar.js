@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         nguoithuchien: DataTypes.STRING,
         nhactruoc: DataTypes.INTEGER,
         douutien: DataTypes.INTEGER,
+        userIdCreate: DataTypes.INTEGER,
     }, {
         sequelize,
         modelName: 'Calendars',

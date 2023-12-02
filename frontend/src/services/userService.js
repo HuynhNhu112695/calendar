@@ -128,12 +128,12 @@ const handleDeleteScheduleApi = (inputId) => {
 }
 
 //calendar
-const getAllCalendar = (calendarPage) => {
-    return axios.get(`/api/get-all-calendar?page=${calendarPage}`);
+const getAllCalendar = (calendarPage, userIdCreate) => {
+    return axios.get(`/api/get-all-calendar?page=${calendarPage}&userIdCreate=${userIdCreate}`);
 }
 
-const getAllDeadline = (calendarPage) => {
-    return axios.get(`/api/get-all-deadline?page=${calendarPage}`);
+const getAllDeadline = (calendarPage, userIdCreate) => {
+    return axios.get(`/api/get-all-deadline?page=${calendarPage}&userIdCreate=${userIdCreate}`);
 }
 
 const handleCreateNewCalendarApi = (data) => {

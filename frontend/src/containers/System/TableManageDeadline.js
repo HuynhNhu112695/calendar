@@ -21,7 +21,7 @@ class TableManageDeadline extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchAllDeadline(this.state.currentPage);
+        this.props.fetchAllDeadline(this.state.currentPage, this.props.userRedux.id);
     }
 
     setChuKyLap = async (chukylap) => {
@@ -76,7 +76,6 @@ class TableManageDeadline extends Component {
 
     componentDidUpdate = (prevProps, prevState, snapshot) => {
         //after run render => run didUpdate 
-        console.log(this.props.calendarDead)
         if (prevProps.calendarDead !== this.props.calendarDead) {
             let calendarDead = this.props.calendarDead.calendar;
             let pageCount = this.props.calendarDead.pageCount;
@@ -93,7 +92,7 @@ class TableManageDeadline extends Component {
 
     handlePageClick = (e) => {
         let page = e.selected + 1;
-        this.props.fetchAllDeadline(page);
+        this.props.fetchAllDeadline(page, this.props.userRedux.id);
     }
 
     render() {
@@ -260,13 +259,14 @@ class TableManageDeadline extends Component {
 }
 const mapStateToProps = state => {
     return {
+        userRedux: state.user.userInfo,
         calendarDead: state.calendar.calendarDead,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchAllDeadline: (currentPage) => dispatch(actions.fetchAllDeadlineStart(currentPage)),
+        fetchAllDeadline: (currentPage, userIdCreate) => dispatch(actions.fetchAllDeadlineStart(currentPage, userIdCreate)),
         deleteCalendarRedux: (id, currentPage) => dispatch(actions.deleteCalendar(id, currentPage)),
         editCalendarRedux: (user) => dispatch(actions.editCalendar(user))
     };

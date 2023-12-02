@@ -348,7 +348,6 @@ class DangKyCongViec extends Component {
     }
 
     setNgayNhac = async (chukylap, ngaynhac) => {
-        console.log(chukylap, ngaynhac)
         switch (chukylap) {
             case 0: await this.setState({ motlan: ngaynhac }); break;
             case 1: await this.setState({ moithang: ngaynhac }); break;
@@ -427,6 +426,7 @@ class DangKyCongViec extends Component {
                 await this.setNgayNhac(chukylap6, ngaynhac6);
                 await this.setNgayNhac(chukylap7, ngaynhac7);
                 await this.setNgayNhac(chukylap8, ngaynhac8);
+                let userIdCreate = this.props.userRedux.id;
                 if (actions === CRUD_ACTIONS.CREATE) {
                     await this.props.createNewCalendar({
                         sovanban: this.state.sovanban,
@@ -439,6 +439,7 @@ class DangKyCongViec extends Component {
                         noidungyeucau: this.state.noidungyeucau,
                         nhactruoc: this.state.nhactruoc,
                         douutien: this.state.douutien,
+                        userIdCreate: userIdCreate,
                         motlan: this.state.motlan,
                         moithang: this.state.moithang,
                         sauthang: this.state.sauthang,
@@ -1127,6 +1128,7 @@ class DangKyCongViec extends Component {
 
 const mapStateToProps = state => {
     return {
+        userRedux: state.user.userInfo,
         calendar: state.calendar.calendar,
     };
 };

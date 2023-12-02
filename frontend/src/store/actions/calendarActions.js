@@ -34,12 +34,11 @@ export const createCalendarFailed = () => ({
     type: actionTypes.CREATE_CALENDAR_FAILED
 })
 
-export const fetchAllCalendarStart = (currentPage) => {
+export const fetchAllCalendarStart = (currentPage, userIdCreate) => {
     return async (dispatch, getState) => {
         try {
             dispatch({ type: actionTypes.FETCH_ALL_CALENDAR_START })
-            let res = await getAllCalendar(currentPage);
-            console.log(res)
+            let res = await getAllCalendar(currentPage, userIdCreate);
             if (res && res.errCode === 0) {
                 dispatch(fetchAllCalendarSuccess(res));
             } else {
@@ -62,12 +61,11 @@ export const fetchAllCalendarFailed = () => ({
     type: actionTypes.FETCH_ALL_CALENDAR_FAILED,
 })
 
-export const fetchAllDeadlineStart = (currentPage) => {
+export const fetchAllDeadlineStart = (currentPage, userIdCreate) => {
     return async (dispatch, getState) => {
         try {
             dispatch({ type: actionTypes.FETCH_ALL_CALENDAR_DEAD_START })
-            let res = await getAllDeadline(currentPage);
-            console.log(res)
+            let res = await getAllDeadline(currentPage, userIdCreate);
             if (res && res.errCode === 0) {
                 dispatch(fetchAllDeadlineSuccess(res));
             } else {

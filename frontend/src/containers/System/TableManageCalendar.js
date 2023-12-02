@@ -22,7 +22,7 @@ class TableManageCalendar extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchCalendarRedux(this.state.currentPage);
+        this.props.fetchCalendarRedux(this.state.currentPage, this.props.userRedux.id);
     }
 
     setChuKyLap = async (chukylap) => {
@@ -93,7 +93,7 @@ class TableManageCalendar extends Component {
 
     handlePageClick = (e) => {
         let page = e.selected + 1;
-        this.props.fetchCalendarRedux(page);
+        this.props.fetchCalendarRedux(page, this.props.userRedux.id);
     }
 
     render() {
@@ -250,13 +250,14 @@ class TableManageCalendar extends Component {
 const mapStateToProps = state => {
     return {
         language: state.app.language,
+        userRedux: state.user.userInfo,
         calendar: state.calendar.calendar,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchCalendarRedux: (currentPage) => dispatch(actions.fetchAllCalendarStart(currentPage)),
+        fetchCalendarRedux: (currentPage, userIdCreate) => dispatch(actions.fetchAllCalendarStart(currentPage, userIdCreate)),
         deleteCalendarRedux: (id, currentPage) => dispatch(actions.deleteCalendar(id, currentPage)),
         editCalendarRedux: (user) => dispatch(actions.editCalendar(user))
     };

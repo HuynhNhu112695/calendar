@@ -1,21 +1,8 @@
 import db from "../models/index";
 const { Op } = require('sequelize');
 
-let getAllCalendar = async () => {
+let getAllCalendar = async (userIdCreate) => {
     try {
-        // let calendar = await db.Calendars.findAll({
-        //     order: [
-        //         ['createdAt', 'DESC']
-        //     ],
-        //     include: [
-        //         {
-        //             model: db.RepeatCicles, as: 'dataCalendar', attributes: ['idCongViec',
-        //                 'chukylap', 'ngaylap']
-        //         }
-        //     ],
-        //     raw: true,
-        //     nest: true
-        // });
         let calendar = await db.RepeatCicles.findAll({
             order: [
                 ['dataCalendar', 'douutien', 'ASC']
@@ -24,7 +11,8 @@ let getAllCalendar = async () => {
                 {
                     model: db.Calendars, as: 'dataCalendar', attributes: ['sovanban',
                         'ngayphathanh', 'chutheyeucau', 'nguoithuchien', 'noidungyeucau',
-                        'nhactruoc', 'donviphathanh', 'trichyeunoidung', 'douutien']
+                        'nhactruoc', 'donviphathanh', 'trichyeunoidung', 'douutien', 'userIdCreate'],
+                    where: { userIdCreate: userIdCreate }
                 }
             ],
             raw: true,
@@ -35,34 +23,6 @@ let getAllCalendar = async () => {
         return e;
     }
 }
-
-// let getAllDeadline = async (dateNow) => {
-//     try {
-//         let deadline = await db.RepeatCicles.findAll({
-//             order: [
-//                 ['dataCalendar', 'douutien', 'ASC']
-//             ],
-//             include: [
-//                 {
-//                     model: db.Calendars, as: 'dataCalendar', attributes: ['sovanban',
-//                         'ngayphathanh', 'chutheyeucau', 'nguoithuchien', 'noidungyeucau',
-//                         'nhactruoc', 'donviphathanh', 'trichyeunoidung', 'douutien']
-//                 }
-//             ],
-//             where: {
-//                 trangthai: 0,
-//                 dateNow: {
-//                     [Op.between]: ['ngaynhac' - 'nhactruoc', 'ngaynhac']
-//                 }
-//             },
-//             raw: true,
-//             nest: true
-//         });
-//         return deadline;
-//     } catch (e) {
-//         return e;
-//     }
-// }
 
 let getStaffRest = async (date) => {
     try {
@@ -120,6 +80,7 @@ let addNewCalendar = async (data, arrRepeat) => {
             noidungyeucau: data.noidungyeucau,
             nhactruoc: data.nhactruoc,
             douutien: data.douutien,
+            userIdCreate: data.userIdCreate
         });
         arrRepeat.forEach(async (e) => {
             await db.RepeatCicles.create({

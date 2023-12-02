@@ -427,6 +427,7 @@ class DangKyCongViec extends Component {
                 await this.setNgayNhac(chukylap6, ngaynhac6);
                 await this.setNgayNhac(chukylap7, ngaynhac7);
                 await this.setNgayNhac(chukylap8, ngaynhac8);
+                let userIdCreate = this.props.userRedux.id;
                 if (actions === CRUD_ACTIONS.CREATE) {
                     await this.props.createNewCalendar({
                         sovanban: this.state.sovanban,
@@ -439,6 +440,7 @@ class DangKyCongViec extends Component {
                         noidungyeucau: this.state.noidungyeucau,
                         nhactruoc: this.state.nhactruoc,
                         douutien: this.state.douutien,
+                        userIdCreate: userIdCreate,
                         motlan: this.state.motlan,
                         moithang: this.state.moithang,
                         sauthang: this.state.sauthang,
@@ -570,7 +572,7 @@ class DangKyCongViec extends Component {
         return (
             <div className="overflow-auto user-redux-container">
                 <div className="title py-3">
-                    Quản lý công việc
+                    Quản lý công việc sắp đến hạn
                 </div>
                 <div className="user-redux-body">
                     <div className="container">
@@ -791,6 +793,7 @@ class DangKyCongViec extends Component {
 
 const mapStateToProps = state => {
     return {
+        userRedux: state.user.userInfo,
         calendar: state.calendar.calendar,
     };
 };
@@ -798,7 +801,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         createNewCalendar: (data) => dispatch(actions.createNewCalendar(data)),
-        fetchCalendarRedux: (currentPage) => dispatch(actions.fetchAllCalendarStart(currentPage)),
+        fetchCalendarRedux: (currentPage, userIdCreate) => dispatch(actions.fetchAllCalendarStart(currentPage, userIdCreate)),
         editCalendarRedux: (data) => dispatch(actions.editCalendar(data))
     };
 };
