@@ -36,7 +36,7 @@
             },
             "manage-user": {
                 "header": "Người dùng",
-                "crud-user": "Quản lý taì khoản đăng nhập"
+                "crud-user": "Quản lý tài khoản đăng nhập"
             },
             "manage-staff": {
                 "header": "Nhân viên",

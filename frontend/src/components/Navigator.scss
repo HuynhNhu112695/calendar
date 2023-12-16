@@ -13,7 +13,7 @@
     .menu-group {
         &:hover {
             cursor: pointer;
-            background-color: #00C087;
+            background-color: #522bfd;
         }
 
         .menu-group-name {
@@ -25,6 +25,15 @@
             }
         }
 
+        .menu-link {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        &.active a {
+            font-weight: 500;
+            color: yellow;
+        }
 
         .menu-list {
             display: none;
@@ -43,10 +52,11 @@
                 line-height: 35px;
                 text-transform: none;
                 border-bottom: solid 1px #dcdbdb;
+                // line-height: 40px;
 
                 .menu-link {
                     text-decoration: none;
-                    // color: $text-in-light;
+                    color: $text-in-light;
                 }
 
                 .sub-menu-list {
@@ -106,6 +116,7 @@
                     right: 10px;
                 }
             }
+
         }
 
         &:hover {
@@ -115,4 +126,5 @@
         }
 
     }
+
 }

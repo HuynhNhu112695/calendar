@@ -26,7 +26,7 @@ class System extends Component {
                     <Switch>
                         <Route path="/home" component={Home} />
                         <Route path="/system/user-manage" component={UserManage} />
-                        <Route path="/system/staff-manage" component={StaffManage} />
+                        {/* <Route path="/system/staff-manage" component={StaffManage} />
                         <Route path="/system/rest-schedule" component={RestSchedule} />
                         <Route path="/system/customer-manage" component={CustomerManage} />
                         <Route path="/system/product-manage" component={ProductManage} />
@@ -36,7 +36,7 @@ class System extends Component {
                         <Route path="/system/type-manage" component={ThemeManage} />
                         <Route path="/system/order-manage" component={BookingManage} />
                         <Route path="/system/call-booking" component={CallBooking} />
-                        <Route path="/system/salary-manage" component={SalaryManage} />
+                        <Route path="/system/salary-manage" component={SalaryManage} /> */}
                         <Route path="/system/calendar-manage" component={DangKyCongViec} />
                         <Route path="/system/deadline-manage" component={ViecSapDenHan} />
                         <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />

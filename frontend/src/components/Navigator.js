@@ -27,7 +27,7 @@ class Menu extends Component {
     render() {
         const { name, active, link, children, onClick, hasSubMenu, onLinkClick } = this.props;
         return (
-            <li className={"menu" + (hasSubMenu ? " has-sub-menu" : "") + ("") + (active ? " active" : "")}>
+            <li className={"menu-group" + (hasSubMenu ? " has-sub-menu" : "") + ("") + (active ? " active" : "")}>
                 {hasSubMenu ? (
                     <Fragment>
                         <span
@@ -48,7 +48,7 @@ class Menu extends Component {
                         </div>
                     </Fragment>
                 ) : (
-                    <Link to={link} className="menu-link" onClick={onLinkClick}>
+                    <Link to={link} className="menu-link menu-group-name" onClick={onLinkClick}>
                         <FormattedMessage id={name} />
                     </Link>
                 )}
@@ -75,9 +75,9 @@ class SubMenu extends Component {
     }
 }
 
-const MenuGroupWithRouter = withRouter(MenuGroup);
+// const MenuGroupWithRouter = withRouter(MenuGroup);
 const MenuWithRouter = withRouter(Menu);
-const SubMenuWithRouter = withRouter(SubMenu);
+// const SubMenuWithRouter = withRouter(SubMenu);
 
 const withRouterInnerRef = (WrappedComponent) => {
 
@@ -191,10 +191,20 @@ class Navigator extends Component {
                 <ul className="navigator-menu list-unstyled">
                     {
                         menus.map((group, groupIndex) => {
+                            const isMenuHasSubMenuActive = this.isMenuHasSubMenuActive(location, group.name, group.link);
+                            const isSubMenuOpen = this.state.expandedMenu[groupIndex] === true;
+                            console.log(group.link)
                             return (
                                 <Fragment key={groupIndex}>
-                                    <MenuGroupWithRouter name={group.name}>
-                                        {group.menus ? (
+                                    <MenuWithRouter name={group.name}
+                                        key={groupIndex}
+                                        link={group.link}
+                                        onClick={() => window.location.pathname = group.link}
+                                        onLinkClick={onLinkClick}
+                                        active={isMenuHasSubMenuActive}
+                                        isOpen={isSubMenuOpen}
+                                    >
+                                        {/* {group.menus ? (
                                             group.menus.map((menu, menuIndex) => {
                                                 const isMenuHasSubMenuActive = this.isMenuHasSubMenuActive(location, menu.subMenus, menu.link);
                                                 const isSubMenuOpen = this.state.expandedMenu[groupIndex + '_' + menuIndex] === true;
@@ -221,8 +231,8 @@ class Navigator extends Component {
                                                     </MenuWithRouter>
                                                 );
                                             })
-                                        ) : null}
-                                    </MenuGroupWithRouter>
+                                        ) : null} */}
+                                    </MenuWithRouter>
                                 </Fragment>
                             );
                         })

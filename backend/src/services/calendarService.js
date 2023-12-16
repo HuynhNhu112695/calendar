@@ -48,25 +48,6 @@ let getStaffRest = async (date) => {
     }
 }
 
-let checkCalendar = async (sovanban, nguoithuchien, noidungyeucau) => {
-    try {
-        let calendar = await db.Calendars.findOne({
-            where: {
-                sovanban: sovanban,
-                nguoithuchien: nguoithuchien,
-                noidungyeucau: noidungyeucau
-            }
-        })
-        if (calendar) {
-            return true;
-        } else {
-            return false;
-        }
-    } catch (e) {
-        return e;
-    }
-}
-
 let addNewCalendar = async (data, arrRepeat) => {
     try {
         let addNew = await db.Calendars.create({
@@ -180,5 +161,5 @@ module.exports = {
     addNewCalendar: addNewCalendar,
     deleteCalendar: deleteCalendar,
     editCalendar: editCalendar,
-    getStaffRest: getStaffRest
+    getStaffRest: getStaffRest,
 }
