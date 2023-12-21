@@ -47,8 +47,12 @@ class TableManageCalendar extends Component {
             // console.log(key)
             let arrCalendarFind = [];
             let calendar = this.props.calendar.calendar;
+            console.log(key)
+            console.log(calendar)
             calendar.filter((item) => {
-                if (key && item && item.noidungyeucau && item.noidungyeucau.toLowerCase().includes(key)) {
+                if (key && item && item.dataCalendar.noidungyeucau && item.dataCalendar.noidungyeucau.toLowerCase().includes(key)
+                    || item && item.dataCalendar.nguoithuchien && item.dataCalendar.nguoithuchien.toLowerCase().includes(key)
+                    || item && item.dataCalendar.chutheyeucau && item.dataCalendar.chutheyeucau.toLowerCase().includes(key)) {
                     arrCalendarFind.push(item)
                 }
             })
@@ -142,14 +146,14 @@ class TableManageCalendar extends Component {
                         <thead>
                             <tr>
                                 {/* <th></th> */}
-                                <th>Chủ thể yêu cầu</th>
+                                <th>Đơn vị yêu cầu</th>
                                 <th>Nội dung yêu cầu</th>
                                 <th>Người thực hiện</th>
                                 <th>Nhắc trước</th>
                                 <th>Độ ưu tiên</th>
-                                <th>Chu kỳ nhắc</th>
+                                {/* <th>Chu kỳ nhắc</th> */}
                                 <th>Ngày nhắc</th>
-                                <th></th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -162,26 +166,27 @@ class TableManageCalendar extends Component {
                             }
                             {calendar.length !== 0 && calendar.map((item, index) => {
                                 let day = moment(item.ngaylap).format("DD/MM/YYYY");
-                                let chukylap = "";
-                                if (item.chukylap === 0) {
-                                    chukylap = "Một lần";
-                                } else if (item.chukylap === 1) {
-                                    chukylap = "Mỗi tháng"
-                                } else if (item.chukylap === 2) {
-                                    chukylap = "Sáu tháng"
-                                } else if (item.chukylap === 3) {
-                                    chukylap = "Chín tháng"
-                                } else if (item.chukylap === 4) {
-                                    chukylap = "Quý I"
-                                } else if (item.chukylap === 5) {
-                                    chukylap = "Quý II"
-                                } else if (item.chukylap === 6) {
-                                    chukylap = "Quý III"
-                                } else if (item.chukylap === 7) {
-                                    chukylap = "Quý IV"
-                                } else if (item.chukylap === 8) {
-                                    chukylap = "Mỗi năm"
-                                }
+                                // let chukylap = "";
+                                // if (item.chukylap === 0) {
+                                //     chukylap = "Một lần";
+                                // } else if (item.chukylap === 1) {
+                                //     chukylap = "Mỗi tháng"
+                                // }
+                                // else if (item.chukylap === 2) {
+                                //     chukylap = "Sáu tháng"
+                                // } else if (item.chukylap === 3) {
+                                //     chukylap = "Chín tháng"
+                                // } else if (item.chukylap === 4) {
+                                //     chukylap = "Quý I"
+                                // } else if (item.chukylap === 5) {
+                                //     chukylap = "Quý II"
+                                // } else if (item.chukylap === 6) {
+                                //     chukylap = "Quý III"
+                                // } else if (item.chukylap === 7) {
+                                //     chukylap = "Quý IV"
+                                // } else if (item.chukylap === 8) {
+                                //     chukylap = "Mỗi năm"
+                                // }
                                 // console.log('check map: ', item, index)
                                 return (
                                     <tr key={item.id}>
@@ -191,7 +196,7 @@ class TableManageCalendar extends Component {
                                         {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.nguoithuchien}</span></td>}
                                         {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.nhactruoc}</span></td>}
                                         {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.douutien === 0 ? "Quan trọng" : "Thông thường"}</span></td>}
-                                        <td>{chukylap}</td>
+                                        {/* <td>{chukylap}</td> */}
                                         <td>{day}</td>
                                         <td>
                                             <button className='btn-detail' value={item.id}

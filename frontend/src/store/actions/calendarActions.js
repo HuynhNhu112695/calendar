@@ -13,11 +13,11 @@ export const createNewCalendar = (data) => {
             if (res && res.errCode === 0) {
                 toast.success(res.errMessage)
                 dispatch(createCalendarSuccess());
-                dispatch(fetchAllCalendarStart(data.currentPage));
+                dispatch(fetchAllCalendarStart(data.currentPage, data.userIdCreate));
             } else {
                 toast.error(res.errMessage)
                 dispatch(createCalendarFailed());
-                dispatch(fetchAllCalendarStart(data.currentPage));
+                dispatch(fetchAllCalendarStart(data.currentPage, data.userIdCreate));
             }
         } catch (e) {
             dispatch(createCalendarFailed());
@@ -120,16 +120,17 @@ export const editCalendar = (data) => {
     return async (dispatch, getState) => {
         try {
             dispatch({ type: actionTypes.EDIT_CALENDAR_START })
-            console.log(data)
             let res = await handleEditCalendarApi(data)
             if (res && res.errCode === 0) {
                 toast.success(res.errMessage)
                 dispatch(editCalendarSuccess());
-                dispatch(fetchAllCalendarStart(data.currentPage));
+                dispatch(fetchAllCalendarStart(data.currentPage, data.userIdCreate));
+                dispatch(fetchAllDeadlineStart(data.currentPage, data.userIdCreate));
             } else {
                 toast.error(res.errMessage)
                 dispatch(editCalendarFailed());
-                dispatch(fetchAllCalendarStart(data.page));
+                dispatch(fetchAllCalendarStart(data.currentPage, data.userIdCreate));
+                dispatch(fetchAllDeadlineStart(data.page, data.userIdCreate));
             }
         } catch (e) {
             dispatch(editCalendarFailed());

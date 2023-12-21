@@ -149,6 +149,7 @@ let handleAddNewCalendar = async (request, res) => {
     let data = request.body;
     let arrRepeat = [];
     let obj = {};
+    console.log(data)
     if (data.motlan) {
         obj = {
             chukylap: 0,
@@ -156,62 +157,62 @@ let handleAddNewCalendar = async (request, res) => {
         }
         await arrRepeat.push(obj);
     }
-    if (data.moithang) {
-        obj = {
-            chukylap: 1,
-            ngaylap: data.moithang
-        }
-        await arrRepeat.push(obj);
-    }
-    if (data.sauthang) {
-        obj = {
-            chukylap: 2,
-            ngaylap: data.sauthang
-        }
-        await arrRepeat.push(obj);
-    }
-    if (data.chinthang) {
-        obj = {
-            chukylap: 3,
-            ngaylap: data.chinthang
-        }
-        await arrRepeat.push(obj);
-    }
-    if (data.quyI) {
-        obj = {
-            chukylap: 4,
-            ngaylap: data.quyI
-        }
-        await arrRepeat.push(obj);
-    }
-    if (data.quyII) {
-        obj = {
-            chukylap: 5,
-            ngaylap: data.quyII
-        }
-        await arrRepeat.push(obj);
-    }
-    if (data.quyIII) {
-        obj = {
-            chukylap: 6,
-            ngaylap: data.quyIII
-        }
-        await arrRepeat.push(obj);
-    }
-    if (data.quyIV) {
-        obj = {
-            chukylap: 7,
-            ngaylap: data.quyIV
-        }
-        await arrRepeat.push(obj);
-    }
-    if (data.moinam) {
-        obj = {
-            chukylap: 8,
-            ngaylap: data.moinam
-        }
-        await arrRepeat.push(obj);
-    }
+    // if (data.moithang) {
+    //     obj = {
+    //         chukylap: 1,
+    //         ngaylap: data.moithang
+    //     }
+    //     await arrRepeat.push(obj);
+    // }
+    // if (data.sauthang) {
+    //     obj = {
+    //         chukylap: 2,
+    //         ngaylap: data.sauthang
+    //     }
+    //     await arrRepeat.push(obj);
+    // }
+    // if (data.chinthang) {
+    //     obj = {
+    //         chukylap: 3,
+    //         ngaylap: data.chinthang
+    //     }
+    //     await arrRepeat.push(obj);
+    // }
+    // if (data.quyI) {
+    //     obj = {
+    //         chukylap: 4,
+    //         ngaylap: data.quyI
+    //     }
+    //     await arrRepeat.push(obj);
+    // }
+    // if (data.quyII) {
+    //     obj = {
+    //         chukylap: 5,
+    //         ngaylap: data.quyII
+    //     }
+    //     await arrRepeat.push(obj);
+    // }
+    // if (data.quyIII) {
+    //     obj = {
+    //         chukylap: 6,
+    //         ngaylap: data.quyIII
+    //     }
+    //     await arrRepeat.push(obj);
+    // }
+    // if (data.quyIV) {
+    //     obj = {
+    //         chukylap: 7,
+    //         ngaylap: data.quyIV
+    //     }
+    //     await arrRepeat.push(obj);
+    // }
+    // if (data.moinam) {
+    //     obj = {
+    //         chukylap: 8,
+    //         ngaylap: data.moinam
+    //     }
+    //     await arrRepeat.push(obj);
+    // }
 
     let message = await calendarService.addNewCalendar(data, arrRepeat);
     return res.status(200).json({
@@ -222,72 +223,73 @@ let handleAddNewCalendar = async (request, res) => {
 
 let handleEditCalendar = async (req, res) => {
     let data = req.body;
-    let arrRepeat = [];
-    let obj = {};
-    if (data.motlan) {
-        obj = {
-            chukylap: 0,
-            ngaylap: data.motlan
-        }
-        await arrRepeat.push(obj);
-    }
-    if (data.moithang) {
-        obj = {
-            chukylap: 1,
-            ngaylap: data.moithang
-        }
-        await arrRepeat.push(obj);
-    }
-    if (data.sauthang) {
-        obj = {
-            chukylap: 2,
-            ngaylap: data.sauthang
-        }
-        await arrRepeat.push(obj);
-    }
-    if (data.chinthang) {
-        obj = {
-            chukylap: 3,
-            ngaylap: data.chinthang
-        }
-        await arrRepeat.push(obj);
-    }
-    if (data.quyI) {
-        obj = {
-            chukylap: 4,
-            ngaylap: data.quyI
-        }
-        await arrRepeat.push(obj);
-    }
-    if (data.quyII) {
-        obj = {
-            chukylap: 5,
-            ngaylap: data.quyII
-        }
-        await arrRepeat.push(obj);
-    }
-    if (data.quyIII) {
-        obj = {
-            chukylap: 6,
-            ngaylap: data.quyIII
-        }
-        await arrRepeat.push(obj);
-    }
-    if (data.quyIV) {
-        obj = {
-            chukylap: 7,
-            ngaylap: data.quyIV
-        }
-        await arrRepeat.push(obj);
-    }
-    if (data.moinam) {
-        obj = {
-            chukylap: 8,
-            ngaylap: data.moinam
-        }
-        await arrRepeat.push(obj);
-    }
-    let message = await calendarService.editCalendar(data, arrRepeat);
+    console.log(data)
+    // let arrRepeat = [];
+    // let obj = {};
+    // if (data.motlan) {
+    //     obj = {
+    //         chukylap: 0,
+    //         ngaylap: data.motlan
+    //     }
+    //     await arrRepeat.push(obj);
+    // }
+    // if (data.moithang) {
+    //     obj = {
+    //         chukylap: 1,
+    //         ngaylap: data.moithang
+    //     }
+    //     await arrRepeat.push(obj);
+    // }
+    // if (data.sauthang) {
+    //     obj = {
+    //         chukylap: 2,
+    //         ngaylap: data.sauthang
+    //     }
+    //     await arrRepeat.push(obj);
+    // }
+    // if (data.chinthang) {
+    //     obj = {
+    //         chukylap: 3,
+    //         ngaylap: data.chinthang
+    //     }
+    //     await arrRepeat.push(obj);
+    // }
+    // if (data.quyI) {
+    //     obj = {
+    //         chukylap: 4,
+    //         ngaylap: data.quyI
+    //     }
+    //     await arrRepeat.push(obj);
+    // }
+    // if (data.quyII) {
+    //     obj = {
+    //         chukylap: 5,
+    //         ngaylap: data.quyII
+    //     }
+    //     await arrRepeat.push(obj);
+    // }
+    // if (data.quyIII) {
+    //     obj = {
+    //         chukylap: 6,
+    //         ngaylap: data.quyIII
+    //     }
+    //     await arrRepeat.push(obj);
+    // }
+    // if (data.quyIV) {
+    //     obj = {
+    //         chukylap: 7,
+    //         ngaylap: data.quyIV
+    //     }
+    //     await arrRepeat.push(obj);
+    // }
+    // if (data.moinam) {
+    //     obj = {
+    //         chukylap: 8,
+    //         ngaylap: data.moinam
+    //     }
+    //     await arrRepeat.push(obj);
+    // }
+    let message = await calendarService.editCalendar(data);
     return res.status(200).json({
         errCode: message.errCode,
         errMessage: message.errMessage

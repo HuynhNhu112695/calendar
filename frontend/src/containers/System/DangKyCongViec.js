@@ -24,7 +24,7 @@ class DangKyCongViec extends Component {
             action: 1, chutheyeucau: '', nguoithuchien: '', noidungyeucau: '',
             nhactruoc: '', douutien: '', trangthai: '', nhaclai: '', count1: 0,
             count2: 0, count3: 0, count4: 0, count5: 0, count6: 0, count7: 0,
-            count8: 0, count9: 0, count: 0, chukylap: '', ngaynhac: '', chukylap1: '',
+            count8: 0, count9: 0, count: 0, chukylap: 0, ngaynhac: '', chukylap1: '',
             ngaynhac1: '', chukylap2: '', ngaynhac2: '', chukylap3: '', ngaynhac3: '',
             chukylap4: '', ngaynhac4: '', chukylap5: '', ngaynhac5: '', chukylap6: '',
             ngaynhac6: '', chukylap7: '', ngaynhac7: '', chukylap8: '', ngaynhac8: '',
@@ -52,7 +52,7 @@ class DangKyCongViec extends Component {
             action: 1, chutheyeucau: '', nguoithuchien: '', noidungyeucau: '',
             nhactruoc: '', douutien: '', trangthai: '', nhaclai: '', count1: 0,
             count2: 0, count3: 0, count4: 0, count5: 0, count6: 0, count7: 0,
-            count8: 0, count9: 0, count: 0, chukylap: '', ngaynhac: '', chukylap1: '',
+            count8: 0, count9: 0, count: 0, chukylap: 0, ngaynhac: '', chukylap1: '',
             ngaynhac1: '', chukylap2: '', ngaynhac2: '', chukylap3: '', ngaynhac3: '',
             chukylap4: '', ngaynhac4: '', chukylap5: '', ngaynhac5: '', chukylap6: '',
             ngaynhac6: '', chukylap7: '', ngaynhac7: '', chukylap8: '', ngaynhac8: '',
@@ -326,10 +326,7 @@ class DangKyCongViec extends Component {
 
     checkValidateInput = () => {
         let isValid = true;
-        let arrInput = [
-            'nguoithuchien', 'noidungyeucau', 'chukylap',
-            'ngaynhac'
-        ];
+        let arrInput = ['nguoithuchien', 'noidungyeucau', 'ngaynhac'];
         for (let i = 0; i < arrInput.length; i++) {
             if (this.state[arrInput[2]] === 0) {
                 isValid = true;
@@ -347,67 +344,19 @@ class DangKyCongViec extends Component {
         return isValid;
     }
 
-    setNgayNhac = async (chukylap, ngaynhac) => {
-        switch (chukylap) {
-            case 0: await this.setState({ motlan: ngaynhac }); break;
-            case 1: await this.setState({ moithang: ngaynhac }); break;
-            case 2: await this.setState({ sauthang: ngaynhac }); break;
-            case 3: await this.setState({ chinthang: ngaynhac }); break;
-            case 4: await this.setState({ quyI: ngaynhac }); break;
-            case 5: await this.setState({ quyII: ngaynhac }); break;
-            case 6: await this.setState({ quyIII: ngaynhac }); break;
-            case 7: await this.setState({ quyIV: ngaynhac }); break;
-            case 8: await this.setState({ moinam: ngaynhac }); break;
-        }
-        // if (chukylap === "0") {
-        //     let motlan = ngaynhac;
-        //     console.log(motlan)
-        //     await this.setState({
-        //         motlan: motlan
-        //     })
-        //     await console.log(this.state.motlan)
-        // } else if (chukylap === "1") {
-        //     console.log(chukylap, ngaynhac)
-        //     await this.setState({
-        //         moithang: ngaynhac
-        //     })
-        // } else if (chukylap === "2") {
-        //     console.log(chukylap, ngaynhac)
-        //     await this.setState({
-        //         sauthang: ngaynhac
-        //     })
-        // } else if (chukylap === "3") {
-        //     console.log(chukylap, ngaynhac)
-        //     await this.setState({
-        //         chinthang: ngaynhac
-        //     })
-        // } else if (chukylap === "4") {
-        //     console.log(chukylap, ngaynhac)
-        //     await this.setState({
-        //         quyI: ngaynhac
-        //     })
-        // } else if (chukylap === "5") {
-        //     console.log(chukylap, ngaynhac)
-        //     await this.setState({
-        //         quyII: ngaynhac
-        //     })
-        // } else if (chukylap === "6") {
-        //     console.log(chukylap, ngaynhac)
-        //     await this.setState({
-        //         quyIII: ngaynhac
-        //     })
-        // } else if (chukylap === "7") {
-        //     console.log(chukylap, ngaynhac)
-        //     await this.setState({
-        //         quyIV: ngaynhac
-        //     })
-        // } else if (chukylap === "8") {
-        //     console.log(chukylap, ngaynhac)
-        //     await this.setState({
-        //         moinam: ngaynhac
-        //     })
-        // }
-    }
+    // setNgayNhac = async (chukylap, ngaynhac) => {
+    //     switch (chukylap) {
+    //         case 0: await this.setState({ motlan: ngaynhac }); break;
+    //         case 1: await this.setState({ moithang: ngaynhac }); break;
+    //         case 2: await this.setState({ sauthang: ngaynhac }); break;
+    //         case 3: await this.setState({ chinthang: ngaynhac }); break;
+    //         case 4: await this.setState({ quyI: ngaynhac }); break;
+    //         case 5: await this.setState({ quyII: ngaynhac }); break;
+    //         case 6: await this.setState({ quyIII: ngaynhac }); break;
+    //         case 7: await this.setState({ quyIV: ngaynhac }); break;
+    //         case 8: await this.setState({ moinam: ngaynhac }); break;
+    //     }
+    // }
 
     handleSaveUser = async (e) => {
         try {
@@ -417,15 +366,15 @@ class DangKyCongViec extends Component {
                     chukylap5, chukylap6, chukylap7, chukylap8, ngaynhac, ngaynhac1,
                     ngaynhac2, ngaynhac3, ngaynhac4, ngaynhac5, ngaynhac6, ngaynhac7,
                     ngaynhac8 } = this.state;
-                await this.setNgayNhac(chukylap, ngaynhac);
-                await this.setNgayNhac(chukylap1, ngaynhac1);
-                await this.setNgayNhac(chukylap2, ngaynhac2);
-                await this.setNgayNhac(chukylap3, ngaynhac3);
-                await this.setNgayNhac(chukylap4, ngaynhac4);
-                await this.setNgayNhac(chukylap5, ngaynhac5);
-                await this.setNgayNhac(chukylap6, ngaynhac6);
-                await this.setNgayNhac(chukylap7, ngaynhac7);
-                await this.setNgayNhac(chukylap8, ngaynhac8);
+                // await this.setNgayNhac(chukylap, ngaynhac);
+                // await this.setNgayNhac(chukylap1, ngaynhac1);
+                // await this.setNgayNhac(chukylap2, ngaynhac2);
+                // await this.setNgayNhac(chukylap3, ngaynhac3);
+                // await this.setNgayNhac(chukylap4, ngaynhac4);
+                // await this.setNgayNhac(chukylap5, ngaynhac5);
+                // await this.setNgayNhac(chukylap6, ngaynhac6);
+                // await this.setNgayNhac(chukylap7, ngaynhac7);
+                // await this.setNgayNhac(chukylap8, ngaynhac8);
                 let userIdCreate = this.props.userRedux.id;
                 if (actions === CRUD_ACTIONS.CREATE) {
                     await this.props.createNewCalendar({
@@ -435,12 +384,12 @@ class DangKyCongViec extends Component {
                         trichyeunoidung: this.state.trichyeunoidung,
                         chutheyeucau: this.state.chutheyeucau,
                         nguoithuchien: this.state.nguoithuchien,
-                        trangthai: 0,
+                        trangthai: this.state.trangthai,
                         noidungyeucau: this.state.noidungyeucau,
                         nhactruoc: this.state.nhactruoc,
                         douutien: this.state.douutien,
                         userIdCreate: userIdCreate,
-                        motlan: this.state.motlan,
+                        motlan: this.state.ngaynhac,
                         moithang: this.state.moithang,
                         sauthang: this.state.sauthang,
                         chinthang: this.state.chinthang,
@@ -462,7 +411,7 @@ class DangKyCongViec extends Component {
                         trichyeunoidung: this.state.trichyeunoidung,
                         chutheyeucau: this.state.chutheyeucau,
                         nguoithuchien: this.state.nguoithuchien,
-                        trangthai: 0,
+                        trangthai: this.state.trangthai,
                         noidungyeucau: this.state.noidungyeucau,
                         nhactruoc: this.state.nhactruoc,
                         douutien: this.state.douutien,
@@ -496,7 +445,7 @@ class DangKyCongViec extends Component {
             trichyeunoidung: work.dataCalendar.trichyeunoidung,
             chutheyeucau: work.dataCalendar.chutheyeucau,
             nguoithuchien: work.dataCalendar.nguoithuchien,
-            // trangthai: work.dataCalendar.trangthai,
+            trangthai: work.dataCalendar.trangthai,
             noidungyeucau: work.dataCalendar.noidungyeucau,
             nhactruoc: work.dataCalendar.nhactruoc,
             douutien: work.dataCalendar.douutien,
@@ -541,7 +490,7 @@ class DangKyCongViec extends Component {
                 nhactruoc: '', douutien: '', trangthai: '', nhaclai: '', count1: 0,
                 count2: 0, count3: 0, count4: 0, count5: 0, count6: 0, count7: 0,
                 count8: 0, count9: 0, count: 0, chukylap: '', ngaynhac: '', chukylap1: '',
-                ngaynhac1: '', chukylap2: '', ngaynhac2: '', chukylap3: '', ngaynhac3: '',
+                ngaynhac1: '', chukylap2: '', ngaynhac2: 0, chukylap3: '', ngaynhac3: '',
                 chukylap4: '', ngaynhac4: '', chukylap5: '', ngaynhac5: '', chukylap6: '',
                 ngaynhac6: '', chukylap7: '', ngaynhac7: '', chukylap8: '', ngaynhac8: '',
                 chukylap9: '', ngaynhac9: '', hiddenAdd: false, motlan: '', moithang: '',
@@ -633,7 +582,7 @@ class DangKyCongViec extends Component {
                             </div>
                             <div className="col-lg-4 col-md-4 col-xs-auto">
                                 <label className="form-label">
-                                    Chủ thể yêu cầu
+                                    Đơn vị yêu cầu
                                 </label>
                                 <input
                                     type="text"
@@ -670,22 +619,6 @@ class DangKyCongViec extends Component {
                                     onChange={(event) => { this.handleOnChangeInput(event, "nhactruoc") }}
                                 />
                             </div>
-                            {/* <div className="col-lg-4 col-md-4 col-xs-auto">
-                                <label className="form-label">
-                                    Trạng Thái
-                                </label>
-                                <select
-                                    aria-disabled={disabled}
-                                    className={disabled === true ? "form-select is-disabled" : "form-select"}
-                                    name="trangthai"
-                                    value={trangthai}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "trangthai") }}
-                                >
-                                    <option></option>
-                                    <option>Đang thực hiện</option>
-                                    <option>Đã hoàn thành</option>
-                                </select>
-                            </div> */}
                             <div className="col-lg-12 col-md-12 col-xs-auto">
                                 <label className="form-label">
                                     Nội dung yêu cầu
@@ -715,7 +648,7 @@ class DangKyCongViec extends Component {
                                     <option value={1}>Thông thường</option>
                                 </select>
                             </div>
-                            <div className="col-lg-4 col-md-4 col-xs-auto">
+                            {/* <div className="col-lg-4 col-md-4 col-xs-auto">
                                 <label className="form-label">
                                     Chu kỳ lặp
                                 </label>
@@ -737,10 +670,10 @@ class DangKyCongViec extends Component {
                                     <option value={7}>Quý IV</option>
                                     <option value={8}>Mỗi năm</option>
                                 </select>
-                            </div>
+                            </div> */}
                             <div className="col-lg-4 col-md-4 col-xs-auto">
                                 <label className="form-label">
-                                    Ngày nhắc
+                                    Ngày hết hạn
                                 </label>
                                 <input
                                     type="date"
@@ -750,6 +683,23 @@ class DangKyCongViec extends Component {
                                     value={ngaynhac}
                                     onChange={(event) => { this.handleOnChangeInput(event, "ngaynhac") }}
                                 />
+                            </div>
+
+                            <div className="col-lg-4 col-md-4 col-xs-auto">
+                                <label className="form-label">
+                                    Trạng Thái
+                                </label>
+                                <select
+                                    aria-disabled={disabled}
+                                    className={disabled === true ? "form-select is-disabled" : "form-select"}
+                                    name="trangthai"
+                                    value={trangthai}
+                                    onChange={(event) => { this.handleOnChangeInput(event, "trangthai") }}
+                                >
+                                    <option></option>
+                                    <option value={0}>Đang thực hiện</option>
+                                    <option value={1}>Đã hoàn thành</option>
+                                </select>
                             </div>
                             {/* them chu ky nhac 1 */}
                             <div className={count1 === 1 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}></div>
@@ -1080,7 +1030,7 @@ class DangKyCongViec extends Component {
                                 />
                             </div>
                             {/* ket thuc them chu ky nhac */}
-                            <div className="col-lg-4 col-md-4 col-xs-auto"></div>
+                            {/* <div className="col-lg-4 col-md-4 col-xs-auto"></div>
                             <div className={disabledDetail === true ? "col-lg-8 col-md-8 col-xs-auto hidden" : "col-lg-8 col-md-8 col-xs-auto"}>
                                 <label className="form-label">
                                     <i
@@ -1088,7 +1038,7 @@ class DangKyCongViec extends Component {
                                         onClick={() => { this.xulyThemChuKyNhac() }}
                                     ><span className="icon-plus">Thêm chu kỳ nhắc</span></i>
                                 </label>
-                            </div>
+                            </div> */}
                             <div className="col-12 my-3">
                                 <button
                                     type="button"

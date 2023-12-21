@@ -57,7 +57,6 @@ let addNewCalendar = async (data, arrRepeat) => {
             trichyeunoidung: data.trichyeunoidung,
             chutheyeucau: data.chutheyeucau,
             nguoithuchien: data.nguoithuchien,
-            trangthai: data.trangthai,
             noidungyeucau: data.noidungyeucau,
             nhactruoc: data.nhactruoc,
             douutien: data.douutien,
@@ -67,7 +66,8 @@ let addNewCalendar = async (data, arrRepeat) => {
             await db.RepeatCicles.create({
                 idcongviec: addNew.id,
                 chukylap: e.chukylap,
-                ngaylap: e.ngaylap
+                ngaylap: e.ngaylap,
+                trangthai: data.trangthai,
             });
         });
         return ({
@@ -105,7 +105,7 @@ let deleteCalendar = async (calendarId) => {
     }
 }
 
-let editCalendar = async (data, arrRepeat) => {
+let editCalendar = async (data) => {
     try {
         let calendar = await db.Calendars.findOne({
             where: { id: data.idcongviec }
@@ -134,12 +134,13 @@ let editCalendar = async (data, arrRepeat) => {
                 nhactruoc: data.nhactruoc,
                 douutien: data.douutien,
             }, { where: { id: data.idcongviec } });
-            arrRepeat.forEach(async (e) => {
-                await db.RepeatCicles.update({
-                    chukylap: e.chukylap,
-                    ngaylap: e.ngaylap
-                }, { where: { id: data.id } });
-            });
+            // arrRepeat.forEach(async (e) => {
+            await db.RepeatCicles.update({
+                // chukylap: e.chukylap,
+                // ngaylap: data.motlan,
+                trangthai: data.trangthai
+            }, { where: { id: data.id } });
+            // });
             return ({
                 errCode: 0,
                 errMessage: "Update the calendar succeed!"

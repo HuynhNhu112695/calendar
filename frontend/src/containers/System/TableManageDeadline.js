@@ -42,19 +42,21 @@ class TableManageDeadline extends Component {
         let copyState = { ...this.state };
         copyState[id] = event.target.value;
         if (this.state.search !== copyState['search']) {
-            let key = copyState['search']
-            // console.log(key)
+            let key = copyState['search'];
             let arrCalendarFind = [];
-            let calendar = this.props.calendar.calendar;
+            let calendar = this.props.calendarDead.calendar;
             calendar.filter((item) => {
-                if (key && item && item.noidungyeucau && item.noidungyeucau.toLowerCase().includes(key)) {
+                if (key && item && item.dataCalendar.noidungyeucau && item.dataCalendar.noidungyeucau.toLowerCase().includes(key)
+                    || item && item.dataCalendar.nguoithuchien && item.dataCalendar.nguoithuchien.toLowerCase().includes(key)
+                    || item && item.dataCalendar.chutheyeucau && item.dataCalendar.chutheyeucau.toLowerCase().includes(key)) {
+                    console.log(item)
                     arrCalendarFind.push(item)
                 }
             })
             if (copyState['search'] !== "") {
-                copyState['calendarRedux'] = arrCalendarFind;
+                copyState['calendarDead'] = arrCalendarFind;
             } else {
-                copyState['calendarRedux'] = calendar;
+                copyState['calendarDead'] = calendar;
             }
         }
         this.setState({
@@ -98,7 +100,6 @@ class TableManageDeadline extends Component {
     render() {
         let calendarDead = this.state.calendarDead;
         if (!calendarDead) { calendarDead = []; }
-        console.log(calendarDead)
         let pageCount = this.state.pageCount;
         let startIndex = this.state.startIndex;
         let importArr = {};
@@ -147,10 +148,10 @@ class TableManageDeadline extends Component {
                                 <th>Người thực hiện</th>
                                 {/* <th>Nhắc trước</th> */}
                                 <th>Độ ưu tiên</th>
-                                <th>Chu kỳ nhắc</th>
+                                {/* <th>Chu kỳ nhắc</th> */}
                                 <th>Ngày nhắc</th>
                                 <th>Trạng thái</th>
-                                <th></th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -163,27 +164,27 @@ class TableManageDeadline extends Component {
                             }
                             {calendarDead.length !== 0 && calendarDead.map((item, index) => {
                                 let day = moment(item.ngaylap).format("DD/MM/YYYY");
-                                let chukylap = "";
+                                // let chukylap = "";
                                 let trangthai = "";
-                                if (item.chukylap === 0) {
-                                    chukylap = "Một lần";
-                                } else if (item.chukylap === 1) {
-                                    chukylap = "Mỗi tháng"
-                                } else if (item.chukylap === 2) {
-                                    chukylap = "Sáu tháng"
-                                } else if (item.chukylap === 3) {
-                                    chukylap = "Chín tháng"
-                                } else if (item.chukylap === 4) {
-                                    chukylap = "Quý I"
-                                } else if (item.chukylap === 5) {
-                                    chukylap = "Quý II"
-                                } else if (item.chukylap === 6) {
-                                    chukylap = "Quý III"
-                                } else if (item.chukylap === 7) {
-                                    chukylap = "Quý IV"
-                                } else if (item.chukylap === 8) {
-                                    chukylap = "Mỗi năm"
-                                }
+                                // if (item.chukylap === 0) {
+                                //     chukylap = "Một lần";
+                                // } else if (item.chukylap === 1) {
+                                //     chukylap = "Mỗi tháng"
+                                // } else if (item.chukylap === 2) {
+                                //     chukylap = "Sáu tháng"
+                                // } else if (item.chukylap === 3) {
+                                //     chukylap = "Chín tháng"
+                                // } else if (item.chukylap === 4) {
+                                //     chukylap = "Quý I"
+                                // } else if (item.chukylap === 5) {
+                                //     chukylap = "Quý II"
+                                // } else if (item.chukylap === 6) {
+                                //     chukylap = "Quý III"
+                                // } else if (item.chukylap === 7) {
+                                //     chukylap = "Quý IV"
+                                // } else if (item.chukylap === 8) {
+                                //     chukylap = "Mỗi năm"
+                                // }
                                 if (item.ngayconlai > 0) {
                                     trangthai = "Còn " + item.ngayconlai + " ngày nữa đến hạn";
                                 } else if (item.ngayconlai === 0) {
@@ -200,7 +201,7 @@ class TableManageDeadline extends Component {
                                         {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.nguoithuchien}</span></td>}
                                         {/* {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.nhactruoc}</span></td>} */}
                                         {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.douutien === 0 ? "Quan trọng" : "Thông thường"}</span></td>}
-                                        <td>{chukylap}</td>
+                                        {/* <td>{chukylap}</td> */}
                                         <td>{day}</td>
                                         <td><span className='texttrangthai'>{trangthai}</span></td>
                                         <td>
