@@ -5,15 +5,14 @@ import moment from 'moment';
 import './UserManage.scss';
 // import { emitter } from '../../utils/emitter';
 import * as actions from '../../store/actions';
-import { LANGUAGES } from "../../utils";
 // import { constant } from 'lodash';
 import ReactPaginate from 'react-paginate';
 
-class TableManageCalendar extends Component {
+class TableManageDeadline extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            calendarRedux: [],
+            calendarDead: [],
             pageCount: 0,
             page: null,
             search: '',
@@ -22,7 +21,7 @@ class TableManageCalendar extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchCalendarRedux(this.state.currentPage, this.props.userRedux.id);
+        this.props.fetchAllDeadline(this.state.currentPage, this.props.userRedux.id);
     }
 
     setChuKyLap = async (chukylap) => {
@@ -43,21 +42,21 @@ class TableManageCalendar extends Component {
         let copyState = { ...this.state };
         copyState[id] = event.target.value;
         if (this.state.search !== copyState['search']) {
-            let key = copyState['search']
-            // console.log(key)
+            let key = copyState['search'];
             let arrCalendarFind = [];
-            let calendar = this.props.calendar.calendar;
+            let calendar = this.props.calendarDead.calendar;
             calendar.filter((item) => {
                 if (key && item && item.dataCalendar.noidungyeucau && item.dataCalendar.noidungyeucau.toLowerCase().includes(key)
                     || item && item.dataCalendar.nguoithuchien && item.dataCalendar.nguoithuchien.toLowerCase().includes(key)
                     || item && item.dataCalendar.chutheyeucau && item.dataCalendar.chutheyeucau.toLowerCase().includes(key)) {
+                    console.log(item)
                     arrCalendarFind.push(item)
                 }
             })
             if (copyState['search'] !== "") {
-                copyState['calendarRedux'] = arrCalendarFind;
+                copyState['calendarDead'] = arrCalendarFind;
             } else {
-                copyState['calendarRedux'] = calendar;
+                copyState['calendarDead'] = calendar;
             }
         }
         this.setState({
@@ -70,22 +69,22 @@ class TableManageCalendar extends Component {
     }
 
     handleEditCalendar = (user) => {
-        this.props.handleEditCalendarFromParent(user, this.state.page);
+        this.props.handleEditDeadlineFromParent(user, this.state.page);
     }
 
     handleDetailCalendar = (user) => {
-        this.props.handleDetailCalendarFromParent(user, this.state.page);
+        this.props.handleDetailDeadlineFromParent(user, this.state.page);
     }
 
     componentDidUpdate = (prevProps, prevState, snapshot) => {
         //after run render => run didUpdate 
-        if (prevProps.calendar !== this.props.calendar) {
-            let calendar = this.props.calendar.calendar;
-            let pageCount = this.props.calendar.pageCount;
-            let startIndex = this.props.calendar.startIndex;
-            let currentPage = this.props.calendar.currentPage;
+        if (prevProps.calendarDead !== this.props.calendarDead) {
+            let calendarDead = this.props.calendarDead.calendar;
+            let pageCount = this.props.calendarDead.pageCount;
+            let startIndex = this.props.calendarDead.startIndex;
+            let currentPage = this.props.calendarDead.currentPage;
             this.setState({
-                calendarRedux: calendar,
+                calendarDead: calendarDead,
                 pageCount: pageCount,
                 startIndex: startIndex,
                 page: currentPage
@@ -95,16 +94,16 @@ class TableManageCalendar extends Component {
 
     handlePageClick = (e) => {
         let page = e.selected + 1;
-        this.props.fetchCalendarRedux(page, this.props.userRedux.id);
+        this.props.fetchAllDeadline(page, this.props.userRedux.id);
     }
 
     render() {
-        let calendar = this.state.calendarRedux;
-        if (!calendar) { calendar = []; }
+        let calendarDead = this.state.calendarDead;
+        if (!calendarDead) { calendarDead = []; }
         let pageCount = this.state.pageCount;
         let startIndex = this.state.startIndex;
         let importArr = {};
-        let rowSpanImport = calendar.reduce((result, item, key) => {
+        let rowSpanImport = calendarDead.reduce((result, item, key) => {
             if (importArr[item.idcongviec] === undefined) {
                 importArr[item.idcongviec] = key;
                 result[key] = 1;
@@ -112,7 +111,7 @@ class TableManageCalendar extends Component {
                 let firstIndex = importArr[item.idcongviec];
                 if (
                     firstIndex === key - 1 ||
-                    (item.idcongviec === calendar[key - 1].idcongviec && result[key - 1] === 0)
+                    (item.idcongviec === calendarDead[key - 1].idcongviec && result[key - 1] === 0)
                 ) {
                     result[firstIndex]++;
                     result[key] = 0;
@@ -144,33 +143,34 @@ class TableManageCalendar extends Component {
                         <thead>
                             <tr>
                                 {/* <th></th> */}
-                                <th>Đơn vị yêu cầu</th>
+                                <th>Chủ thể yêu cầu</th>
                                 <th>Nội dung yêu cầu</th>
                                 <th>Người thực hiện</th>
-                                <th>Nhắc trước</th>
+                                {/* <th>Nhắc trước</th> */}
                                 <th>Độ ưu tiên</th>
                                 {/* <th>Chu kỳ nhắc</th> */}
                                 <th>Ngày nhắc</th>
+                                <th>Trạng thái</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {calendar.length === 0 &&
+                            {calendarDead.length === 0 &&
                                 <tr>
                                     <td className='text-center' colSpan={9}>
                                         <FormattedMessage id="manage-user.dataEmpty" />
                                     </td>
                                 </tr>
                             }
-                            {calendar.length !== 0 && calendar.map((item, index) => {
+                            {calendarDead.length !== 0 && calendarDead.map((item, index) => {
                                 let day = moment(item.ngaylap).format("DD/MM/YYYY");
                                 // let chukylap = "";
+                                let trangthai = "";
                                 // if (item.chukylap === 0) {
                                 //     chukylap = "Một lần";
                                 // } else if (item.chukylap === 1) {
                                 //     chukylap = "Mỗi tháng"
-                                // }
-                                // else if (item.chukylap === 2) {
+                                // } else if (item.chukylap === 2) {
                                 //     chukylap = "Sáu tháng"
                                 // } else if (item.chukylap === 3) {
                                 //     chukylap = "Chín tháng"
@@ -185,6 +185,13 @@ class TableManageCalendar extends Component {
                                 // } else if (item.chukylap === 8) {
                                 //     chukylap = "Mỗi năm"
                                 // }
+                                if (item.ngayconlai > 0) {
+                                    trangthai = "Còn " + item.ngayconlai + " ngày nữa đến hạn";
+                                } else if (item.ngayconlai === 0) {
+                                    trangthai = "Đã đến ngày hết hạn";
+                                } else {
+                                    trangthai = "Trễ hạn";
+                                }
                                 // console.log('check map: ', item, index)
                                 return (
                                     <tr key={item.id}>
@@ -192,10 +199,11 @@ class TableManageCalendar extends Component {
                                         {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.chutheyeucau}</span></td>}
                                         {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{(item.dataCalendar.noidungyeucau.length > 30) ? item.dataCalendar.noidungyeucau.slice(0, 30 - 1) + '...' : item.dataCalendar.noidungyeucau}</span></td>}
                                         {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.nguoithuchien}</span></td>}
-                                        {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.nhactruoc}</span></td>}
+                                        {/* {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.nhactruoc}</span></td>} */}
                                         {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.douutien === 0 ? "Quan trọng" : "Thông thường"}</span></td>}
                                         {/* <td>{chukylap}</td> */}
                                         <td>{day}</td>
+                                        <td><span className='texttrangthai'>{trangthai}</span></td>
                                         <td>
                                             <button className='btn-detail' value={item.id}
                                                 onClick={(e) => this.handleDetailCalendar(item)}>
@@ -252,18 +260,17 @@ class TableManageCalendar extends Component {
 }
 const mapStateToProps = state => {
     return {
-        language: state.app.language,
         userRedux: state.user.userInfo,
-        calendar: state.calendar.calendar,
+        calendarDead: state.calendar.calendarDead,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchCalendarRedux: (currentPage, userIdCreate) => dispatch(actions.fetchAllCalendarStart(currentPage, userIdCreate)),
+        fetchAllDeadline: (currentPage, userIdCreate) => dispatch(actions.fetchAllDeadlineStart(currentPage, userIdCreate)),
         deleteCalendarRedux: (id, currentPage) => dispatch(actions.deleteCalendar(id, currentPage)),
         editCalendarRedux: (user) => dispatch(actions.editCalendar(user))
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TableManageCalendar);
+export default connect(mapStateToProps, mapDispatchToProps)(TableManageDeadline);

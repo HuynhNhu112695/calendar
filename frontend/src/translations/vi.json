@@ -1,6 +1,6 @@
 {
     "common": {
-        "titleHome": "Chào mừng đến Paris Nails of Falmouth",
+        "titleHome": "Chào mừng đến với phần mềm nhắc việc",
         "add": "Thêm",
         "edit": "Sửa",
         "delete": "Xóa",
@@ -32,7 +32,8 @@
                 "header": "Trang chủ",
                 "home": "Quay lại trang chủ",
                 "calendar": "Quản lý công việc",
-                "deadline": "Quản lý việc sắp đến hạn"
+                "deadline": "Quản lý việc sắp đến hạn",
+                "late": "Quản lý việc trễ hạn"
             },
             "manage-user": {
                 "header": "Người dùng",

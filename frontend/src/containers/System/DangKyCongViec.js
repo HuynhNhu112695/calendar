@@ -7,7 +7,6 @@ import './UserManage.scss';
 import * as actions from '../../store/actions';
 import { LANGUAGES, CRUD_ACTIONS } from "../../utils";
 import TableManageCalendar from './TableManageCalendar';
-import TableManageDeadline from './TableManageDeadline';
 
 class DangKyCongViec extends Component {
     /*  Life cycle
