@@ -25,6 +25,7 @@ class Home extends Component {
                 <Redirect to={linkToRedirect} />
                 <div className='title'><FormattedMessage id="common.titleHome" /></div>
                 <div className="container">
+
                     {/* <form className="row g-3">
                         <div className="col-lg-3 col-md-3 col-xs-auto statistic">
                             <label className="form-label text-title">

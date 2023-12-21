@@ -5,6 +5,7 @@ const initialState = {
     calendarAdd: null,
     calendar: [],
     calendarDead: [],
+    calendarLate: [],
 }
 
 const calendarReducer = (state = initialState, action) => {
@@ -53,6 +54,16 @@ const calendarReducer = (state = initialState, action) => {
             }
         case actionTypes.FETCH_ALL_CALENDAR_DEAD_FAILED:
             state.calendarDead = [];
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_ALL_CALENDAR_LATE_SUCCESS:
+            state.calendarLate = action.calendarLate;
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_ALL_CALENDAR_LATE_FAILED:
+            state.calendarLate = [];
             return {
                 ...state
             }

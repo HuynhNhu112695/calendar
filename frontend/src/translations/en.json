@@ -32,7 +32,8 @@
                 "header": "Home",
                 "home": "Callback Home",
                 "calendar": "Quản lý công việc",
-                "deadline": "Quản lý việc sắp đến hạn"
+                "deadline": "Quản lý việc sắp đến hạn",
+                "late": "Quản lý việc trễ hạn"
             },
             "manage-user": {
                 "header": "Users",

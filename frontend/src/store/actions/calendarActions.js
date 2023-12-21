@@ -1,7 +1,7 @@
 import actionTypes from './actionTypes';
 import {
     handleCreateNewCalendarApi, getAllCalendar, getAllDeadline,
-    handleDeleteCalendarApi, handleEditCalendarApi,
+    handleDeleteCalendarApi, handleEditCalendarApi, getAllLate
 } from '../../services/userService';
 import { toast } from 'react-toastify';
 
@@ -86,6 +86,33 @@ export const fetchAllDeadlineSuccess = (data) => ({
 
 export const fetchAllDeadlineFailed = () => ({
     type: actionTypes.FETCH_ALL_CALENDAR_DEAD_FAILED,
+})
+
+export const fetchAllLateStart = (currentPage, userIdCreate) => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch({ type: actionTypes.FETCH_ALL_CALENDAR_LATE_START })
+            let res = await getAllLate(currentPage, userIdCreate);
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllLateSuccess(res));
+            } else {
+                toast.error("Không thể tải lại trang công việc trễ hẹn!")
+                dispatch(fetchAllLateFailed());
+            }
+        } catch (e) {
+            dispatch(fetchAllLateFailed());
+            console.log('fetchAllLateCalendarStart error', e)
+        }
+    }
+}
+
+export const fetchAllLateSuccess = (data) => ({
+    type: actionTypes.FETCH_ALL_CALENDAR_LATE_SUCCESS,
+    calendarLate: data
+})
+
+export const fetchAllLateFailed = () => ({
+    type: actionTypes.FETCH_ALL_CALENDAR_LATE_FAILED,
 })
 
 export const deleteCalendar = (inputId, currentPage) => {

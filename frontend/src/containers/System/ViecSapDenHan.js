@@ -450,7 +450,7 @@ class DangKyCongViec extends Component {
             trichyeunoidung: work.dataCalendar.trichyeunoidung,
             chutheyeucau: work.dataCalendar.chutheyeucau,
             nguoithuchien: work.dataCalendar.nguoithuchien,
-            trangthai: work.dataCalendar.trangthai,
+            trangthai: work.trangthai,
             noidungyeucau: work.dataCalendar.noidungyeucau,
             nhactruoc: work.dataCalendar.nhactruoc,
             douutien: work.dataCalendar.douutien,

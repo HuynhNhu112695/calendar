@@ -7,7 +7,7 @@ import './UserManage.scss';
 import * as actions from '../../store/actions';
 import { LANGUAGES, CRUD_ACTIONS } from "../../utils";
 // import TableManageCalendar from './TableManageCalendar';
-import TableManageDeadline from './TableManageDeadline';
+import TableManageLate from './TableManageLate';
 
 class DangKyCongViec extends Component {
     /*  Life cycle
@@ -439,7 +439,7 @@ class DangKyCongViec extends Component {
         }
     }
 
-    handleEditDeadlineFromParent = async (work, currentPage) => {
+    handleEditLateFromParent = async (work, currentPage) => {
         await document.getElementById("sovanban").focus();
         await this.setState({
             id: work.id,
@@ -450,7 +450,7 @@ class DangKyCongViec extends Component {
             trichyeunoidung: work.dataCalendar.trichyeunoidung,
             chutheyeucau: work.dataCalendar.chutheyeucau,
             nguoithuchien: work.dataCalendar.nguoithuchien,
-            trangthai: work.dataCalendar.trangthai,
+            trangthai: work.trangthai,
             noidungyeucau: work.dataCalendar.noidungyeucau,
             nhactruoc: work.dataCalendar.nhactruoc,
             douutien: work.dataCalendar.douutien,
@@ -463,7 +463,7 @@ class DangKyCongViec extends Component {
         })
     }
 
-    handleDetailDeadlineFromParent = async (work, currentPage) => {
+    handleDetailLateFromParent = async (work, currentPage) => {
         await document.getElementById("sovanban").focus();
         await this.setState({
             id: work.id,
@@ -525,7 +525,7 @@ class DangKyCongViec extends Component {
         return (
             <div className="overflow-auto user-redux-container">
                 <div className="title py-3">
-                    Quản lý công việc sắp đến hạn
+                    Quản lý công việc trễ hạn
                 </div>
                 <div className="user-redux-body">
                     <div className={actions === CRUD_ACTIONS.EDIT ? "container" : "container hidden"}>
@@ -730,9 +730,9 @@ class DangKyCongViec extends Component {
                             </div>
                         </form>
                     </div>
-                    <TableManageDeadline
-                        handleEditDeadlineFromParent={this.handleEditDeadlineFromParent}
-                        handleDetailDeadlineFromParent={this.handleDetailDeadlineFromParent}
+                    <TableManageLate
+                        handleEditLateFromParent={this.handleEditLateFromParent}
+                        handleDetailLateFromParent={this.handleDetailLateFromParent}
                         isMenu={this.state.isMenu}
                         currentPage={this.state.currentPage}
                     />

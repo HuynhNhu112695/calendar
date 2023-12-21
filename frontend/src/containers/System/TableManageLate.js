@@ -8,11 +8,11 @@ import * as actions from '../../store/actions';
 // import { constant } from 'lodash';
 import ReactPaginate from 'react-paginate';
 
-class TableManageDeadline extends Component {
+class TableManageLate extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            calendarDead: [],
+            calendarLate: [],
             pageCount: 0,
             page: null,
             search: '',
@@ -21,7 +21,7 @@ class TableManageDeadline extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchAllDeadline(this.state.currentPage, this.props.userRedux.id);
+        this.props.fetchAllLate(this.state.currentPage, this.props.userRedux.id);
     }
 
     setChuKyLap = async (chukylap) => {
@@ -44,7 +44,7 @@ class TableManageDeadline extends Component {
         if (this.state.search !== copyState['search']) {
             let key = copyState['search'];
             let arrCalendarFind = [];
-            let calendar = this.props.calendarDead.calendar;
+            let calendar = this.props.calendarLate.calendar;
             calendar.filter((item) => {
                 if (key && item && item.dataCalendar.noidungyeucau && item.dataCalendar.noidungyeucau.toLowerCase().includes(key)
                     || item && item.dataCalendar.nguoithuchien && item.dataCalendar.nguoithuchien.toLowerCase().includes(key)
@@ -54,9 +54,9 @@ class TableManageDeadline extends Component {
                 }
             })
             if (copyState['search'] !== "") {
-                copyState['calendarDead'] = arrCalendarFind;
+                copyState['calendarLate'] = arrCalendarFind;
             } else {
-                copyState['calendarDead'] = calendar;
+                copyState['calendarLate'] = calendar;
             }
         }
         this.setState({
@@ -69,22 +69,22 @@ class TableManageDeadline extends Component {
     }
 
     handleEditCalendar = (user) => {
-        this.props.handleEditDeadlineFromParent(user, this.state.page);
+        this.props.handleEditLateFromParent(user, this.state.page);
     }
 
     handleDetailCalendar = (user) => {
-        this.props.handleDetailDeadlineFromParent(user, this.state.page);
+        this.props.handleDetailLateFromParent(user, this.state.page);
     }
 
     componentDidUpdate = (prevProps, prevState, snapshot) => {
         //after run render => run didUpdate 
-        if (prevProps.calendarDead !== this.props.calendarDead) {
-            let calendarDead = this.props.calendarDead.calendar;
-            let pageCount = this.props.calendarDead.pageCount;
-            let startIndex = this.props.calendarDead.startIndex;
-            let currentPage = this.props.calendarDead.currentPage;
+        if (prevProps.calendarLate !== this.props.calendarLate) {
+            let calendarLate = this.props.calendarLate.calendar;
+            let pageCount = this.props.calendarLate.pageCount;
+            let startIndex = this.props.calendarLate.startIndex;
+            let currentPage = this.props.calendarLate.currentPage;
             this.setState({
-                calendarDead: calendarDead,
+                calendarLate: calendarLate,
                 pageCount: pageCount,
                 startIndex: startIndex,
                 page: currentPage
@@ -94,16 +94,15 @@ class TableManageDeadline extends Component {
 
     handlePageClick = (e) => {
         let page = e.selected + 1;
-        this.props.fetchAllDeadline(page, this.props.userRedux.id);
+        this.props.fetchAllLate(page, this.props.userRedux.id);
     }
 
     render() {
-        let calendarDead = this.state.calendarDead;
-        if (!calendarDead) { calendarDead = []; }
+        let calendarLate = this.state.calendarLate;
+        if (!calendarLate) { calendarLate = []; }
         let pageCount = this.state.pageCount;
-        let startIndex = this.state.startIndex;
         let importArr = {};
-        let rowSpanImport = calendarDead.reduce((result, item, key) => {
+        let rowSpanImport = calendarLate.reduce((result, item, key) => {
             if (importArr[item.idcongviec] === undefined) {
                 importArr[item.idcongviec] = key;
                 result[key] = 1;
@@ -111,7 +110,7 @@ class TableManageDeadline extends Component {
                 let firstIndex = importArr[item.idcongviec];
                 if (
                     firstIndex === key - 1 ||
-                    (item.idcongviec === calendarDead[key - 1].idcongviec && result[key - 1] === 0)
+                    (item.idcongviec === calendarLate[key - 1].idcongviec && result[key - 1] === 0)
                 ) {
                     result[firstIndex]++;
                     result[key] = 0;
@@ -155,14 +154,14 @@ class TableManageDeadline extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {calendarDead.length === 0 &&
+                            {calendarLate.length === 0 &&
                                 <tr>
                                     <td className='text-center' colSpan={9}>
                                         <FormattedMessage id="manage-user.dataEmpty" />
                                     </td>
                                 </tr>
                             }
-                            {calendarDead.length !== 0 && calendarDead.map((item, index) => {
+                            {calendarLate.length !== 0 && calendarLate.map((item, index) => {
                                 let day = moment(item.ngaylap).format("DD/MM/YYYY");
                                 // let chukylap = "";
                                 let trangthai = "";
@@ -209,10 +208,10 @@ class TableManageDeadline extends Component {
                                                 onClick={(e) => this.handleDetailCalendar(item)}>
                                                 <i className="fas fa-info-circle"></i>
                                             </button>
-                                            <button className='btn-edit' value={item.id}
+                                            {/* <button className='btn-edit' value={item.id}
                                                 onClick={(e) => this.handleEditCalendar(item)}>
                                                 <i className="fas fa-pencil-alt"></i>
-                                            </button>
+                                            </button> */}
                                             <button className='btn-delete' value={item.id}
                                                 onClick={(e) => {
                                                     window.confirm('Are you sure you want to delete it?',)
@@ -261,16 +260,16 @@ class TableManageDeadline extends Component {
 const mapStateToProps = state => {
     return {
         userRedux: state.user.userInfo,
-        calendarDead: state.calendar.calendarDead,
+        calendarLate: state.calendar.calendarLate,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchAllDeadline: (currentPage, userIdCreate) => dispatch(actions.fetchAllDeadlineStart(currentPage, userIdCreate)),
+        fetchAllLate: (currentPage, userIdCreate) => dispatch(actions.fetchAllLateStart(currentPage, userIdCreate)),
         deleteCalendarRedux: (id, currentPage) => dispatch(actions.deleteCalendar(id, currentPage)),
         editCalendarRedux: (user) => dispatch(actions.editCalendar(user))
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TableManageDeadline);
+export default connect(mapStateToProps, mapDispatchToProps)(TableManageLate);
