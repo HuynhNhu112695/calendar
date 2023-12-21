@@ -11,10 +11,6 @@ module.exports = (sequelize, DataTypes) => {
          */
         static associate(models) {
             // define association here
-            Users.hasMany(models.Schedules, { foreignKey: 'id', targetKey: 'staffId', as: 'staffInfo' })
-            Users.hasMany(models.Bookings, { foreignKey: 'id', targetKey: 'staffId', as: 'staffOrder' })
-            Users.hasMany(models.Salary, { foreignKey: 'id', targetKey: 'staffId', as: 'staffSalary' })
-            Users.hasMany(models.Bookings, { foreignKey: 'id', targetKey: 'customerId', as: 'customerOrder' })
             Users.belongsTo(models.Allcodes, { foreignKey: 'gender', targetKey: 'key', as: 'genderData' })
             Users.belongsTo(models.Allcodes, { foreignKey: 'roleId', targetKey: 'key', as: 'roleData' })
         }

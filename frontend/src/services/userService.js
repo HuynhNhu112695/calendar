@@ -8,16 +8,8 @@ const getAllUsers = (inputId, currentPage) => {
     return axios.get(`/api/get-all-users?id=${inputId}&page=${currentPage}`);
 }
 
-const countStaff = () => {
-    return axios.get(`/api/count-staff`);
-}
-
 const findUserApi = (key) => {
     return axios.get(`/api/find-user?key=${key}`);
-}
-
-const getAllStaffsWorkingApi = (date) => {
-    return axios.get(`/api/get-all-staffs-working?date=${date}`);
 }
 
 const handleCreateNewUserApi = (data) => {
@@ -59,8 +51,8 @@ const handleGetAllcodeApi = (inputType) => {
 }
 
 export {
-    handleLoginApi, handleGetAllcodeApi, countStaff,
-    getAllUsers, findUserApi, handleCreateNewUserApi, handleEditUserApi, handleDeleteUserApi, getAllStaffsWorkingApi,
+    handleLoginApi, handleGetAllcodeApi,
+    getAllUsers, findUserApi, handleCreateNewUserApi, handleEditUserApi, handleDeleteUserApi,
     getAllCalendar, handleCreateNewCalendarApi, handleEditCalendarApi, handleDeleteCalendarApi,
     getAllDeadline
 }

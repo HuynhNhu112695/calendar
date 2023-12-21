@@ -1,7 +1,7 @@
 import actionTypes from './actionTypes';
 import {
     handleGetAllcodeApi, handleCreateNewUserApi, getAllUsers, findUserApi,
-    handleDeleteUserApi, handleEditUserApi, getAllStaffsWorkingApi, countStaff
+    handleDeleteUserApi, handleEditUserApi,
 } from '../../services/userService';
 import { toast } from 'react-toastify';
 
@@ -107,33 +107,6 @@ export const createUserSuccess = () => ({
 
 export const createUserFailed = () => ({
     type: actionTypes.CREATE_USER_FAILED
-})
-
-export const fetchAllStaffsWorkingStart = (date) => {
-    return async (dispatch, getState) => {
-        try {
-            dispatch({ type: actionTypes.FETCH_ALL_STAFFS_WORKING_START })
-            let res = await getAllStaffsWorkingApi(date);
-            if (res && res.errCode === 0) {
-                await dispatch(fetchAllStaffsWorkingSuccess(res.listStaff));
-            } else {
-                toast.error("Fetch all staffs working error!")
-                dispatch(fetchAllStaffsWorkingFailed());
-            }
-        } catch (e) {
-            dispatch(fetchAllStaffsWorkingFailed());
-            console.log('fetchAllStaffWorkingStart error', e)
-        }
-    }
-}
-
-export const fetchAllStaffsWorkingSuccess = (data) => ({
-    type: actionTypes.FETCH_ALL_STAFFS_WORKING_SUCCESS,
-    staffs: data
-})
-
-export const fetchAllStaffsWorkingFailed = () => ({
-    type: actionTypes.FETCH_ALL_STAFFS_WORKING_FAILED,
 })
 
 export const findUserStart = (key) => {
@@ -249,31 +222,4 @@ export const fetchAllUsersSuccess = (data) => ({
 
 export const fetchAllUsersFailed = () => ({
     type: actionTypes.FETCH_ALL_USERS_FAILED,
-})
-
-export const countStaffStart = () => {
-    return async (dispatch, getState) => {
-        try {
-            dispatch({ type: actionTypes.COUNT_STAFF_START })
-            let res = await countStaff();
-            if (res && res.errCode === 0) {
-                dispatch(countStaffSuccess(res));
-            } else {
-                toast.error("Count error!")
-                dispatch(countStaffFailed());
-            }
-        } catch (e) {
-            dispatch(countStaffFailed());
-            console.log('countStaffStart error', e)
-        }
-    }
-}
-
-export const countStaffSuccess = (data) => ({
-    type: actionTypes.COUNT_STAFF_SUCCESS,
-    countStaff: data
-})
-
-export const countStaffFailed = () => ({
-    type: actionTypes.COUNT_STAFF_FAILED,
 })

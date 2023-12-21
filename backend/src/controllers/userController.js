@@ -1,5 +1,4 @@
 import userService from "../services/userService";
-import scheduleService from "../services/scheduleService";
 import { createJWT, verifyToken } from '../middleware/JWTAction';
 
 let handleLogin = async (req, res) => {
@@ -22,15 +21,6 @@ let handleLogin = async (req, res) => {
             user: userData.user ? userData.user : {}
         })
     }
-}
-
-let countStaff = async (req, res) => {
-    let staffs = await userService.getAllUsers('STAFF');
-    return res.status(200).json({
-        errCode: 0,
-        errMessage: "Count staff succeed!",
-        totalStaff: staffs.length
-    })
 }
 
 let handleGetAllUser = async (req, res) => {
@@ -92,42 +82,6 @@ let handleGetAllUser = async (req, res) => {
         })
     }
 }
-
-let handleGetAllStaffsWorking = async (req, res) => {
-    let date = req.query.date;
-    if (!date) {
-        return res.status(200).json({
-            errCode: 1,
-            errMessage: 'Missing inputs parameter! ',
-            users: []
-        })
-    }
-    let staffRest = [];
-    let allStaffs = [];
-    let arrStaffWorking = [];
-    allStaffs = await userService.getAllUsers("STAFF");
-    staffRest = await scheduleService.getStaffRest(date);
-    if (staffRest.length > 0) {
-        allStaffs.forEach(arr1 => {
-            staffRest.forEach(arr2 => {
-                if (arr1.id !== arr2.staffId) {
-                    arrStaffWorking.push(arr1)
-                }
-            })
-        });
-    } else {
-        arrStaffWorking = allStaffs;
-    }
-    return res.status(200).json({
-        errCode: 0,
-        errMessage: "Ok!",
-        listStaff: arrStaffWorking
-    })
-}
-
-// let getAddNewUser = (req, res) => {
-//     return res.render('addUser.ejs');
-// }
 
 let handleAddNewUser = async (request, res) => {
     let data = request.body;
@@ -194,11 +148,8 @@ let getAllcode = async (req, res) => {
 module.exports = {
     handleLogin: handleLogin,
     handleGetAllUser: handleGetAllUser,
-    handleGetAllStaffsWorking: handleGetAllStaffsWorking,
-    // getAddNewUser: getAddNewUser,
     handleAddNewUser: handleAddNewUser,
     handleEditUser: handleEditUser,
     handleDeleteUser: handleDeleteUser,
     getAllcode: getAllcode,
-    countStaff: countStaff
 }
