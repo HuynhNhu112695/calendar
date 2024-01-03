@@ -2,13 +2,14 @@ import calendarService from "../services/calendarService";
 
 let handleGetAllCalendar = async (req, res) => {
     let page = req.query.page;
+    let searchText = req.query?.search || '';
     let userIdCreate = req.query.userIdCreate;
     let limit = 10;
     let startIndex = (page - 1) * limit;
     let endIndex = page * limit;
     let calendar = [];
 
-    calendar = await calendarService.getAllCalendar(userIdCreate);
+    calendar = await calendarService.getAllCalendar(userIdCreate, searchText);
     let totalCalendar = calendar.length;
     let pageCount = Math.ceil(totalCalendar / limit);
 

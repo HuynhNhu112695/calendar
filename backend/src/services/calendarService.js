@@ -1,7 +1,7 @@
 import db from "../models/index";
 const { Op } = require('sequelize');
 
-let getAllCalendar = async (userIdCreate) => {
+let getAllCalendar = async (userIdCreate, searchText) => {
     try {
         let calendar = await db.RepeatCicles.findAll({
             order: [
@@ -12,7 +12,15 @@ let getAllCalendar = async (userIdCreate) => {
                     model: db.Calendars, as: 'dataCalendar', attributes: ['sovanban',
                         'ngayphathanh', 'chutheyeucau', 'nguoithuchien', 'noidungyeucau',
                         'nhactruoc', 'donviphathanh', 'trichyeunoidung', 'douutien', 'userIdCreate'],
-                    where: { userIdCreate: userIdCreate }
+                    where: {
+                        userIdCreate: userIdCreate,
+                        [Op.or]: [
+                            { noidungyeucau: { [Op.like]: '%' + searchText + '%' } },
+                            { nguoithuchien: { [Op.like]: '%' + searchText + '%' } },
+                            { sovanban: { [Op.like]: '%' + searchText + '%' } },
+                            { chutheyeucau: { [Op.like]: '%' + searchText + '%' } }
+                        ]
+                    }
                 }
             ],
             raw: true,

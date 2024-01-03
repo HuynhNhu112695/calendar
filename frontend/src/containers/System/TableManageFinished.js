@@ -21,7 +21,7 @@ class TableManageFinished extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchAllFinished(this.state.currentPage, this.props.userRedux.id);
+        this.props.fetchAllFinished(this.state.currentPage, this.props.userRedux.id, "");
     }
 
     setChuKyLap = async (chukylap) => {
@@ -38,30 +38,33 @@ class TableManageFinished extends Component {
         }
     }
 
-    handleOnChangeInput = (event, id) => {
+    handleOnChangeInput = async (event, id) => {
         let copyState = { ...this.state };
         copyState[id] = event.target.value;
-        if (this.state.search !== copyState['search']) {
-            let key = copyState['search'];
-            let arrCalendarFind = [];
-            let calendar = this.props.calendarFinished.calendar;
-            calendar.filter((item) => {
-                if (key && item && item.dataCalendar.noidungyeucau && item.dataCalendar.noidungyeucau.toLowerCase().includes(key)
-                    || item && item.dataCalendar.nguoithuchien && item.dataCalendar.nguoithuchien.toLowerCase().includes(key)
-                    || item && item.dataCalendar.chutheyeucau && item.dataCalendar.chutheyeucau.toLowerCase().includes(key)) {
-                    console.log(item)
-                    arrCalendarFind.push(item)
-                }
-            })
-            if (copyState['search'] !== "") {
-                copyState['calendarFinished'] = arrCalendarFind;
-            } else {
-                copyState['calendarFinished'] = calendar;
-            }
-        }
+        // if (this.state.search !== copyState['search']) {
+        //     let key = copyState['search'];
+        //     let arrCalendarFind = [];
+        //     let calendar = this.props.calendarFinished.calendar;
+        //     calendar.filter((item) => {
+        //         if (key && item && item.dataCalendar.noidungyeucau && item.dataCalendar.noidungyeucau.toLowerCase().includes(key)
+        //             || item && item.dataCalendar.nguoithuchien && item.dataCalendar.nguoithuchien.toLowerCase().includes(key)
+        //             || item && item.dataCalendar.chutheyeucau && item.dataCalendar.chutheyeucau.toLowerCase().includes(key)) {
+        //             console.log(item)
+        //             arrCalendarFind.push(item)
+        //         }
+        //     })
+        //     if (copyState['search'] !== "") {
+        //         copyState['calendarFinished'] = arrCalendarFind;
+        //     } else {
+        //         copyState['calendarFinished'] = calendar;
+        //     }
+        // }
         this.setState({
             ...copyState
         });
+        if (copyState['search'] !== this.state.search) {
+            await this.props.fetchCalendarRedux(1, this.props.userRedux.id, copyState['search']);
+        }
     }
 
     handleDeleteCalendar = (user) => {
@@ -94,7 +97,8 @@ class TableManageFinished extends Component {
 
     handlePageClick = (e) => {
         let page = e.selected + 1;
-        this.props.fetchAllFinished(page, this.props.userRedux.id);
+        let searchText = this.state?.search || '';
+        this.props.fetchAllFinished(page, this.props.userRedux.id, searchText);
     }
 
     render() {
@@ -240,7 +244,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchAllFinished: (currentPage, userIdCreate) => dispatch(actions.fetchAllFinishedStart(currentPage, userIdCreate)),
+        fetchAllFinished: (currentPage, userIdCreate, searchText) => dispatch(actions.fetchAllFinishedStart(currentPage, userIdCreate, searchText)),
         deleteCalendarRedux: (id, currentPage) => dispatch(actions.deleteCalendar(id, currentPage)),
         editCalendarRedux: (user) => dispatch(actions.editCalendar(user))
     };

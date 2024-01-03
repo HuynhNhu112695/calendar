@@ -34,11 +34,11 @@ export const createCalendarFailed = () => ({
     type: actionTypes.CREATE_CALENDAR_FAILED
 })
 
-export const fetchAllCalendarStart = (currentPage, userIdCreate) => {
+export const fetchAllCalendarStart = (currentPage, userIdCreate, searchText) => {
     return async (dispatch, getState) => {
         try {
             dispatch({ type: actionTypes.FETCH_ALL_CALENDAR_START })
-            let res = await getAllCalendar(currentPage, userIdCreate);
+            let res = await getAllCalendar(currentPage, userIdCreate, searchText);
             if (res && res.errCode === 0) {
                 dispatch(fetchAllCalendarSuccess(res));
             } else {
@@ -61,11 +61,11 @@ export const fetchAllCalendarFailed = () => ({
     type: actionTypes.FETCH_ALL_CALENDAR_FAILED,
 })
 
-export const fetchAllDeadlineStart = (currentPage, userIdCreate) => {
+export const fetchAllDeadlineStart = (currentPage, userIdCreate, searchText) => {
     return async (dispatch, getState) => {
         try {
             dispatch({ type: actionTypes.FETCH_ALL_CALENDAR_DEAD_START })
-            let res = await getAllDeadline(currentPage, userIdCreate);
+            let res = await getAllDeadline(currentPage, userIdCreate, searchText);
             if (res && res.errCode === 0) {
                 dispatch(fetchAllDeadlineSuccess(res));
             } else {
@@ -88,11 +88,11 @@ export const fetchAllDeadlineFailed = () => ({
     type: actionTypes.FETCH_ALL_CALENDAR_DEAD_FAILED,
 })
 
-export const fetchAllLateStart = (currentPage, userIdCreate) => {
+export const fetchAllLateStart = (currentPage, userIdCreate, searchText) => {
     return async (dispatch, getState) => {
         try {
             dispatch({ type: actionTypes.FETCH_ALL_CALENDAR_LATE_START })
-            let res = await getAllLate(currentPage, userIdCreate);
+            let res = await getAllLate(currentPage, userIdCreate, searchText);
             if (res && res.errCode === 0) {
                 dispatch(fetchAllLateSuccess(res));
             } else {
@@ -116,11 +116,11 @@ export const fetchAllLateFailed = () => ({
 })
 
 // Finished
-export const fetchAllFinishedStart = (currentPage, userIdCreate) => {
+export const fetchAllFinishedStart = (currentPage, userIdCreate, searchText) => {
     return async (dispatch, getState) => {
         try {
             dispatch({ type: actionTypes.FETCH_ALL_CALENDAR_FINISHED_START })
-            let res = await getAllFinished(currentPage, userIdCreate);
+            let res = await getAllFinished(currentPage, userIdCreate, searchText);
             if (res && res.errCode === 0) {
                 dispatch(fetchAllFinishedSuccess(res));
             } else {
@@ -180,13 +180,13 @@ export const editCalendar = (data) => {
             if (res && res.errCode === 0) {
                 toast.success(res.errMessage)
                 dispatch(editCalendarSuccess());
-                dispatch(fetchAllCalendarStart(data.currentPage, data.userIdCreate));
-                dispatch(fetchAllDeadlineStart(data.currentPage, data.userIdCreate));
+                dispatch(fetchAllCalendarStart(data.currentPage, data.userIdCreate, ""));
+                dispatch(fetchAllDeadlineStart(data.currentPage, data.userIdCreate, ""));
             } else {
                 toast.error(res.errMessage)
                 dispatch(editCalendarFailed());
-                dispatch(fetchAllCalendarStart(data.currentPage, data.userIdCreate));
-                dispatch(fetchAllDeadlineStart(data.page, data.userIdCreate));
+                dispatch(fetchAllCalendarStart(data.currentPage, data.userIdCreate, ""));
+                dispatch(fetchAllDeadlineStart(data.page, data.userIdCreate, ""));
             }
         } catch (e) {
             dispatch(editCalendarFailed());

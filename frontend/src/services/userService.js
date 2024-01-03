@@ -25,20 +25,20 @@ const handleDeleteUserApi = (inputId, isMenu) => {
 }
 
 //calendar
-const getAllCalendar = (calendarPage, userIdCreate) => {
-    return axios.get(`/api/get-all-calendar?page=${calendarPage}&userIdCreate=${userIdCreate}`);
+const getAllCalendar = (calendarPage, userIdCreate, searchText) => {
+    return axios.get(`/api/get-all-calendar?page=${calendarPage}&userIdCreate=${userIdCreate}${searchText ? '&search=' + searchText : ''}`);
 }
 
-const getAllDeadline = (calendarPage, userIdCreate) => {
-    return axios.get(`/api/get-all-deadline?page=${calendarPage}&userIdCreate=${userIdCreate}`);
+const getAllDeadline = (calendarPage, userIdCreate, searchText) => {
+    return axios.get(`/api/get-all-deadline?page=${calendarPage}&userIdCreate=${userIdCreate}${searchText ? '&search=' + searchText : ''}`);
 }
 
-const getAllLate = (calendarPage, userIdCreate) => {
-    return axios.get(`/api/get-all-late?page=${calendarPage}&userIdCreate=${userIdCreate}`);
+const getAllLate = (calendarPage, userIdCreate, searchText) => {
+    return axios.get(`/api/get-all-late?page=${calendarPage}&userIdCreate=${userIdCreate}${searchText ? '&search=' + searchText : ''}`);
 }
 
-const getAllFinished = (calendarPage, userIdCreate) => {
-    return axios.get(`/api/get-all-finished?page=${calendarPage}&userIdCreate=${userIdCreate}`);
+const getAllFinished = (calendarPage, userIdCreate, searchText) => {
+    return axios.get(`/api/get-all-finished?page=${calendarPage}&userIdCreate=${userIdCreate}${searchText ? '&search=' + searchText : ''}`);
 }
 
 const handleCreateNewCalendarApi = (data) => {

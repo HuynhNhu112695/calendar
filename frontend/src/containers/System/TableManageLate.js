@@ -21,7 +21,7 @@ class TableManageLate extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchAllLate(this.state.currentPage, this.props.userRedux.id);
+        this.props.fetchAllLate(this.state.currentPage, this.props.userRedux.id, "");
     }
 
     setChuKyLap = async (chukylap) => {
@@ -38,30 +38,33 @@ class TableManageLate extends Component {
         }
     }
 
-    handleOnChangeInput = (event, id) => {
+    handleOnChangeInput = async (event, id) => {
         let copyState = { ...this.state };
         copyState[id] = event.target.value;
-        if (this.state.search !== copyState['search']) {
-            let key = copyState['search'];
-            let arrCalendarFind = [];
-            let calendar = this.props.calendarLate.calendar;
-            calendar.filter((item) => {
-                if (key && item && item.dataCalendar.noidungyeucau && item.dataCalendar.noidungyeucau.toLowerCase().includes(key)
-                    || item && item.dataCalendar.nguoithuchien && item.dataCalendar.nguoithuchien.toLowerCase().includes(key)
-                    || item && item.dataCalendar.chutheyeucau && item.dataCalendar.chutheyeucau.toLowerCase().includes(key)) {
-                    console.log(item)
-                    arrCalendarFind.push(item)
-                }
-            })
-            if (copyState['search'] !== "") {
-                copyState['calendarLate'] = arrCalendarFind;
-            } else {
-                copyState['calendarLate'] = calendar;
-            }
-        }
+        // if (this.state.search !== copyState['search']) {
+        //     let key = copyState['search'];
+        //     let arrCalendarFind = [];
+        //     let calendar = this.props.calendarLate.calendar;
+        //     calendar.filter((item) => {
+        //         if (key && item && item.dataCalendar.noidungyeucau && item.dataCalendar.noidungyeucau.toLowerCase().includes(key)
+        //             || item && item.dataCalendar.nguoithuchien && item.dataCalendar.nguoithuchien.toLowerCase().includes(key)
+        //             || item && item.dataCalendar.chutheyeucau && item.dataCalendar.chutheyeucau.toLowerCase().includes(key)) {
+        //             console.log(item)
+        //             arrCalendarFind.push(item)
+        //         }
+        //     })
+        //     if (copyState['search'] !== "") {
+        //         copyState['calendarLate'] = arrCalendarFind;
+        //     } else {
+        //         copyState['calendarLate'] = calendar;
+        //     }
+        // }
         this.setState({
             ...copyState
         });
+        if (copyState['search'] !== this.state.search) {
+            await this.props.fetchAllLate(1, this.props.userRedux.id, copyState['search']);
+        }
     }
 
     handleDeleteCalendar = (user) => {
@@ -94,7 +97,8 @@ class TableManageLate extends Component {
 
     handlePageClick = (e) => {
         let page = e.selected + 1;
-        this.props.fetchAllLate(page, this.props.userRedux.id);
+        let searchText = this.state?.search || '';
+        this.props.fetchAllLate(page, this.props.userRedux.id, searchText);
     }
 
     render() {
@@ -251,7 +255,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchAllLate: (currentPage, userIdCreate) => dispatch(actions.fetchAllLateStart(currentPage, userIdCreate)),
+        fetchAllLate: (currentPage, userIdCreate, searchText) => dispatch(actions.fetchAllLateStart(currentPage, userIdCreate, searchText)),
         deleteCalendarRedux: (id, currentPage) => dispatch(actions.deleteCalendar(id, currentPage)),
         editCalendarRedux: (user) => dispatch(actions.editCalendar(user))
     };
