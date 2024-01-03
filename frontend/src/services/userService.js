@@ -37,6 +37,10 @@ const getAllLate = (calendarPage, userIdCreate) => {
     return axios.get(`/api/get-all-late?page=${calendarPage}&userIdCreate=${userIdCreate}`);
 }
 
+const getAllFinished = (calendarPage, userIdCreate) => {
+    return axios.get(`/api/get-all-finished?page=${calendarPage}&userIdCreate=${userIdCreate}`);
+}
+
 const handleCreateNewCalendarApi = (data) => {
     return axios.post('/api/post-add-calendar', data);
 }
@@ -58,5 +62,5 @@ export {
     handleLoginApi, handleGetAllcodeApi,
     getAllUsers, findUserApi, handleCreateNewUserApi, handleEditUserApi, handleDeleteUserApi,
     getAllCalendar, handleCreateNewCalendarApi, handleEditCalendarApi, handleDeleteCalendarApi,
-    getAllDeadline, getAllLate
+    getAllDeadline, getAllLate, getAllFinished
 }

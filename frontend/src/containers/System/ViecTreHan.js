@@ -9,7 +9,7 @@ import { LANGUAGES, CRUD_ACTIONS } from "../../utils";
 // import TableManageCalendar from './TableManageCalendar';
 import TableManageLate from './TableManageLate';
 
-class DangKyCongViec extends Component {
+class ViecTreHan extends Component {
     /*  Life cycle
     * Run component
     * 1. Run construc -> init state
@@ -746,7 +746,7 @@ class DangKyCongViec extends Component {
 const mapStateToProps = state => {
     return {
         userRedux: state.user.userInfo,
-        calendar: state.calendar.calendar,
+        calendar: state.calendar.calendarLate,
     };
 };
 
@@ -758,4 +758,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DangKyCongViec);
+export default connect(mapStateToProps, mapDispatchToProps)(ViecTreHan);

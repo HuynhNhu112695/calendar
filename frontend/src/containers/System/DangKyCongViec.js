@@ -21,21 +21,30 @@ class DangKyCongViec extends Component {
         this.state = {
             sovanban: '', ngayphathanh: '', donviphathanh: '', trichyeunoidung: '',
             action: 1, chutheyeucau: '', nguoithuchien: '', noidungyeucau: '',
-            nhactruoc: '', douutien: '', trangthai: '', nhaclai: '', count1: 0,
-            count2: 0, count3: 0, count4: 0, count5: 0, count6: 0, count7: 0,
-            count8: 0, count9: 0, count: 0, chukylap: 0, ngaynhac: '', chukylap1: '',
-            ngaynhac1: '', chukylap2: '', ngaynhac2: '', chukylap3: '', ngaynhac3: '',
-            chukylap4: '', ngaynhac4: '', chukylap5: '', ngaynhac5: '', chukylap6: '',
-            ngaynhac6: '', chukylap7: '', ngaynhac7: '', chukylap8: '', ngaynhac8: '',
-            chukylap9: '', ngaynhac9: '', hiddenAdd: false, motlan: '', moithang: '',
-            sauthang: '', chinthang: '', quyI: '', quyII: '', quyIII: '', quyIV: '',
-            moinam: '', disabaled: false, disabled1: false, disabled2: false, disabled3: false,
-            disabled4: false, disabled5: false, disabled6: false, disabled7: false, disabled8: false,
-            disabledDetail: false,
+            nhactruoc: '', douutien: '', trangthai: '', nhaclai: '', ngaynhac: '',
+            disabled1: true, disabled2: true, disabled3: true, disabled4: true,
+            disabled5: true, disabled6: true, disabled7: true, disabled8: true,
+            disabled9: true, disabled10: true, disabled11: true, disabled12: true,
+            disabledDetail: false, hiddenAdd: false, disabledAll: true, isCheckedAllThang: false,
+            isCheckedThang1: false, isCheckedThang2: false, isCheckedThang3: false, isCheckedThang4: false,
+            isCheckedThang5: false, isCheckedThang6: false, isCheckedThang7: false, isCheckedThang8: false,
+            isCheckedThang9: false, isCheckedThang10: false, isCheckedThang11: false, isCheckedThang12: false,
+            isCheckedMot: false, isCheckedThang: false, isCheckedQuy: false, isCheckedNam: false,
+            disabledMot: true, disabledThang: true, disabledQuy: true, disabledNam: true,
+            disabledQuy1: true, disabledQuy2: true, disabledQuy3: true, disabledQuy4: true,
+            month1: 1, month2: 2, month3: 3, month4: 4,
+            month5: 5, month6: 6, month7: 7, month8: 8,
+            month9: 9, month10: 10, month11: 11, month12: 12, all: "all",
+            quy1: "quy1", quy2: "quy2", quy3: "quy3", quy4: "quy4",
+            motlan: "motlan", thang: "thang", quy: "quy", nam: "nam",
+            ngaynhacThang: "", ngaynhacQuy: "", ngaynhacNam: "", ngaynhacEdit: "",
+            tieudeMot: "", tieudeThang: "", tieudeQuy: "", tieudeNam: "",
+            arrNgayNhac: [],
             arrInput: [],
             arrUsers: [],
             userEdit: {},
-            disabaled: false,
+            disabled: false,
+            disabledEdit: false,
             currentPage: 1,
             actions: CRUD_ACTIONS.CREATE,
         }
@@ -45,287 +54,310 @@ class DangKyCongViec extends Component {
 
     }
 
-    handleCancel = () => {
+    handleCancel = async () => {
+        await document.getElementById("sovanban").focus();
         this.setState({
             sovanban: '', ngayphathanh: '', donviphathanh: '', trichyeunoidung: '',
             action: 1, chutheyeucau: '', nguoithuchien: '', noidungyeucau: '',
-            nhactruoc: '', douutien: '', trangthai: '', nhaclai: '', count1: 0,
-            count2: 0, count3: 0, count4: 0, count5: 0, count6: 0, count7: 0,
-            count8: 0, count9: 0, count: 0, chukylap: 0, ngaynhac: '', chukylap1: '',
-            ngaynhac1: '', chukylap2: '', ngaynhac2: '', chukylap3: '', ngaynhac3: '',
-            chukylap4: '', ngaynhac4: '', chukylap5: '', ngaynhac5: '', chukylap6: '',
-            ngaynhac6: '', chukylap7: '', ngaynhac7: '', chukylap8: '', ngaynhac8: '',
-            chukylap9: '', ngaynhac9: '', hiddenAdd: false, motlan: '', moithang: '',
-            sauthang: '', chinthang: '', quyI: '', quyII: '', quyIII: '', quyIV: '',
-            moinam: '',
+            nhactruoc: '', douutien: '', trangthai: '', nhaclai: '', ngaynhac: '',
+            disabled1: true, disabled2: true, disabled3: true, disabled4: true,
+            disabled5: true, disabled6: true, disabled7: true, disabled8: true,
+            disabled9: true, disabled10: true, disabled11: true, disabled12: true,
+            disabledDetail: false, hiddenAdd: false, disabledAll: true, isCheckedAllThang: false,
+            isCheckedThang1: false, isCheckedThang2: false, isCheckedThang3: false, isCheckedThang4: false,
+            isCheckedThang5: false, isCheckedThang6: false, isCheckedThang7: false, isCheckedThang8: false,
+            isCheckedThang9: false, isCheckedThang10: false, isCheckedThang11: false, isCheckedThang12: false,
+            isCheckedMot: false, isCheckedThang: false, isCheckedQuy: false, isCheckedNam: false,
+            disabledMot: true, disabledThang: true, disabledQuy: true, disabledNam: true,
+            disabledQuy1: true, disabledQuy2: true, disabledQuy3: true, disabledQuy4: true,
+            month1: 1, month2: 2, month3: 3, month4: 4,
+            month5: 5, month6: 6, month7: 7, month8: 8,
+            month9: 9, month10: 10, month11: 11, month12: 12, all: "all",
+            quy1: "quy1", quy2: "quy2", quy3: "quy3", quy4: "quy4",
+            motlan: "motlan", thang: "thang", quy: "quy", nam: "nam",
+            ngaynhacThang: "", ngaynhacQuy: "", ngaynhacNam: "", ngaynhacEdit: "",
+            tieudeMot: "", tieudeThang: "", tieudeQuy: "", tieudeNam: "",
+            arrNgayNhac: [],
             arrInput: [],
+            arrUsers: [],
+            userEdit: {},
             disabled: false,
-            actions: CRUD_ACTIONS.CREATE
+            disabledEdit: false,
+            currentPage: 1,
+            actions: CRUD_ACTIONS.CREATE,
         })
     }
 
     handleOnChangeInput = async (event, id) => {
         let copyState = { ...this.state };
         copyState[id] = event.target.value;
-        // if (copyState['chukylap'] !== this.state.chukylap) {
-        //     alert(copyState['chukylap'])
-        // }
-        // if (copyState['ngaynhac'] !== this.state.ngaynhac) {
-        //     await this.setNgayNhac(this.state.chukylap, copyState['ngaynhac']);
-        //     console.log("setNN", this.state)
-        // }
+        if (copyState['ngaynhacThang'] !== this.state.ngaynhacThang) {
+            let ngaynhacThang = event.target.value;
+            let ngaynhacNow = this.state.ngaynhacThang;
+            let setNow = new Date(ngaynhacNow);
+            let nowMonth = setNow.getMonth() + 1;
+            let setVal = new Date(ngaynhacThang);
+            let getMonth = setVal.getMonth() + 1;
+            if (nowMonth !== getMonth) {
+                switch (getMonth) {
+                    case 1: copyState["disabled1"] = true; copyState["isCheckedThang1"] = true; break;
+                    case 2: copyState["disabled2"] = true; copyState["isCheckedThang2"] = true; break;
+                    case 3: copyState["disabled3"] = true; copyState["isCheckedThang3"] = true; break;
+                    case 4: copyState["disabled4"] = true; copyState["isCheckedThang4"] = true; break;
+                    case 5: copyState["disabled5"] = true; copyState["isCheckedThang5"] = true; break;
+                    case 6: copyState["disabled6"] = true; copyState["isCheckedThang6"] = true; break;
+                    case 7: copyState["disabled7"] = true; copyState["isCheckedThang7"] = true; break;
+                    case 8: copyState["disabled8"] = true; copyState["isCheckedThang8"] = true; break;
+                    case 9: copyState["disabled9"] = true; copyState["isCheckedThang9"] = true; break;
+                    case 10: copyState["disabled10"] = true; copyState["isCheckedThang10"] = true; break;
+                    case 11: copyState["disabled11"] = true; copyState["isCheckedThang11"] = true; break;
+                    case 12: copyState["disabled12"] = true; copyState["isCheckedThang12"] = true; break;
+                }
+                switch (nowMonth) {
+                    case 1: copyState["isCheckedThang1"] = false; copyState["disabled1"] = false; break;
+                    case 2: copyState["isCheckedThang2"] = false; copyState["disabled2"] = false; break;
+                    case 3: copyState["isCheckedThang3"] = false; copyState["disabled3"] = false; break;
+                    case 4: copyState["isCheckedThang4"] = false; copyState["disabled4"] = false; break;
+                    case 5: copyState["isCheckedThang5"] = false; copyState["disabled5"] = false; break;
+                    case 6: copyState["isCheckedThang6"] = false; copyState["disabled6"] = false; break;
+                    case 7: copyState["isCheckedThang7"] = false; copyState["disabled7"] = false; break;
+                    case 8: copyState["isCheckedThang8"] = false; copyState["disabled8"] = false; break;
+                    case 9: copyState["isCheckedThang9"] = false; copyState["disabled9"] = false; break;
+                    case 10: copyState["isCheckedThang10"] = false; copyState["disabled10"] = false; break;
+                    case 11: copyState["isCheckedThang11"] = false; copyState["disabled11"] = false; break;
+                    case 12: copyState["isCheckedThang12"] = false; copyState["disabled12"] = false; break;
+                }
+            }
+        }
+        if (copyState['ngaynhacQuy'] !== this.state.ngaynhacQuy) {
+            let ngaynhacQuy = event.target.value;
+            let ngaynhacNow = this.state.ngaynhacQuy;
+            let setNow = new Date(ngaynhacNow);
+            let nowMonth = setNow.getMonth() + 1;
+            let setVal = new Date(ngaynhacQuy);
+            let getMonth = setVal.getMonth() + 1;
+            if (nowMonth !== getMonth) {
+                switch (getMonth) {
+                    case 3: copyState["isCheckedQuy1"] = true; copyState["disabledQuy1"] = true; break;
+                    case 6: copyState["isCheckedQuy2"] = true; copyState["disabledQuy2"] = true; break;
+                    case 9: copyState["isCheckedQuy3"] = true; copyState["disabledQuy3"] = true; break;
+                    case 12: copyState["isCheckedQuy4"] = true; copyState["disabledQuy4"] = true; break;
+                }
+                switch (nowMonth) {
+                    case 3: copyState["isCheckedQuy1"] = false; copyState["disabledQuy1"] = false; break;
+                    case 6: copyState["isCheckedQuy2"] = false; copyState["disabledQuy2"] = false; break;
+                    case 9: copyState["isCheckedQuy3"] = false; copyState["disabledQuy3"] = false; break;
+                    case 12: copyState["isCheckedQuy4"] = false; copyState["disabledQuy4"] = false; break;
+                }
+            }
+        }
         this.setState({
             ...copyState
         });
     }
 
-    xulyThemChuKyNhac = async () => {
-        let count = this.state.count + 1;
-        await this.setState({
-            count: count
-        })
-        if (count === 1) {
-            this.setState({
-                count1: 1
-            })
-        } else if (count === 2) {
-            this.setState({
-                count2: 2
-            })
-        } else if (count === 3) {
-            this.setState({
-                count3: 3
-            })
-        } else if (count === 4) {
-            this.setState({
-                count4: 4
-            })
-        } else if (count === 5) {
-            this.setState({
-                count5: 5
-            })
-        } else if (count === 6) {
-            this.setState({
-                count6: 6
-            })
-        } else if (count === 7) {
-            this.setState({
-                count7: 7
-            })
-        } else if (count === 8) {
-            this.setState({
-                count8: 8
-            })
-        } else if (count === 9) {
-            this.setState({
-                count9: 9
-            })
-        }
-        // console.log(this.state)
-    }
-
-    handleRemoveService = async (event, id) => {
-        let remove = id;
-        if (remove === "xoadong1") {
-            let count1 = 0;
-            this.setState({
-                count1: count1,
-                chukylap1: '',
-                ngaynhac1: ''
-            })
-        }
-        if (remove === "xoadong2") {
-            let count2 = 0;
-            this.setState({
-                count2: count2,
-                chukylap2: '',
-                ngaynhac2: ''
-            })
-        }
-        if (remove === "xoadong3") {
-            let count3 = 0;
-            this.setState({
-                count3: count3,
-                chukylap3: '',
-                ngaynhac3: ''
-            })
-        }
-        if (remove === "xoadong4") {
-            let count4 = 0;
-            this.setState({
-                count4: count4,
-                chukylap4: '',
-                ngaynhac4: ''
-            })
-        }
-        if (remove === "xoadong5") {
-            let count5 = 0;
-            this.setState({
-                count5: count5,
-                chukylap5: '',
-                ngaynhac5: ''
-            })
-        }
-        if (remove === "xoadong6") {
-            let count6 = 0;
-            this.setState({
-                count6: count6,
-                chukylap6: '',
-                ngaynhac6: ''
-            })
-        }
-        if (remove === "xoadong7") {
-            let count7 = 0;
-            this.setState({
-                count7: count7,
-                chukylap7: '',
-                ngaynhac7: ''
-            })
-        }
-        if (remove === "xoadong8") {
-            let count8 = 0;
-            this.setState({
-                count8: count8,
-                chukylap8: '',
-                ngaynhac8: ''
-            })
-        }
-        if (remove === "xoadong9") {
-            let count9 = 0;
-            this.setState({
-                count9: count9,
-                chukylap9: '',
-                ngaynhac9: ''
-            })
-        }
-        let arrChuKy = [];
-        let n = 0;
-        let obj = {};
-        for (let index = 0; index <= 9; index++) {
-            if (index === 0) {
-                n = n + 1;
-                let valueChuKy = this.state.chukylap;
-                let valueNgayNhac = this.state.ngaynhac;
-                obj = {
-                    chukylap: valueChuKy,
-                    ngaynhac: valueNgayNhac
+    toggleChange = async (event, id) => {
+        let getTitle = event.target.value;
+        switch (getTitle) {
+            case "motlan":
+                let disMot = "";
+                let checkedMot = !this.state.isCheckedMot;
+                if (checkedMot === true) {
+                    disMot = false;
+                } else {
+                    disMot = true;
+                    this.setState({
+                        ngaynhac: "",
+                        tieudeMot: ""
+                    })
                 }
-                await arrChuKy.push(obj);
-            }
-            if (index === 1) {
-                if (this.state.count1 !== 0) {
-                    n = n + 1;
-                    let valueChuKy = this.state.chukylap1;
-                    let valueNgayNhac = this.state.ngaynhac1;
-                    obj = {
-                        chukylap: valueChuKy,
-                        ngaynhac: valueNgayNhac
-                    }
-                    await arrChuKy.push(obj);
+                await this.setState({
+                    isCheckedMot: checkedMot,
+                    disabledMot: disMot,
+                });
+                break;
+            case "thang":
+                let disThang = "";
+                let checkedThang = !this.state.isCheckedThang;
+                if (checkedThang === true) {
+                    disThang = false;
+                    this.setState({
+                        disabledAll: false,
+                        disabled1: false, disabled2: false,
+                        disabled3: false, disabled4: false,
+                        disabled5: false, disabled6: false,
+                        disabled7: false, disabled8: false,
+                        disabled9: false, disabled10: false,
+                        disabled11: false, disabled12: false,
+                    })
+                } else {
+                    disThang = true;
+                    this.setState({
+                        ngaynhacThang: "",
+                        tieudeThang: "", isCheckedAllThang: false,
+                        isCheckedThang1: false, isCheckedThang2: false,
+                        isCheckedThang3: false, isCheckedThang4: false,
+                        isCheckedThang5: false, isCheckedThang6: false,
+                        isCheckedThang7: false, isCheckedThang8: false,
+                        isCheckedThang9: false, isCheckedThang10: false,
+                        isCheckedThang11: false, isCheckedThang12: false,
+                        disabled1: true, disabled2: true, disabledAll: true,
+                        disabled3: true, disabled4: true,
+                        disabled5: true, disabled6: true,
+                        disabled7: true, disabled8: true,
+                        disabled9: true, disabled10: true,
+                        disabled11: true, disabled12: true,
+                    })
                 }
-            }
-            if (index === 2) {
-                if (this.state.count2 !== 0) {
-                    n = n + 1;
-                    let valueChuKy = this.state.chukylap2;
-                    let valueNgayNhac = this.state.ngaynhac2;
-                    obj = {
-                        chukylap: valueChuKy,
-                        ngaynhac: valueNgayNhac
-                    }
-                    await arrChuKy.push(obj);
+                await this.setState({
+                    isCheckedThang: checkedThang,
+                    disabledThang: disThang,
+                });
+                break;
+            case "quy":
+                let disQuy = "";
+                let checkedQuy = !this.state.isCheckedQuy;
+                if (checkedQuy === true) {
+                    disQuy = false;
+                    this.setState({
+                        disabledQuy1: false, disabledQuy2: false,
+                        disabledQuy3: false, disabledQuy4: false,
+                    })
+                } else {
+                    disQuy = true;
+                    this.setState({
+                        ngaynhacQuy: "",
+                        tieudeQuy: "",
+                        disabledQuy1: true, disabledQuy2: true,
+                        disabledQuy3: true, disabledQuy4: true,
+                        isCheckedQuy1: false, isCheckedQuy2: false,
+                        isCheckedQuy3: false, isCheckedQuy4: false,
+                    })
                 }
-            }
-            if (index === 3) {
-                if (this.state.count3 !== 0) {
-                    n = n + 1;
-                    let valueChuKy = this.state.chukylap3;
-                    let valueNgayNhac = this.state.ngaynhac3;
-                    obj = {
-                        chukylap: valueChuKy,
-                        ngaynhac: valueNgayNhac
-                    }
-                    await arrChuKy.push(obj);
+                await this.setState({
+                    isCheckedQuy: checkedQuy,
+                    disabledQuy: disQuy,
+                });
+                break;
+            case "nam":
+                let disNam = "";
+                let checkedNam = !this.state.isCheckedNam;
+                if (checkedNam === true) {
+                    disNam = false;
+                } else {
+                    disNam = true;
+                    this.setState({
+                        ngaynhacNam: "",
+                        tieudeNam: ""
+                    })
                 }
-            }
-            if (index === 4) {
-                if (this.state.count4 !== 0) {
-                    n = n + 1;
-                    let valueChuKy = this.state.chukylap4;
-                    let valueNgayNhac = this.state.ngaynhac4;
-                    obj = {
-                        chukylap: valueChuKy,
-                        ngaynhac: valueNgayNhac
-                    }
-                    await arrChuKy.push(obj);
-                }
-            }
-            if (index === 5) {
-                if (this.state.count5 !== 0) {
-                    n = n + 1;
-                    let valueChuKy = this.state.chukylap5;
-                    let valueNgayNhac = this.state.ngaynhac5;
-                    obj = {
-                        chukylap: valueChuKy,
-                        ngaynhac: valueNgayNhac
-                    }
-                    await arrChuKy.push(obj);
-                }
-            }
-            if (index === 6) {
-                if (this.state.count6 !== 0) {
-                    n = n + 1;
-                    let valueChuKy = this.state.chukylap6;
-                    let valueNgayNhac = this.state.ngaynhac6;
-                    obj = {
-                        chukylap: valueChuKy,
-                        ngaynhac: valueNgayNhac
-                    }
-                    await arrChuKy.push(obj);
-                }
-            }
-            if (index === 7) {
-                if (this.state.count7 !== 0) {
-                    n = n + 1;
-                    let valueChuKy = this.state.chukylap7;
-                    let valueNgayNhac = this.state.ngaynhac7;
-                    obj = {
-                        chukylap: valueChuKy,
-                        ngaynhac: valueNgayNhac
-                    }
-                    await arrChuKy.push(obj);
-                }
-            }
-            if (index === 8) {
-                if (this.state.count8 !== 0) {
-                    n = n + 1;
-                    let valueChuKy = this.state.chukylap8;
-                    let valueNgayNhac = this.state.ngaynhac8;
-                    obj = {
-                        chukylap: valueChuKy,
-                        ngaynhac: valueNgayNhac
-                    }
-                    await arrChuKy.push(obj);
-                }
-            }
-            if (index === 9) {
-                if (this.state.count9 !== 0) {
-                    n = n + 1;
-                    let valueChuKy = this.state.chukylap9;
-                    let valueNgayNhac = this.state.ngaynhac9;
-                    obj = {
-                        chukylap: valueChuKy,
-                        ngaynhac: valueNgayNhac
-                    }
-                    await arrChuKy.push(obj);
-                }
-            }
+                await this.setState({
+                    isCheckedNam: checkedNam,
+                    disabledNam: disNam
+                });
+                break;
+            case "1":
+                await this.setState({
+                    isCheckedThang1: !this.state.isCheckedThang1
+                });
+                break;
+            case "2":
+                await this.setState({
+                    isCheckedThang2: !this.state.isCheckedThang2
+                });
+                break;
+            case "3":
+                await this.setState({
+                    isCheckedThang3: !this.state.isCheckedThang3
+                });
+                break;
+            case "4":
+                await this.setState({
+                    isCheckedThang4: !this.state.isCheckedThang4
+                });
+                break;
+            case "5":
+                await this.setState({
+                    isCheckedThang5: !this.state.isCheckedThang5
+                });
+                break;
+            case "6":
+                await this.setState({
+                    isCheckedThang6: !this.state.isCheckedThang6
+                });
+                break;
+            case "7":
+                await this.setState({
+                    isCheckedThang7: !this.state.isCheckedThang7
+                });
+                break;
+            case "8":
+                await this.setState({
+                    isCheckedThang8: !this.state.isCheckedThang8
+                });
+                break;
+            case "9":
+                await this.setState({
+                    isCheckedThang9: !this.state.isCheckedThang9
+                });
+                break;
+            case "10":
+                await this.setState({
+                    isCheckedThang10: !this.state.isCheckedThang10
+                });
+                break;
+            case "11":
+                await this.setState({
+                    isCheckedThang11: !this.state.isCheckedThang11
+                });
+                break;
+            case "12":
+                await this.setState({
+                    isCheckedThang12: !this.state.isCheckedThang12
+                });
+                break;
+            case "quy1":
+                await this.setState({
+                    isCheckedQuy1: !this.state.isCheckedQuy1
+                });
+                break;
+            case "quy2":
+                await this.setState({
+                    isCheckedQuy2: !this.state.isCheckedQuy2
+                });
+                break;
+            case "quy3":
+                await this.setState({
+                    isCheckedQuy3: !this.state.isCheckedQuy3
+                });
+                break;
+            case "quy4":
+                await this.setState({
+                    isCheckedQuy4: !this.state.isCheckedQuy4
+                });
+                break;
+            case "all":
+                await this.setState({
+                    isCheckedAllThang: !this.state.isCheckedAllThang,
+                    isCheckedThang1: !this.state.isCheckedThang1,
+                    isCheckedThang2: !this.state.isCheckedThang2,
+                    isCheckedThang3: !this.state.isCheckedThang3,
+                    isCheckedThang4: !this.state.isCheckedThang4,
+                    isCheckedThang5: !this.state.isCheckedThang5,
+                    isCheckedThang6: !this.state.isCheckedThang6,
+                    isCheckedThang7: !this.state.isCheckedThang7,
+                    isCheckedThang8: !this.state.isCheckedThang8,
+                    isCheckedThang9: !this.state.isCheckedThang9,
+                    isCheckedThang10: !this.state.isCheckedThang10,
+                    isCheckedThang11: !this.state.isCheckedThang11,
+                    isCheckedThang12: !this.state.isCheckedThang12
+                })
         }
     }
 
     checkValidateInput = () => {
         let isValid = true;
-        let arrInput = ['nguoithuchien', 'noidungyeucau', 'ngaynhac'];
+        let arrInput = ['nguoithuchien', 'noidungyeucau',];
         for (let i = 0; i < arrInput.length; i++) {
             if (this.state[arrInput[2]] === 0) {
                 isValid = true;
@@ -334,73 +366,184 @@ class DangKyCongViec extends Component {
                 alert('Missing parameter: ' + arrInput[i]);
                 break;
             }
-            // if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.state[arrInput[2]]))) {
-            //     isValid = false;
-            //     alert("You have entered an invalid email address! Example: abc123@gmail.com")
-            //     break;
-            // }
         }
         return isValid;
     }
 
-    // setNgayNhac = async (chukylap, ngaynhac) => {
-    //     switch (chukylap) {
-    //         case 0: await this.setState({ motlan: ngaynhac }); break;
-    //         case 1: await this.setState({ moithang: ngaynhac }); break;
-    //         case 2: await this.setState({ sauthang: ngaynhac }); break;
-    //         case 3: await this.setState({ chinthang: ngaynhac }); break;
-    //         case 4: await this.setState({ quyI: ngaynhac }); break;
-    //         case 5: await this.setState({ quyII: ngaynhac }); break;
-    //         case 6: await this.setState({ quyIII: ngaynhac }); break;
-    //         case 7: await this.setState({ quyIV: ngaynhac }); break;
-    //         case 8: await this.setState({ moinam: ngaynhac }); break;
-    //     }
-    // }
+    setObjThang = async (ngaynhac, tieudeThang, trangthai) => {
+        let obj = {};
+        obj = {
+            chukylap: "thang",
+            ngaynhac: ngaynhac,
+            tieude: tieudeThang,
+            trangthai: trangthai
+        }
+        return obj;
+    }
+
+    setObjQuy = async (ngaynhac, tieudeQuy, trangthai) => {
+        let obj = {};
+        obj = {
+            chukylap: "quy",
+            ngaynhac: ngaynhac,
+            tieude: tieudeQuy,
+            trangthai: trangthai
+        }
+        return obj;
+    }
 
     handleSaveUser = async (e) => {
         try {
             let isValid = this.checkValidateInput();
             if (isValid === true) {
-                let { actions, chukylap, chukylap1, chukylap2, chukylap3, chukylap4,
-                    chukylap5, chukylap6, chukylap7, chukylap8, ngaynhac, ngaynhac1,
-                    ngaynhac2, ngaynhac3, ngaynhac4, ngaynhac5, ngaynhac6, ngaynhac7,
-                    ngaynhac8 } = this.state;
-                // await this.setNgayNhac(chukylap, ngaynhac);
-                // await this.setNgayNhac(chukylap1, ngaynhac1);
-                // await this.setNgayNhac(chukylap2, ngaynhac2);
-                // await this.setNgayNhac(chukylap3, ngaynhac3);
-                // await this.setNgayNhac(chukylap4, ngaynhac4);
-                // await this.setNgayNhac(chukylap5, ngaynhac5);
-                // await this.setNgayNhac(chukylap6, ngaynhac6);
-                // await this.setNgayNhac(chukylap7, ngaynhac7);
-                // await this.setNgayNhac(chukylap8, ngaynhac8);
+                let objMot = {};
+                let objNam = {};
+                let { actions, sovanban, ngayphathanh, donviphathanh, trichyeunoidung,
+                    chutheyeucau, noidungyeucau, nguoithuchien, nhactruoc, douutien, ngaynhac,
+                    trangthai, motlan, ngaynhacThang, ngaynhacQuy, nam, ngaynhacNam,
+                    isCheckedQuy, isCheckedMot, isCheckedThang, isCheckedNam, arrNgayNhac,
+                    isCheckedThang1, isCheckedThang2, isCheckedThang3, isCheckedThang4,
+                    isCheckedThang5, isCheckedThang6, isCheckedThang7, isCheckedThang8,
+                    isCheckedThang9, isCheckedThang10, isCheckedThang11, isCheckedThang12,
+                    isCheckedQuy1, isCheckedQuy2, isCheckedQuy3, isCheckedQuy4,
+                    tieudeMot, tieudeThang, tieudeQuy, tieudeNam
+                } = this.state;
+                if (isCheckedMot === true) {
+                    if (ngaynhac !== "") {
+                        objMot = {
+                            chukylap: motlan,
+                            ngaylap: ngaynhac,
+                            tieude: tieudeMot,
+                            trangthai: trangthai
+                        }
+                        await arrNgayNhac.push(objMot);
+                    }
+                }
+                if (isCheckedThang === true) {
+                    if (ngaynhacThang !== "") {
+                        let setNNThang = new Date(ngaynhacThang);
+                        let getDate = setNNThang.getDate();
+                        let getYear = setNNThang.getFullYear();
+                        if (isCheckedThang1 === true) {
+                            let t1 = getYear + "-" + "01" + "-" + getDate;
+                            let data = await this.setObjThang(t1, tieudeThang, trangthai);
+                            await arrNgayNhac.push(data);
+                        }
+                        if (isCheckedThang2 === true) {
+                            let t2 = getYear + "-" + "02" + "-" + getDate;
+                            let data = await this.setObjThang(t2, tieudeThang, trangthai);
+                            await arrNgayNhac.push(data);
+                        }
+                        if (isCheckedThang3 === true) {
+                            let t3 = getYear + "-" + "03" + "-" + getDate;
+                            let data = await this.setObjThang(t3, tieudeThang, trangthai);
+                            await arrNgayNhac.push(data);
+                        }
+                        if (isCheckedThang4 === true) {
+                            let t4 = getYear + "-" + "04" + "-" + getDate;
+                            let data = await this.setObjThang(t4, tieudeThang, trangthai);
+                            await arrNgayNhac.push(data);
+                        }
+                        if (isCheckedThang5 === true) {
+                            let t5 = getYear + "-" + "05" + "-" + getDate;
+                            let data = await this.setObjThang(t5, tieudeThang, trangthai);
+                            await arrNgayNhac.push(data);
+                        }
+                        if (isCheckedThang6 === true) {
+                            let t6 = getYear + "-" + "06" + "-" + getDate;
+                            let data = await this.setObjThang(t6, tieudeThang, trangthai);
+                            await arrNgayNhac.push(data);
+                        }
+                        if (isCheckedThang7 === true) {
+                            let t7 = getYear + "-" + "07" + "-" + getDate;
+                            let data = await this.setObjThang(t7, tieudeThang, trangthai);
+                            await arrNgayNhac.push(data);
+                        }
+                        if (isCheckedThang8 === true) {
+                            let t8 = getYear + "-" + "08" + "-" + getDate;
+                            let data = await this.setObjThang(t8, tieudeThang, trangthai);
+                            await arrNgayNhac.push(data);
+                        }
+                        if (isCheckedThang9 === true) {
+                            let t9 = getYear + "-" + "09" + "-" + getDate;
+                            let data = await this.setObjThang(t9, tieudeThang, trangthai);
+                            await arrNgayNhac.push(data);
+                        }
+                        if (isCheckedThang10 === true) {
+                            let t10 = getYear + "-" + "10" + "-" + getDate;
+                            let data = await this.setObjThang(t10, tieudeThang, trangthai);
+                            await arrNgayNhac.push(data);
+                        }
+                        if (isCheckedThang11 === true) {
+                            let t11 = getYear + "-" + "11" + "-" + getDate;
+                            let data = await this.setObjThang(t11, tieudeThang, trangthai);
+                            await arrNgayNhac.push(data);
+                        }
+                        if (isCheckedThang12 === true) {
+                            let t12 = getYear + "-" + "12" + "-" + getDate;
+                            let data = await this.setObjThang(t12, tieudeThang, trangthai);
+                            await arrNgayNhac.push(data);
+                        }
+                    }
+                }
+                if (isCheckedQuy === true) {
+                    if (ngaynhacQuy !== "") {
+                        let setNNQuy = new Date(ngaynhacQuy);
+                        let getDate = setNNQuy.getDate();
+                        let getYear = setNNQuy.getFullYear();
+                        if (isCheckedQuy1 === true) {
+                            let t1 = getYear + "-" + "03" + "-" + getDate;
+                            let data = await this.setObjQuy(t1, tieudeQuy, trangthai);
+                            await arrNgayNhac.push(data);
+                        }
+                        if (isCheckedQuy2 === true) {
+                            let t2 = getYear + "-" + "06" + "-" + getDate;
+                            let data = await this.setObjQuy(t2, tieudeQuy, trangthai);
+                            await arrNgayNhac.push(data);
+                        }
+                        if (isCheckedQuy3 === true) {
+                            let t3 = getYear + "-" + "09" + "-" + getDate;
+                            let data = await this.setObjQuy(t3, tieudeQuy, trangthai);
+                            await arrNgayNhac.push(data);
+                        }
+                        if (isCheckedQuy4 === true) {
+                            let t4 = getYear + "-" + "12" + "-" + getDate;
+                            let data = await this.setObjQuy(t4, tieudeQuy, trangthai);
+                            await arrNgayNhac.push(data);
+                        }
+                    }
+                }
+                if (isCheckedNam === true) {
+                    if (ngaynhacNam !== "") {
+                        objNam = {
+                            chukylap: nam,
+                            ngaylap: ngaynhacNam,
+                            tieude: tieudeNam,
+                            trangthai: trangthai
+                        }
+                        await arrNgayNhac.push(objNam);
+                    }
+                }
                 let userIdCreate = this.props.userRedux.id;
                 if (actions === CRUD_ACTIONS.CREATE) {
                     await this.props.createNewCalendar({
-                        sovanban: this.state.sovanban,
-                        ngayphathanh: this.state.ngayphathanh,
-                        donviphathanh: this.state.donviphathanh,
-                        trichyeunoidung: this.state.trichyeunoidung,
-                        chutheyeucau: this.state.chutheyeucau,
-                        nguoithuchien: this.state.nguoithuchien,
-                        trangthai: this.state.trangthai,
-                        noidungyeucau: this.state.noidungyeucau,
-                        nhactruoc: this.state.nhactruoc,
-                        douutien: this.state.douutien,
+                        sovanban: sovanban,
+                        ngayphathanh: ngayphathanh,
+                        donviphathanh: donviphathanh,
+                        trichyeunoidung: trichyeunoidung,
+                        chutheyeucau: chutheyeucau,
+                        nguoithuchien: nguoithuchien,
+                        trangthai: trangthai,
+                        noidungyeucau: noidungyeucau,
+                        nhactruoc: nhactruoc,
+                        douutien: douutien,
                         userIdCreate: userIdCreate,
-                        motlan: this.state.ngaynhac,
-                        moithang: this.state.moithang,
-                        sauthang: this.state.sauthang,
-                        chinthang: this.state.chinthang,
-                        quyI: this.state.quyI,
-                        quyII: this.state.quyII,
-                        quyIII: this.state.quyIII,
-                        quyIV: this.state.quyIV,
-                        moinam: this.state.moinam,
+                        arrNgayNhac: arrNgayNhac,
                         currentPage: 1
                     })
                 }
                 if (actions === CRUD_ACTIONS.EDIT) {
+                    let dateNow = new Date();
                     await this.props.editCalendarRedux({
                         id: this.state.id,
                         idcongviec: this.state.idcongviec,
@@ -414,15 +557,9 @@ class DangKyCongViec extends Component {
                         noidungyeucau: this.state.noidungyeucau,
                         nhactruoc: this.state.nhactruoc,
                         douutien: this.state.douutien,
-                        motlan: this.state.motlan,
-                        moithang: this.state.moithang,
-                        sauthang: this.state.sauthang,
-                        chinthang: this.state.chinthang,
-                        quyI: this.state.quyI,
-                        quyII: this.state.quyII,
-                        quyIII: this.state.quyIII,
-                        quyIV: this.state.quyIV,
-                        moinam: this.state.moinam,
+                        ngaylap: this.state.ngaynhacEdit,
+                        userIdCreate: userIdCreate,
+                        updatedAt: dateNow,
                         currentPage: this.state.page
                     })
                 }
@@ -449,9 +586,10 @@ class DangKyCongViec extends Component {
             nhactruoc: work.dataCalendar.nhactruoc,
             douutien: work.dataCalendar.douutien,
             chukylap: work.chukylap,
-            ngaynhac: work.ngaylap,
+            ngaynhacEdit: work.ngaylap,
             disabled: false,
             disabledDetail: true,
+            disabledEdit: false,
             actions: CRUD_ACTIONS.EDIT,
             page: currentPage
         })
@@ -472,10 +610,11 @@ class DangKyCongViec extends Component {
             nhactruoc: work.dataCalendar.nhactruoc,
             douutien: work.dataCalendar.douutien,
             chukylap: work.chukylap,
-            ngaynhac: work.ngaylap,
+            ngaynhacEdit: work.ngaylap,
             disabledDetail: true,
             disabled: true,
-            actions: CRUD_ACTIONS.CREATE,
+            disabledEdit: true,
+            actions: CRUD_ACTIONS.EDIT,
             page: currentPage
         })
     }
@@ -486,19 +625,30 @@ class DangKyCongViec extends Component {
             this.setState({
                 sovanban: '', ngayphathanh: '', donviphathanh: '', trichyeunoidung: '',
                 action: 1, chutheyeucau: '', nguoithuchien: '', noidungyeucau: '',
-                nhactruoc: '', douutien: '', trangthai: '', nhaclai: '', count1: 0,
-                count2: 0, count3: 0, count4: 0, count5: 0, count6: 0, count7: 0,
-                count8: 0, count9: 0, count: 0, chukylap: '', ngaynhac: '', chukylap1: '',
-                ngaynhac1: '', chukylap2: '', ngaynhac2: 0, chukylap3: '', ngaynhac3: '',
-                chukylap4: '', ngaynhac4: '', chukylap5: '', ngaynhac5: '', chukylap6: '',
-                ngaynhac6: '', chukylap7: '', ngaynhac7: '', chukylap8: '', ngaynhac8: '',
-                chukylap9: '', ngaynhac9: '', hiddenAdd: false, motlan: '', moithang: '',
-                sauthang: '', chinthang: '', quyI: '', quyII: '', quyIII: '', quyIV: '',
-                moinam: '',
+                nhactruoc: '', douutien: '', trangthai: '', nhaclai: '',
+                ngaynhac: '', hiddenAdd: false, disabledDetail: false,
+                disabled1: true, disabled2: true, disabled3: true, disabled4: true,
+                disabled5: true, disabled6: true, disabled7: true, disabled8: true,
+                disabled9: true, disabled10: true, disabled11: true, disabled12: true,
+                isCheckedThang1: false, isCheckedThang2: false, isCheckedThang3: false,
+                isCheckedThang4: false, isCheckedThang5: false, isCheckedThang6: false,
+                isCheckedThang7: false, isCheckedThang8: false, isCheckedThang9: false,
+                isCheckedThang10: false, isCheckedThang11: false, isCheckedThang12: false,
+                isCheckedMot: false, isCheckedThang: false, isCheckedQuy: false, isCheckedNam: false,
+                disabledMot: true, disabledThang: true, disabledQuy: true, disabledNam: true,
+                disabledQuy1: true, disabledQuy2: true, disabledQuy3: true, disabledQuy4: true,
+                quy1: "quy1", quy2: "quy2", quy3: "quy3", quy4: "quy4",
+                motlan: "motlan", thang: "thang", quy: "quy", nam: "nam",
+                ngaynhacThang: "", ngaynhacNam: "", ngaynhacQuy: "", ngaynhacEdit: "",
+                tieudeMot: "", tieudeThang: "", tieudeQuy: "", tieudeNam: "",
+                month1: 1, month2: 2, month3: 3, month4: 4,
+                month5: 5, month6: 6, month7: 7, month8: 8,
+                month9: 9, month10: 10, month11: 11, month12: 12,
                 arrInput: [],
                 arrUsers: [],
                 userEdit: {},
-                disabaled: false,
+                disabled: false,
+                disabledEdit: false,
                 currentPage: 1,
                 actions: CRUD_ACTIONS.CREATE
             })
@@ -506,16 +656,24 @@ class DangKyCongViec extends Component {
     }
 
     render() {
-        let { sovanban, ngayphathanh, donviphathanh, trichyeunoidung, chukylap,
-            chutheyeucau, noidungyeucau, nguoithuchien, nhactruoc, douutien, nhaclai,
-            ngaynhac, count1, count2, count3, count4, count5, count6, count7, count8,
-            count9, hiddenAdd, chukylap1, ngaynhac1, chukylap2, ngaynhac2, chukylap3,
-            ngaynhac3, chukylap4, ngaynhac4, chukylap5, ngaynhac5, chukylap6, ngaynhac6,
-            chukylap7, ngaynhac7, chukylap8, ngaynhac8, chukylap9, ngaynhac9,
+        console.log(this.state)
+        let { sovanban, ngayphathanh, donviphathanh, trichyeunoidung,
+            chutheyeucau, noidungyeucau, nguoithuchien, nhactruoc, douutien, ngaynhac,
             disabled, disabled1, disabled2, disabled3, disabled4, disabled5, disabled6,
-            disabled7, disabled8, disabledDetail, trangthai, actions
+            disabled7, disabled8, disabled9, disabled10, disabled11, disabled12,
+            disabledMot, disabledThang, disabledQuy, disabledNam, disabledEdit,
+            disabledQuy1, disabledQuy2, disabledQuy3, disabledQuy4, ngaynhacEdit,
+            quy1, quy2, quy3, quy4, month1, month2, month3, month4, month5, month6,
+            month7, month8, month9, month10, month11, month12,
+            trangthai, actions, motlan, thang, ngaynhacThang, all, quy, ngaynhacQuy,
+            nam, ngaynhacNam, tieudeMot, tieudeThang, tieudeNam,
+            isCheckedQuy, isCheckedMot, isCheckedThang, disabledAll, isCheckedAllThang,
+            isCheckedThang1, isCheckedThang2, isCheckedThang3, isCheckedThang4,
+            isCheckedThang5, isCheckedThang6, isCheckedThang7, isCheckedThang8,
+            isCheckedThang9, isCheckedThang10, isCheckedThang11, isCheckedThang12,
+            isCheckedQuy1, isCheckedQuy2, isCheckedQuy3, isCheckedQuy4
         } = this.state;
-
+        let dateNow = new Date();
         return (
             <div className="overflow-auto user-redux-container">
                 <div className="title py-3">
@@ -643,8 +801,8 @@ class DangKyCongViec extends Component {
                                     onChange={(event) => { this.handleOnChangeInput(event, "douutien") }}
                                 >
                                     <option></option>
-                                    <option value={0}>Quan trọng</option>
-                                    <option value={1}>Thông thường</option>
+                                    <option value={0}>Thông thường</option>
+                                    <option value={1}>Quan trọng</option>
                                 </select>
                             </div>
                             {/* <div className="col-lg-4 col-md-4 col-xs-auto">
@@ -670,7 +828,7 @@ class DangKyCongViec extends Component {
                                     <option value={8}>Mỗi năm</option>
                                 </select>
                             </div> */}
-                            <div className="col-lg-4 col-md-4 col-xs-auto">
+                            {/* <div className="col-lg-4 col-md-4 col-xs-auto">
                                 <label className="form-label">
                                     Ngày hết hạn
                                 </label>
@@ -682,7 +840,7 @@ class DangKyCongViec extends Component {
                                     value={ngaynhac}
                                     onChange={(event) => { this.handleOnChangeInput(event, "ngaynhac") }}
                                 />
-                            </div>
+                            </div> */}
 
                             <div className="col-lg-4 col-md-4 col-xs-auto">
                                 <label className="form-label">
@@ -700,344 +858,323 @@ class DangKyCongViec extends Component {
                                     <option value={1}>Đã hoàn thành</option>
                                 </select>
                             </div>
-                            {/* them chu ky nhac 1 */}
-                            <div className={count1 === 1 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}></div>
-                            <div className={count1 === 1 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}>
-                                <label className="form-label">
-                                    Chu kỳ lặp
-                                </label>
-                                <select
-                                    aria-disabled={disabled1}
-                                    className={disabled1 === true ? "form-select is-disabled" : "form-select"}
-                                    name="chukylap1"
-                                    value={chukylap1}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "chukylap1") }}
-                                >
-                                    <option></option>
-                                    <option value={0}>Một lần</option>
-                                    <option value={1}>Mỗi tháng</option>
-                                    <option value={2}>6 tháng</option>
-                                    <option value={3}>9 tháng</option>
-                                    <option value={4}>Quý I</option>
-                                    <option value={5}>Quý II</option>
-                                    <option value={6}>Quý III</option>
-                                    <option value={7}>Quý IV</option>
-                                    <option value={8}>Mỗi năm</option>
-                                </select>
+                            <div className="col-lg-4 col-md-4 col-xs-auto">
+                                <div className={actions === CRUD_ACTIONS.EDIT ? "" : "hidden"}>
+                                    <label className="form-label">
+                                        Ngày nhắc
+                                    </label>
+                                    <input
+                                        type="date"
+                                        aria-disabled={disabledEdit}
+                                        className={disabledEdit === true ? "form-control is-disabled" : "form-control"}
+                                        name="ngaynhacEdit"
+                                        value={ngaynhacEdit}
+                                        onChange={(event) => { this.handleOnChangeInput(event, "ngaynhacEdit") }}
+                                    />
+                                </div>
                             </div>
-                            <div className={count1 === 1 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}>
-                                <label className="form-label">
-                                    Ngày nhắc
-                                    <i className="fa fa-times icon-close"
-                                        onClick={(event) => { this.handleRemoveService(event, "xoadong1") }}
-                                    ></i>
+
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-2 col-md-2 col-xs-auto hidden" : "col-lg-2 col-md-2 col-xs-auto"}>
+                                <label>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='motlan'
+                                        value={motlan}
+                                        defaultChecked={isCheckedMot}
+                                        onChange={(event) => { this.toggleChange(event, "motlan") }}
+                                    />
+                                    Chủ đề một lần
                                 </label>
+                            </div>
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-3 col-md-3 col-xs-auto hidden" : "col-lg-3 col-md-3 col-xs-auto"}>
                                 <input
                                     type="date"
-                                    aria-disabled={disabled1}
-                                    className={disabled1 === true ? "form-control is-disabled" : "form-control"}
-                                    name="ngaynhac1"
-                                    value={ngaynhac1}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "ngaynhac1") }}
+                                    aria-disabled={disabledMot}
+                                    className={disabledMot === true ? "form-control is-disabled" : "form-control"}
+                                    name="ngaynhac"
+                                    value={ngaynhac}
+                                    onChange={(event) => { this.handleOnChangeInput(event, "ngaynhac") }}
                                 />
                             </div>
-                            {/* them chu ky nhac 2 */}
-                            <div className={count2 === 2 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}></div>
-                            <div className={count2 === 2 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}>
-                                <label className="form-label">
-                                    Chu kỳ lặp
-                                </label>
-                                <select
-                                    aria-disabled={disabled2}
-                                    className={disabled2 === true ? "form-select is-disabled" : "form-select"}
-                                    name="chukylap2"
-                                    value={chukylap2}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "chukylap2") }}
-                                >
-                                    <option></option>
-                                    <option value={0}>Một lần</option>
-                                    <option value={1}>Mỗi tháng</option>
-                                    <option value={2}>6 tháng</option>
-                                    <option value={3}>9 tháng</option>
-                                    <option value={4}>Quý I</option>
-                                    <option value={5}>Quý II</option>
-                                    <option value={6}>Quý III</option>
-                                    <option value={7}>Quý IV</option>
-                                    <option value={8}>Mỗi năm</option>
-                                </select>
+                            <div className="col-lg-7 col-md-7 col-xs-auto"></div>
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-2 col-md-2 col-xs-auto hidden" : "col-lg-2 col-md-2 col-xs-auto"}>
+                                <label>Tiêu đề một lần</label>
                             </div>
-                            <div className={count2 === 2 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}>
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-10 col-md-10 col-xs-auto hidden" : "col-lg-10 col-md-10 col-xs-auto"}>
+                                <input type="text" name='tieudeMot'
+                                    className={disabledMot === true ? "form-control is-disabled" : "form-control"}
+                                    value={tieudeMot}
+                                    onChange={(event) => { this.handleOnChangeInput(event, "tieudeMot") }}
+                                />
+                            </div>
+                            {/* Nhắc theo tháng */}
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-2 col-md-2 col-xs-auto hidden" : "col-lg-2 col-md-2 col-xs-auto"}>
                                 <label className="form-label">
-                                    Ngày nhắc
-                                    <i className="fa fa-times icon-close"
-                                        onClick={(event) => { this.handleRemoveService(event, "xoadong2") }}
-                                    ></i>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='thang'
+                                        value={thang}
+                                        defaultChecked={isCheckedThang}
+                                        onChange={(event) => { this.toggleChange(event, "thang") }}
+                                    />
+                                    Chủ đề theo tháng
                                 </label>
+                            </div>
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-3 col-md-3 col-xs-auto hidden" : "col-lg-3 col-md-3 col-xs-auto"}>
                                 <input
                                     type="date"
-                                    aria-disabled={disabled2}
-                                    className={disabled2 === true ? "form-control is-disabled" : "form-control"}
-                                    name="ngaynhac2"
-                                    value={ngaynhac2}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "ngaynhac2") }}
+                                    aria-disabled={disabledThang}
+                                    className={disabledThang === true ? "form-control is-disabled" : "form-control"}
+                                    name="ngaynhacThang"
+                                    value={ngaynhacThang}
+                                    onChange={(event) => { this.handleOnChangeInput(event, "ngaynhacThang") }}
                                 />
                             </div>
-                            {/* them chu ky nhac 3 */}
-                            <div className={count3 === 3 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}></div>
-                            <div className={count3 === 3 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}>
-                                <label className="form-label">
-                                    Chu kỳ lặp
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-7 col-md-7 col-xs-auto hidden" : "col-lg-7 col-md-7 col-xs-auto"}>
+                                <label className='style-month'>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='month1'
+                                        value={month1}
+                                        disabled={disabled1}
+                                        defaultChecked={isCheckedThang1}
+                                        onChange={(event) => { this.toggleChange(event, "month1") }}
+                                    />
+                                    01
                                 </label>
-                                <select
-                                    aria-disabled={disabled}
-                                    className={disabled === true ? "form-select is-disabled" : "form-select"}
-                                    name="chukylap3"
-                                    value={chukylap3}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "chukylap3") }}
-                                >
-                                    <option></option>
-                                    <option value={0}>Một lần</option>
-                                    <option value={1}>Mỗi tháng</option>
-                                    <option value={2}>6 tháng</option>
-                                    <option value={3}>9 tháng</option>
-                                    <option value={4}>Quý I</option>
-                                    <option value={5}>Quý II</option>
-                                    <option value={6}>Quý III</option>
-                                    <option value={7}>Quý IV</option>
-                                    <option value={8}>Mỗi năm</option>
-                                </select>
+                                <label className='style-month'>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='month2'
+                                        value={month2}
+                                        disabled={disabled2}
+                                        defaultChecked={isCheckedThang2}
+                                        onChange={(event) => { this.toggleChange(event, "month2") }}
+                                    />
+                                    02
+                                </label>
+                                <label className='style-month'>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='month3'
+                                        value={month3}
+                                        disabled={disabled3}
+                                        defaultChecked={isCheckedThang3}
+                                        onChange={(event) => { this.toggleChange(event, "month3") }}
+                                    />
+                                    03
+                                </label>
+                                <label className='style-month'>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='month4'
+                                        value={month4}
+                                        disabled={disabled4}
+                                        defaultChecked={isCheckedThang4}
+                                        onChange={(event) => { this.toggleChange(event, "month4") }}
+                                    />
+                                    04
+                                </label>
+                                <label className='style-month'>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='month5'
+                                        value={month5}
+                                        disabled={disabled5}
+                                        defaultChecked={isCheckedThang5}
+                                        onChange={(event) => { this.toggleChange(event, "month5") }}
+                                    />
+                                    05
+                                </label>
+                                <label className='style-month'>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='month6'
+                                        value={month6}
+                                        disabled={disabled6}
+                                        defaultChecked={isCheckedThang6}
+                                        onChange={(event) => { this.toggleChange(event, "month6") }}
+                                    />
+                                    06
+                                </label>
+                                <label className='style-month'>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='month7'
+                                        value={month7}
+                                        disabled={disabled7}
+                                        defaultChecked={isCheckedThang7}
+                                        onChange={(event) => { this.toggleChange(event, "month7") }}
+                                    />
+                                    07
+                                </label>
+                                <label className='style-month'>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='month8'
+                                        value={month8}
+                                        disabled={disabled8}
+                                        defaultChecked={isCheckedThang8}
+                                        onChange={(event) => { this.toggleChange(event, "month8") }}
+                                    />
+                                    08
+                                </label>
+                                <label className='style-month'>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='month9'
+                                        value={month9}
+                                        disabled={disabled9}
+                                        defaultChecked={isCheckedThang9}
+                                        onChange={(event) => { this.toggleChange(event, "month9") }}
+                                    />
+                                    09
+                                </label>
+                                <label className='style-month'>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='month10'
+                                        value={month10}
+                                        disabled={disabled10}
+                                        defaultChecked={isCheckedThang10}
+                                        onChange={(event) => { this.toggleChange(event, "month10") }}
+                                    />
+                                    10
+                                </label>
+                                <label className='style-month'>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='month11'
+                                        value={month11}
+                                        disabled={disabled11}
+                                        defaultChecked={isCheckedThang11}
+                                        onChange={(event) => { this.toggleChange(event, "month11") }}
+                                    />
+                                    11
+                                </label>
+                                <label className='style-month'>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='month12'
+                                        value={month12}
+                                        disabled={disabled12}
+                                        defaultChecked={isCheckedThang12}
+                                        onChange={(event) => { this.toggleChange(event, "month12") }}
+                                    />
+                                    12
+                                </label>
+                                <label className='style-month'>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='all'
+                                        value={all}
+                                        disabled={disabledAll}
+                                        defaultChecked={isCheckedAllThang}
+                                        onChange={(event) => { this.toggleChange(event, "all") }}
+                                    />
+                                    Tất cả
+                                </label>
                             </div>
-                            <div className={count3 === 3 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}>
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-2 col-md-2 col-xs-auto hidden" : "col-lg-2 col-md-2 col-xs-auto"}>
+                                <label>Tiêu đề tháng</label>
+                            </div>
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-10 col-md-10 col-xs-auto hidden" : "col-lg-10 col-md-10 col-xs-auto"}>
+                                <input type="text" name='tieudeThang'
+                                    className={disabledThang === true ? "form-control is-disabled" : "form-control"}
+                                    value={tieudeThang}
+                                    onChange={(event) => { this.handleOnChangeInput(event, "tieudeThang") }}
+                                />
+                            </div>
+                            {/* Nhắc theo quý */}
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-2 col-md-2 col-xs-auto hidden" : "col-lg-2 col-md-2 col-xs-auto"}>
                                 <label className="form-label">
-                                    Ngày nhắc
-                                    <i className="fa fa-times icon-close"
-                                        onClick={(event) => { this.handleRemoveService(event, "xoadong3") }}
-                                    ></i>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='quy'
+                                        value={quy}
+                                        defaultChecked={isCheckedQuy}
+                                        onChange={(event) => { this.toggleChange(event, "quy") }}
+                                    />
+                                    Chủ đề theo quý
                                 </label>
+                            </div>
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-3 col-md-3 col-xs-auto hidden" : "col-lg-3 col-md-3 col-xs-auto"}>
                                 <input
                                     type="date"
-                                    aria-disabled={disabled3}
-                                    className={disabled3 === true ? "form-control is-disabled" : "form-control"}
-                                    name="ngaynhac3"
-                                    value={ngaynhac3}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "ngaynhac3") }}
+                                    aria-disabled={disabledQuy}
+                                    className={disabledQuy === true ? "form-control is-disabled" : "form-control"}
+                                    name="ngaynhacQuy"
+                                    value={ngaynhacQuy}
+                                    onChange={(event) => { this.handleOnChangeInput(event, "ngaynhacQuy") }}
                                 />
                             </div>
-                            {/* them chu ky nhac 4 */}
-                            <div className={count4 === 4 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}></div>
-                            <div className={count4 === 4 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}>
-                                <label className="form-label">
-                                    Chu kỳ lặp
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-7 col-md-7 col-xs-auto hidden" : "col-lg-7 col-md-7 col-xs-auto"}>
+                                <label className='style-month'>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='quy1'
+                                        value={quy1}
+                                        disabled={disabledQuy1}
+                                        defaultChecked={isCheckedQuy1}
+                                        onChange={(event) => { this.toggleChange(event, "quy1") }}
+                                    />
+                                    03
                                 </label>
-                                <select
-                                    aria-disabled={disabled4}
-                                    className={disabled4 === true ? "form-select is-disabled" : "form-select"}
-                                    name="chukylap4"
-                                    value={chukylap4}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "chukylap4") }}
-                                >
-                                    <option></option>
-                                    <option value={0}>Một lần</option>
-                                    <option value={1}>Mỗi tháng</option>
-                                    <option value={2}>6 tháng</option>
-                                    <option value={3}>9 tháng</option>
-                                    <option value={4}>Quý I</option>
-                                    <option value={5}>Quý II</option>
-                                    <option value={6}>Quý III</option>
-                                    <option value={7}>Quý IV</option>
-                                    <option value={8}>Mỗi năm</option>
-                                </select>
+                                <label className='style-month'>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='quy2'
+                                        value={quy2}
+                                        disabled={disabledQuy2}
+                                        defaultChecked={isCheckedQuy2}
+                                        onChange={(event) => { this.toggleChange(event, "quy2") }}
+                                    />
+                                    06
+                                </label>
+                                <label className='style-month'>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='quy3'
+                                        value={quy3}
+                                        disabled={disabledQuy3}
+                                        defaultChecked={isCheckedQuy3}
+                                        onChange={(event) => { this.toggleChange(event, "quy3") }}
+                                    />
+                                    09
+                                </label>
+                                <label className='style-month'>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='quy4'
+                                        value={quy4}
+                                        disabled={disabledQuy4}
+                                        defaultChecked={isCheckedQuy4}
+                                        onChange={(event) => { this.toggleChange(event, "quy4") }}
+                                    />
+                                    12
+                                </label>
                             </div>
-                            <div className={count4 === 4 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}>
-                                <label className="form-label">
-                                    Ngày nhắc
-                                    <i className="fa fa-times icon-close"
-                                        onClick={(event) => { this.handleRemoveService(event, "xoadong4") }}
-                                    ></i>
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-2 col-md-2 col-xs-auto hidden" : "col-lg-2 col-md-2 col-xs-auto"}>
+                                <label>Tiêu đề quý</label>
+                            </div>
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-10 col-md-10 col-xs-auto hidden" : "col-lg-10 col-md-10 col-xs-auto"}>
+                                <input type="text" name='tieudeQuy'
+                                    className={disabledQuy === true ? "form-control is-disabled" : "form-control"} />
+                            </div>
+                            {/* nhắc theo năm */}
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-2 col-md-2 col-xs-auto hidden" : "col-lg-2 col-md-2 col-xs-auto"}>
+                                <label>
+                                    <input className='input-checkbox' type="checkbox"
+                                        name='nam'
+                                        value={nam}
+                                        defaultChecked={isCheckedMot}
+                                        onChange={(event) => { this.toggleChange(event, "nam") }}
+                                    />
+                                    Chủ đề năm
                                 </label>
+                            </div>
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-3 col-md-3 col-xs-auto hidden" : "col-lg-3 col-md-3 col-xs-auto"}>
                                 <input
                                     type="date"
-                                    aria-disabled={disabled}
-                                    className={disabled === true ? "form-control is-disabled" : "form-control"}
-                                    name="ngaynhac4"
-                                    value={ngaynhac4}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "ngaynhac4") }}
+                                    aria-disabled={disabledNam}
+                                    className={disabledNam === true ? "form-control is-disabled" : "form-control"}
+                                    name="ngaynhacNam"
+                                    value={ngaynhacNam}
+                                    onChange={(event) => { this.handleOnChangeInput(event, "ngaynhacNam") }}
                                 />
                             </div>
-                            {/* them chu ky nhac 5 */}
-                            <div className={count5 === 5 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}></div>
-                            <div className={count5 === 5 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}>
-                                <label className="form-label">
-                                    Chu kỳ lặp
-                                </label>
-                                <select
-                                    aria-disabled={disabled5}
-                                    className={disabled5 === true ? "form-select is-disabled" : "form-select"}
-                                    name="chukylap5"
-                                    value={chukylap5}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "chukylap5") }}
-                                >
-                                    <option></option>
-                                    <option value={0}>Một lần</option>
-                                    <option value={1}>Mỗi tháng</option>
-                                    <option value={2}>6 tháng</option>
-                                    <option value={3}>9 tháng</option>
-                                    <option value={4}>Quý I</option>
-                                    <option value={5}>Quý II</option>
-                                    <option value={6}>Quý III</option>
-                                    <option value={7}>Quý IV</option>
-                                    <option value={8}>Mỗi năm</option>
-                                </select>
+                            <div className="col-lg-7 col-md-7 col-xs-auto"></div>
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-2 col-md-2 col-xs-auto hidden" : "col-lg-2 col-md-2 col-xs-auto"}>
+                                <label>Tiêu đề năm</label>
                             </div>
-                            <div className={count5 === 5 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}>
-                                <label className="form-label">
-                                    Ngày nhắc
-                                    <i className="fa fa-times icon-close"
-                                        onClick={(event) => { this.handleRemoveService(event, "xoadong5") }}
-                                    ></i>
-                                </label>
-                                <input
-                                    type="date"
-                                    aria-disabled={disabled5}
-                                    className={disabled5 === true ? "form-control is-disabled" : "form-control"}
-                                    name="ngaynhac5"
-                                    value={ngaynhac5}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "ngaynhac5") }}
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-10 col-md-10 col-xs-auto hidden" : "col-lg-10 col-md-10 col-xs-auto"}>
+                                <input type="text" name='tieudeNam'
+                                    className={disabledNam === true ? "form-control is-disabled" : "form-control"}
+                                    value={tieudeNam}
+                                    onChange={(event) => { this.handleOnChangeInput(event, "tieudeNam") }}
                                 />
                             </div>
-                            {/* them chu ky nhac 6 */}
-                            <div className={count6 === 6 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}></div>
-                            <div className={count6 === 6 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}>
-                                <label className="form-label">
-                                    Chu kỳ lặp
-                                </label>
-                                <select
-                                    aria-disabled={disabled6}
-                                    className={disabled6 === true ? "form-select is-disabled" : "form-select"}
-                                    name="chukylap6"
-                                    value={chukylap6}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "chukylap6") }}
-                                >
-                                    <option></option>
-                                    <option value={0}>Một lần</option>
-                                    <option value={1}>Mỗi tháng</option>
-                                    <option value={2}>6 tháng</option>
-                                    <option value={3}>9 tháng</option>
-                                    <option value={4}>Quý I</option>
-                                    <option value={5}>Quý II</option>
-                                    <option value={6}>Quý III</option>
-                                    <option value={7}>Quý IV</option>
-                                    <option value={8}>Mỗi năm</option>
-                                </select>
-                            </div>
-                            <div className={count6 === 6 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}>
-                                <label className="form-label">
-                                    Ngày nhắc
-                                    <i className="fa fa-times icon-close"
-                                        onClick={(event) => { this.handleRemoveService(event, "xoadong6") }}
-                                    ></i>
-                                </label>
-                                <input
-                                    type="date"
-                                    aria-disabled={disabled6}
-                                    className={disabled6 === true ? "form-control is-disabled" : "form-control"}
-                                    name="ngaynhac6"
-                                    value={ngaynhac6}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "ngaynhac6") }}
-                                />
-                            </div>
-                            {/* them chu ky nhac 7 */}
-                            <div className={count7 === 7 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}></div>
-                            <div className={count7 === 7 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}>
-                                <label className="form-label">
-                                    Chu kỳ lặp
-                                </label>
-                                <select
-                                    aria-disabled={disabled7}
-                                    className={disabled7 === true ? "form-select is-disabled" : "form-select"}
-                                    name="chukylap7"
-                                    value={chukylap7}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "chukylap7") }}
-                                >
-                                    <option></option>
-                                    <option value={0}>Một lần</option>
-                                    <option value={1}>Mỗi tháng</option>
-                                    <option value={2}>6 tháng</option>
-                                    <option value={3}>9 tháng</option>
-                                    <option value={4}>Quý I</option>
-                                    <option value={5}>Quý II</option>
-                                    <option value={6}>Quý III</option>
-                                    <option value={7}>Quý IV</option>
-                                    <option value={8}>Mỗi năm</option>
-                                </select>
-                            </div>
-                            <div className={count7 === 7 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}>
-                                <label className="form-label">
-                                    Ngày nhắc
-                                    <i className="fa fa-times icon-close"
-                                        onClick={(event) => { this.handleRemoveService(event, "xoadong7") }}
-                                    ></i>
-                                </label>
-                                <input
-                                    type="date"
-                                    aria-disabled={disabled7}
-                                    className={disabled7 === true ? "form-control is-disabled" : "form-control"}
-                                    name="ngaynhac7"
-                                    value={ngaynhac7}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "ngaynhac7") }}
-                                />
-                            </div>
-                            {/* them chu ky nhac 8 */}
-                            <div className={count8 === 8 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}></div>
-                            <div className={count8 === 8 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}>
-                                <label className="form-label">
-                                    Chu kỳ lặp
-                                </label>
-                                <select
-                                    aria-disabled={disabled8}
-                                    className={disabled8 === true ? "form-select is-disabled" : "form-select"}
-                                    name="chukylap8"
-                                    value={chukylap8}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "chukylap8") }}
-                                >
-                                    <option></option>
-                                    <option value={0}>Một lần</option>
-                                    <option value={1}>Mỗi tháng</option>
-                                    <option value={2}>6 tháng</option>
-                                    <option value={3}>9 tháng</option>
-                                    <option value={4}>Quý I</option>
-                                    <option value={5}>Quý II</option>
-                                    <option value={6}>Quý III</option>
-                                    <option value={7}>Quý IV</option>
-                                    <option value={8}>Mỗi năm</option>
-                                </select>
-                            </div>
-                            <div className={count8 === 8 || hiddenAdd === true ? "col-lg-4 col-md-4 col-xs-auto" : "col-lg-4 col-md-4 col-xs-auto hidden"}>
-                                <label className="form-label">
-                                    Ngày nhắc
-                                    <i className="fa fa-times icon-close"
-                                        onClick={(event) => { this.handleRemoveService(event, "xoadong8") }}
-                                    ></i>
-                                </label>
-                                <input
-                                    type="date"
-                                    aria-disabled={disabled8}
-                                    className={disabled8 === true ? "form-control is-disabled" : "form-control"}
-                                    name="ngaynhac8"
-                                    value={ngaynhac8}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "ngaynhac8") }}
-                                />
-                            </div>
-                            {/* ket thuc them chu ky nhac */}
-                            {/* <div className="col-lg-4 col-md-4 col-xs-auto"></div>
-                            <div className={disabledDetail === true ? "col-lg-8 col-md-8 col-xs-auto hidden" : "col-lg-8 col-md-8 col-xs-auto"}>
-                                <label className="form-label">
-                                    <i
-                                        className="fa fa-plus icon-plus"
-                                        onClick={() => { this.xulyThemChuKyNhac() }}
-                                    ><span className="icon-plus">Thêm chu kỳ nhắc</span></i>
-                                </label>
-                            </div> */}
+
                             <div className="col-12 my-3">
                                 <button
                                     type="button"

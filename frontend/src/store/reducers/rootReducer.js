@@ -28,7 +28,7 @@ const appPersistConfig = {
 const calendarPersistConfig = {
     ...persistCommonConfig,
     key: 'calendar',
-    whitelist: ['calendar', 'calendarDead', 'calendarLate']
+    whitelist: ['calendar', 'calendarDead', 'calendarLate', 'calendarFinished']
 };
 
 export default (history) => combineReducers({

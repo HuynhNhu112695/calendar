@@ -33,7 +33,8 @@
                 "home": "Quay lại trang chủ",
                 "calendar": "Quản lý công việc",
                 "deadline": "Quản lý việc sắp đến hạn",
-                "late": "Quản lý việc trễ hạn"
+                "late": "Quản lý việc trễ hạn",
+                "finished": "Quản lý việc đã hoàn thành"
             },
             "manage-user": {
                 "header": "Người dùng",

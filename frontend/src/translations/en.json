@@ -1,169 +1,170 @@
 {
     "common": {
-        "titleHome": "Welcome to Paris Nails of Falmouth",
-        "add": "Add",
-        "edit": "Edit",
-        "delete": "Delete",
-        "decentralize": "Decentralize",
-        "close": "Close",
-        "save": "Save",
+        "titleHome": "Chào mừng đến với phần mềm nhắc việc",
+        "add": "Thêm",
+        "edit": "Sửa",
+        "delete": "Xóa",
+        "decentralize": "Phân quyền",
+        "close": "Đóng",
+        "save": "Lưu",
         "refresh": "Refresh",
-        "accept": "Accept",
-        "confirm": "Confirm",
-        "confirm-this-task": "Are you sure to process this task?",
-        "fail-to-load-data": "Fail to load data",
-        "unknown-error": "There was an error",
-        "internal-server-error": "Internal server error",
-        "bad-request": "Bad request",
-        "forbiden-request": "Invalid input data",
-        "fail-to-load-all-code": "Fail to load data from allcode",
-        "sum": "Sum",
-        "date-range-invalid": "Date range invalid"
+        "accept": "Chấp nhận",
+        "confirm": "Xác nhận",
+        "confirm-this-task": "Bạn có chắc chắn thực hiện tác vụ này?",
+        "fail-to-load-data": "Không thể tải về dữ liệu",
+        "unknown-error": "Có lỗi xảy ra",
+        "internal-server-error": "Lỗi kết nối",
+        "bad-request": "Yêu cầu không hợp lệ",
+        "forbiden-request": "Thông tin truyền vào không hợp lệ",
+        "fail-to-load-all-code": "Không thể tải về dữ liệu allcode",
+        "sum": "Tổng",
+        "date-range-invalid": "Khoảng thời gian không hợp lệ"
     },
     "login": {
-        "login": "Login",
-        "username": "Username",
-        "password": "Password",
-        "userpass-wrong": "Invalid username or password!"
+        "login": "Đăng nhập",
+        "username": "Tên đăng nhập",
+        "password": "Mật khẩu",
+        "userpass-wrong": "Sai tên đăng nhập hoặc mật khẩu!"
     },
     "menu": {
         "admin": {
             "home-manage": {
-                "header": "Home",
-                "home": "Callback Home",
+                "header": "Trang chủ",
+                "home": "Quay lại trang chủ",
                 "calendar": "Quản lý công việc",
                 "deadline": "Quản lý việc sắp đến hạn",
-                "late": "Quản lý việc trễ hạn"
+                "late": "Quản lý việc trễ hạn",
+                "finished": "Quản lý việc đã hoàn thành"
             },
             "manage-user": {
-                "header": "Users",
-                "crud-user": "Manage Login Accounts"
+                "header": "Người dùng",
+                "crud-user": "Quản lý tài khoản đăng nhập"
             },
             "manage-staff": {
-                "header": "Staffs",
-                "crud-staff": "Manage Staffs",
-                "rest-schedule": "Rest Schedule",
-                "salary-staff": "Manage Salary"
+                "header": "Nhân viên",
+                "crud-staff": "Quản lý nhân viên",
+                "rest-schedule": "Lịch nghỉ",
+                "salary-staff": "Quản lý lương",
+                "tax": "Quản lý thuế"
             },
             "manage-customer": {
-                "header": "Customers",
-                "crud-customer": "Manage Customer"
+                "header": "Khách hàng",
+                "crud-customer": "Quản lý khách hàng"
             },
             "manage-product": {
-                "header": "Products",
-                "crud-product": "Manage Product",
-                "update-quantity": "Update Quantity"
+                "header": "Sản phẩm",
+                "crud-product": "Quản lý sản phẩm",
+                "update-quantity": "Cập nhật số lượng"
             },
             "manage-service": {
-                "header": "Services",
-                "crud-service": "Manage Service",
-                "crud-type": "Manage Service Type"
+                "header": "Dịch vụ",
+                "crud-service": "Quản lý dịch vụ",
+                "crud-type": "Quản lý loại dịch vụ"
             },
             "manage-order": {
-                "header": "Order",
-                "crud-order": "Manage Order",
-                "call-booking": "Manage Service Booking"
+                "header": "Đơn hàng",
+                "crud-order": "Quản lý đơn hàng",
+                "call-booking": "Quản lý đặt dịch vụ"
             },
             "manage-tax": {
-                "header": "Tax",
-                "crud-tax": "Manage Tax"
+                "header": "Thuế",
+                "crud-tax": "Quản lý thuế"
             }
         },
-        "welcome": "Welcome, "
+        "welcome": "Xin chào, "
     },
     "manage-user": {
-        "header": "Manage Users",
-        "add": "Add a new user",
-        "edit": "Edit",
-        "delete": "Delete",
-        "save": "Save",
-        "cancel": "Cancel",
-        "exit": "Exit",
+        "header": "Quản lý người dùng",
+        "edit": "Sửa",
+        "delete": "Xóa",
+        "save": "Lưu",
+        "cancel": "Hủy",
+        "exit": "Thoát",
         "email": "Email",
-        "password": "Password",
-        "firstname": "First Name",
-        "lastname": "Last Name",
-        "role": "Role",
-        "phonenumber": "Phone Number",
-        "birthday": "Birthday",
-        "gender": "Gender",
-        "address": "Address",
-        "choose": "Choose",
-        "enterFirstname": "Enter first name",
-        "enterLastname": "Enter last name",
-        "enterEmail": "Enter email",
-        "enterPassword": "Enter password",
-        "action": "Action",
-        "dataEmpty": "The data is empty",
-        "search": "Search"
+        "password": "Mật khẩu",
+        "firstname": "Tên",
+        "lastname": "Họ",
+        "role": "Vai trò",
+        "phonenumber": "Số điện thoại",
+        "birthday": "Ngày sinh",
+        "gender": "Giới tính",
+        "address": "Địa chỉ",
+        "choose": "Chọn",
+        "enterFirstname": "Nhập tên",
+        "enterLastname": "Nhập họ",
+        "enterEmail": "Nhập email",
+        "enterPassword": "Nhập mật khẩu",
+        "action": "Hành động",
+        "dataEmpty": "Dữ liệu rỗng",
+        "search": "Tìm"
     },
     "manage-staff": {
-        "header": "Manage Staff",
-        "header-schedule": "Rest Schedule",
-        "staffName": "Staff Name",
-        "restDate": "Rest Date",
-        "timeType": "Time",
-        "dataEmpty": "Data empty, please add a new data!"
+        "header": "Quản lý nhân viên",
+        "header-schedule": "Lịch nghỉ",
+        "staffName": "Họ tên nhân viên",
+        "restDate": "Ngày nghỉ",
+        "timeType": "Thời gian",
+        "dataEmpty": "Chưa có dữ liệu, vui lòng thêm mới!"
     },
     "manage-customer": {
-        "header": "Manage Customer"
+        "header": "Quản lý khách hàng"
     },
     "manage-product": {
-        "header": "Manage Product",
-        "productName": "Product Name",
-        "productImport": "Product Import",
-        "quantity": "Quantity",
-        "unit": "Unit",
-        "price": "Price ($)",
-        "importDate": "Import Date",
-        "exportDate": "Export Date",
-        "description": "Note",
-        "nowQuantity": "Now",
-        "exportQuantity": "Export",
-        "remainQuantity": "Remain",
-        "unitManage": "Unit Manage",
-        "quantityMin": "Quantity Min",
-        "valueEN": "English Name",
-        "valueVI": "Vietnamese Name",
-        "buyPro": "List Products Need Buy",
-        "importQuantity": "Quantity Import"
+        "header": "Quản lý sản phẩm",
+        "productName": "Tên sản phẩm",
+        "productImport": "Sản phẩm cần nhập",
+        "quantity": "Số lượng",
+        "unit": "Đơn vị",
+        "price": "Giá ($)",
+        "importDate": "Ngày nhập",
+        "exportDate": "Ngày xuất",
+        "description": "Chú thích",
+        "nowQuantity": "Hiện tại",
+        "exportQuantity": "Xuất",
+        "remainQuantity": "Còn lại",
+        "unitManage": "Quản lý đơn vị",
+        "quantityMin": "Số lượng tối thiểu",
+        "valueEN": "Tên tiếng Anh",
+        "valueVI": "Tên tiếng Việt",
+        "buyPro": "Danh sách sản phẩm cần mua",
+        "importQuantity": "Số lượng nhập"
     },
     "manage-service": {
-        "header": "Manage Service",
-        "serviceName": "Service Name",
-        "theme": "Service Type",
-        "addServiceType": "Add Service Type"
+        "header": "Quản lý dịch vụ",
+        "serviceName": "Tên dịch vụ",
+        "theme": "Loại dịch vụ",
+        "addServiceType": "Thêm loại dịch vụ"
     },
     "manage-order": {
-        "header": "Manage Order",
-        "customerName": "Customer Name",
-        "discount": "Discount ($)",
-        "total": "Total",
-        "cashPay": "Cash Payment",
-        "cardPay": "Card Payment",
-        "choose": "Choose service type",
-        "dateWork": "Date",
-        "buttonAdd": "Add service",
-        "delete": "Delete service",
-        "percent": "Percent (%)",
-        "addService": "  Add service",
-        "time": "Time",
-        "peopleNumber": "People number",
-        "searchPhone": "Search by phone number"
+        "header": "Quản lý đơn hàng",
+        "customerName": "Họ tên khách hàng",
+        "discount": "Giảm giá ($)",
+        "total": "Tổng",
+        "cashPay": "Thanh toán tiền mặt",
+        "cardPay": "Thanh toán thẻ",
+        "choose": "Chọn loại dịch vụ",
+        "dateWork": "Ngày",
+        "buttonAdd": "Thêm dịch vụ",
+        "delete": "Xóa dịch vụ",
+        "percent": "Phần trăm (%)",
+        "addService": "  Thêm dịch vụ",
+        "time": "Giờ",
+        "peopleNumber": "Số người đặt",
+        "searchPhone": "Tìm kiếm bằng số điện thoại"
     },
     "manage-salary": {
-        "startDay": "start date",
-        "endDay": "end date",
-        "tax": "Tax (%)",
-        "note": "Note",
-        "bonus": "Bonus ($)",
-        "total": "Total ($)",
-        "totalCard": "Total card payment ($)",
-        "totalCash": "Total cash payment ($)",
-        "receivedCard": "Salary received by the card ($)",
-        "receivedCash": "Salary received by the cash ($)",
-        "receivedStore": "Total store received ($)",
-        "receivedStaff": "Total staff received ($)",
-        "staffReceivedAfterTax": "Salary received by the card after tax ($)"
+        "startDay": "Ngày bắt đầu",
+        "endDay": "Ngày kết thúc",
+        "tax": "Thuế (%)",
+        "note": "Ghi chú",
+        "bonus": "Thưởng ($)",
+        "total": "Tổng ($)",
+        "totalCard": "Tổng khách trả thẻ ($)",
+        "totalCash": "Tổng khách trả tiền mặt ($)",
+        "receivedCard": "Lương nhận qua thẻ ($)",
+        "receivedCash": "Lương nhận tiền mặt ($)",
+        "receivedStore": "Tổng cửa hàng nhận ($)",
+        "receivedStaff": "Tổng nhân viên nhận ($)",
+        "staffReceivedAfterTax": "Lương nhận bằng thẻ sau thuế ($)"
     }
 }

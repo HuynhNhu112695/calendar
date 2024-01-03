@@ -5,6 +5,7 @@ import UserManage from '../containers/System/UserManage';
 import DangKyCongViec from '../containers/System/DangKyCongViec';
 import ViecSapDenHan from '../containers/System/ViecSapDenHan';
 import ViecTreHan from '../containers/System/ViecTreHan';
+import ViecDaHoanThanh from '../containers/System/ViecDaHoanThanh';
 import Home from '../routes/Home';
 
 class System extends Component {
@@ -19,6 +20,7 @@ class System extends Component {
                         <Route path="/system/calendar-manage" component={DangKyCongViec} />
                         <Route path="/system/deadline-manage" component={ViecSapDenHan} />
                         <Route path="/system/late-manage" component={ViecTreHan} />
+                        <Route path="/system/finished-manage" component={ViecDaHoanThanh} />
                         <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
                     </Switch>
                 </div>

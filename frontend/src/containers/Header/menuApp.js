@@ -11,6 +11,9 @@ export const adminMenu = [
     { //quản lý công việc sắp đến hạn
         name: 'menu.admin.home-manage.deadline', link: '/system/deadline-manage'
     },
+    { //quản lý công việc đã hoàn thành
+        name: 'menu.admin.home-manage.finished', link: '/system/finished-manage'
+    },
     { //quản lý công việc đã trễ hạn
         name: 'menu.admin.home-manage.late', link: '/system/late-manage'
     }

@@ -7,9 +7,9 @@ import './UserManage.scss';
 import * as actions from '../../store/actions';
 import { LANGUAGES, CRUD_ACTIONS } from "../../utils";
 // import TableManageCalendar from './TableManageCalendar';
-import TableManageDeadline from './TableManageDeadline';
+import TableManageFinished from './TableManageFinished';
 
-class ViecSapDenHan extends Component {
+class ViecDaHoanThanh extends Component {
     /*  Life cycle
     * Run component
     * 1. Run construc -> init state
@@ -439,7 +439,7 @@ class ViecSapDenHan extends Component {
         }
     }
 
-    handleEditDeadlineFromParent = async (work, currentPage) => {
+    handleEditFinishedFromParent = async (work, currentPage) => {
         await document.getElementById("sovanban").focus();
         await this.setState({
             id: work.id,
@@ -463,7 +463,7 @@ class ViecSapDenHan extends Component {
         })
     }
 
-    handleDetailDeadlineFromParent = async (work, currentPage) => {
+    handleDetailFinishedFromParent = async (work, currentPage) => {
         await document.getElementById("sovanban").focus();
         await this.setState({
             id: work.id,
@@ -525,7 +525,7 @@ class ViecSapDenHan extends Component {
         return (
             <div className="overflow-auto user-redux-container">
                 <div className="title py-3">
-                    Quản lý công việc sắp đến hạn
+                    Quản lý công việc đã hoàn thành
                 </div>
                 <div className="user-redux-body">
                     <div className={actions === CRUD_ACTIONS.EDIT ? "container" : "container hidden"}>
@@ -730,9 +730,9 @@ class ViecSapDenHan extends Component {
                             </div>
                         </form>
                     </div>
-                    <TableManageDeadline
-                        handleEditDeadlineFromParent={this.handleEditDeadlineFromParent}
-                        handleDetailDeadlineFromParent={this.handleDetailDeadlineFromParent}
+                    <TableManageFinished
+                        handleEditFinishedFromParent={this.handleEditFinishedFromParent}
+                        handleDetailFinishedFromParent={this.handleDetailFinishedFromParent}
                         isMenu={this.state.isMenu}
                         currentPage={this.state.currentPage}
                     />
@@ -746,7 +746,7 @@ class ViecSapDenHan extends Component {
 const mapStateToProps = state => {
     return {
         userRedux: state.user.userInfo,
-        calendar: state.calendar.calendar,
+        calendar: state.calendar.calendarFinished,
     };
 };
 
@@ -758,4 +758,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ViecSapDenHan);
+export default connect(mapStateToProps, mapDispatchToProps)(ViecDaHoanThanh);

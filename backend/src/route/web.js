@@ -30,6 +30,7 @@ let initWebRoutes = (app) => {
     router.delete('/api/delete-calendar', calendarController.handleDeleteCalendar);
     router.get('/api/get-all-deadline', calendarController.handleGetAllDeadline);
     router.get('/api/get-all-late', calendarController.handleGetAllLate);
+    router.get('/api/get-all-finished', calendarController.handleGetAllFinished);
 
     return app.use("/", router);
 }

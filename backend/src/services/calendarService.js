@@ -5,7 +5,7 @@ let getAllCalendar = async (userIdCreate) => {
     try {
         let calendar = await db.RepeatCicles.findAll({
             order: [
-                ['dataCalendar', 'douutien', 'ASC']
+                ['createdAt', 'DESC']
             ],
             include: [
                 {
@@ -24,32 +24,9 @@ let getAllCalendar = async (userIdCreate) => {
     }
 }
 
-let getStaffRest = async (date) => {
+let addNewCalendar = async (data) => {
     try {
-        let staffsRest = await db.Calendar.findAll({
-            order: [
-                ['createdAt', 'DESC']
-            ],
-            where: {
-                date: date
-            },
-            include: [
-                { model: db.Users, as: 'staffInfo', attributes: ['id', 'firstname', 'lastname'] }
-            ],
-            where: {
-                action: 1
-            },
-            raw: true,
-            nest: true
-        })
-        return staffsRest;
-    } catch (e) {
-        return e;
-    }
-}
-
-let addNewCalendar = async (data, arrRepeat) => {
-    try {
+        let arrNN = data.arrNgayNhac;
         let addNew = await db.Calendars.create({
             sovanban: data.sovanban,
             ngayphathanh: data.ngayphathanh,
@@ -62,17 +39,18 @@ let addNewCalendar = async (data, arrRepeat) => {
             douutien: data.douutien,
             userIdCreate: data.userIdCreate
         });
-        arrRepeat.forEach(async (e) => {
+        arrNN.forEach(async (e) => {
             await db.RepeatCicles.create({
                 idcongviec: addNew.id,
                 chukylap: e.chukylap,
-                ngaylap: e.ngaylap,
+                ngaylap: e.ngaynhac,
+                tieude: e.tieude,
                 trangthai: data.trangthai,
             });
         });
         return ({
             errCode: 0,
-            errMessage: "Create a new work succeed!"
+            errMessage: "Tạo nhắc việc mới thành công!"
         });
     } catch (e) {
         return e;
@@ -87,7 +65,7 @@ let deleteCalendar = async (calendarId) => {
         if (!calendar) {
             return ({
                 errCode: 1,
-                errMessage: "The work isn't exist"
+                errMessage: "Nhắc việc này không tồn tại!"
             });
         }
 
@@ -97,7 +75,7 @@ let deleteCalendar = async (calendarId) => {
             });
             return ({
                 errCode: 0,
-                errMessage: "Delete work succeed!"
+                errMessage: "Xóa nhắc việc thành công!"
             });
         }
     } catch (e) {
@@ -111,17 +89,6 @@ let editCalendar = async (data) => {
             where: { id: data.idcongviec }
         })
         if (calendar) {
-            // if (data.dataCalendar.sovanban !== calendar.sovanban &&
-            //     data.dataCalendar.noidungyeucau !== calendar.noidungyeucau &&
-            //     data.dataCalendar.nguoithuchien !== calendar.nguoithuchien) {
-            //     let check = await checkCalendar(data.dataCalendar.sovanban, data.dataCalendar.noidungyeucau, data.dataCalendar.nguoithuchien, data.dataCalendar.noidungyeucau);
-            //     if (check === true) {
-            //         return ({
-            //             errCode: 1,
-            //             errMessage: "Your Calendar is already in use. Please try another Calendar!"
-            //         })
-            //     }
-            // }
             await db.Calendars.update({
                 sovanban: data.sovanban,
                 ngayphathanh: data.ngayphathanh,
@@ -133,22 +100,23 @@ let editCalendar = async (data) => {
                 noidungyeucau: data.noidungyeucau,
                 nhactruoc: data.nhactruoc,
                 douutien: data.douutien,
+                updatedAt: data.updatedAt
             }, { where: { id: data.idcongviec } });
             // arrRepeat.forEach(async (e) => {
             await db.RepeatCicles.update({
-                // chukylap: e.chukylap,
-                // ngaylap: data.motlan,
-                trangthai: data.trangthai
+                ngaylap: data.ngaylap,
+                trangthai: data.trangthai,
+                updatedAt: data.updatedAt
             }, { where: { id: data.id } });
             // });
             return ({
                 errCode: 0,
-                errMessage: "Update the calendar succeed!"
+                errMessage: "Cập nhật nhắc việc thành công!"
             })
         } else {
             return ({
                 errCode: 1,
-                errMessage: "The work isn't exist!"
+                errMessage: "Nhắc việc này không tồn tại!"
             })
         }
     } catch (e) {
@@ -162,5 +130,4 @@ module.exports = {
     addNewCalendar: addNewCalendar,
     deleteCalendar: deleteCalendar,
     editCalendar: editCalendar,
-    getStaffRest: getStaffRest,
 }

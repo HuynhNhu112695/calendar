@@ -1,7 +1,7 @@
 import actionTypes from './actionTypes';
 import {
     handleCreateNewCalendarApi, getAllCalendar, getAllDeadline,
-    handleDeleteCalendarApi, handleEditCalendarApi, getAllLate
+    handleDeleteCalendarApi, handleEditCalendarApi, getAllLate, getAllFinished
 } from '../../services/userService';
 import { toast } from 'react-toastify';
 
@@ -115,7 +115,36 @@ export const fetchAllLateFailed = () => ({
     type: actionTypes.FETCH_ALL_CALENDAR_LATE_FAILED,
 })
 
-export const deleteCalendar = (inputId, currentPage) => {
+// Finished
+export const fetchAllFinishedStart = (currentPage, userIdCreate) => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch({ type: actionTypes.FETCH_ALL_CALENDAR_FINISHED_START })
+            let res = await getAllFinished(currentPage, userIdCreate);
+            if (res && res.errCode === 0) {
+                dispatch(fetchAllFinishedSuccess(res));
+            } else {
+                toast.error("Không thể tải lại trang công việc trễ hẹn!")
+                dispatch(fetchAllFinishedFailed());
+            }
+        } catch (e) {
+            dispatch(fetchAllFinishedFailed());
+            console.log('fetchAllFinishedCalendarStart error', e)
+        }
+    }
+}
+
+export const fetchAllFinishedSuccess = (data) => ({
+    type: actionTypes.FETCH_ALL_CALENDAR_FINISHED_SUCCESS,
+    calendarFinished: data
+})
+
+export const fetchAllFinishedFailed = () => ({
+    type: actionTypes.FETCH_ALL_CALENDAR_FINISHED_FAILED,
+})
+
+// delete
+export const deleteCalendar = (inputId, currentPage, userIdCreate) => {
     return async (dispatch, getState) => {
         try {
             dispatch({ type: actionTypes.DELETE_CALENDAR_START })
@@ -123,7 +152,7 @@ export const deleteCalendar = (inputId, currentPage) => {
             if (res && res.errCode === 0) {
                 toast.success(res.errMessage)
                 dispatch(deleteCalendarSuccess());
-                dispatch(fetchAllCalendarStart(currentPage));
+                dispatch(fetchAllCalendarStart(currentPage, userIdCreate));
             } else {
                 toast.error(res.errMessage)
                 dispatch(deleteCalendarFailed());

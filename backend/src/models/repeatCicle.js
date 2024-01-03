@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
         chukylap: DataTypes.INTEGER,
         ngaylap: DataTypes.DATEONLY,
         trangthai: DataTypes.INTEGER,
+        tieude: DataTypes.STRING,
     }, {
         sequelize,
         modelName: 'RepeatCicles',
