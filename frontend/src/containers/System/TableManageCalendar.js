@@ -152,7 +152,7 @@ class TableManageCalendar extends Component {
                                 <th>Đơn vị yêu cầu</th>
                                 <th>Nội dung yêu cầu</th>
                                 <th>Người thực hiện</th>
-                                <th>Độ ưu tiên</th>
+                                {/* <th>Độ ưu tiên</th> */}
                                 <th>Tiến độ</th>
                                 <th>Trạng thái</th>
                                 {/* <th>Chu kỳ nhắc</th> */}
@@ -208,7 +208,7 @@ class TableManageCalendar extends Component {
                                         <td>{item.dataCalendar.chutheyeucau}</td>
                                         <td>{(item.dataCalendar.noidungyeucau.length > 30) ? item.dataCalendar.noidungyeucau.slice(0, 30 - 1) + '...' : item.dataCalendar.noidungyeucau}</td>
                                         <td>{item.dataCalendar.nguoithuchien}</td>
-                                        <td>{item.dataCalendar.douutien === 0 ? "Thông thường" : "Quan trọng"}</td>
+                                        {/* <td>{item.dataCalendar.douutien === 0 ? "Thông thường" : "Quan trọng"}</td> */}
                                         <td><span className={item.trangthai === 0 ? "" : "style-finish"}>{item.trangthai === 0 ? "Đang thực hiện" : "Đã hoàn thành"}</span></td>
                                         <td><span className={trangthai === "Đã đến ngày hết hạn" ? "style-deadline" : trangthai === "Đã hoàn thành" ? "style-finish" : trangthai === "Trễ hạn" ? "style-late" : "style-normal"}>{trangthai}</span></td>
                                         <td>{day}</td>

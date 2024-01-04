@@ -110,13 +110,12 @@ let editCalendar = async (data) => {
                 douutien: data.douutien,
                 updatedAt: data.updatedAt
             }, { where: { id: data.idcongviec } });
-            // arrRepeat.forEach(async (e) => {
             await db.RepeatCicles.update({
                 ngaylap: data.ngaynhac,
+                tieude: data.tieude,
                 trangthai: data.trangthai,
                 updatedAt: data.updatedAt
             }, { where: { id: data.id } });
-            // });
             return ({
                 errCode: 0,
                 errMessage: "Cập nhật nhắc việc thành công!"

@@ -38,7 +38,7 @@ class DangKyCongViec extends Component {
             quy1: "quy1", quy2: "quy2", quy3: "quy3", quy4: "quy4",
             motlan: "motlan", thang: "thang", quy: "quy", nam: "nam",
             ngaynhacThang: "", ngaynhacQuy: "", ngaynhacNam: "", ngaynhacEdit: "",
-            tieudeMot: "", tieudeThang: "", tieudeQuy: "", tieudeNam: "",
+            tieudeMot: "", tieudeThang: "", tieudeQuy: "", tieudeNam: "", tieudeEdit: "",
             arrNgayNhac: [],
             arrInput: [],
             arrUsers: [],
@@ -76,7 +76,7 @@ class DangKyCongViec extends Component {
             quy1: "quy1", quy2: "quy2", quy3: "quy3", quy4: "quy4",
             motlan: "motlan", thang: "thang", quy: "quy", nam: "nam",
             ngaynhacThang: "", ngaynhacQuy: "", ngaynhacNam: "", ngaynhacEdit: "",
-            tieudeMot: "", tieudeThang: "", tieudeQuy: "", tieudeNam: "",
+            tieudeMot: "", tieudeThang: "", tieudeQuy: "", tieudeNam: "", tieudeEdit: "",
             arrNgayNhac: [],
             arrInput: [],
             arrUsers: [],
@@ -357,13 +357,37 @@ class DangKyCongViec extends Component {
 
     checkValidateInput = () => {
         let isValid = true;
-        let arrInput = ['nguoithuchien', 'noidungyeucau',];
+        let arrInput = ['nguoithuchien', 'noidungyeucau'];
+        if (this.state.isCheckedMot === true) {
+            arrInput.push('ngaynhac');
+        }
+        if (this.state.isCheckedThang === true) {
+            arrInput.push('ngaynhacThang');
+        }
+        if (this.state.isCheckedQuy === true) {
+            arrInput.push('ngaynhacQuy');
+        }
+        if (this.state.isCheckedNam === true) {
+            arrInput.push('ngaynhacNam');
+        }
+        if (this.state.actions === CRUD_ACTIONS.EDIT) {
+            arrInput.push('ngaynhacEdit');
+        }
+        if (this.state.actions === CRUD_ACTIONS.CREATE) {
+            if (this.state.isCheckedMot === false &&
+                this.state.isCheckedThang === false &&
+                this.state.isCheckedQuy === false &&
+                this.state.isCheckedNam === false) {
+                arrInput.push('ngaynhac');
+            }
+        }
+        // console.log(arrInput)
         for (let i = 0; i < arrInput.length; i++) {
-            if (this.state[arrInput[2]] === 0) {
-                isValid = true;
-            } else if (!this.state[arrInput[i]]) {
+            if (!this.state[arrInput[i]]) {
+                console.log(this.state[arrInput[i]])
                 isValid = false;
-                alert('Missing parameter: ' + arrInput[i]);
+                alert('Vui lòng nhập ' + arrInput[i]);
+                document.getElementById(arrInput[i]).focus();
                 break;
             }
         }
@@ -395,7 +419,9 @@ class DangKyCongViec extends Component {
     handleSaveUser = async (e) => {
         try {
             let isValid = this.checkValidateInput();
+            console.log("is", isValid)
             if (isValid === true) {
+                console.log("vào true", isValid)
                 let objMot = {};
                 let objNam = {};
                 let { actions, sovanban, ngayphathanh, donviphathanh, trichyeunoidung,
@@ -517,7 +543,7 @@ class DangKyCongViec extends Component {
                     if (ngaynhacNam !== "") {
                         objNam = {
                             chukylap: nam,
-                            ngaylap: ngaynhacNam,
+                            ngaynhac: ngaynhacNam,
                             tieude: tieudeNam,
                             trangthai: trangthai
                         }
@@ -544,6 +570,7 @@ class DangKyCongViec extends Component {
                 }
                 if (actions === CRUD_ACTIONS.EDIT) {
                     let dateNow = new Date();
+                    console.log("edit:", this.state)
                     await this.props.editCalendarRedux({
                         id: this.state.id,
                         idcongviec: this.state.idcongviec,
@@ -558,11 +585,14 @@ class DangKyCongViec extends Component {
                         nhactruoc: this.state.nhactruoc,
                         douutien: this.state.douutien,
                         ngaynhac: this.state.ngaynhacEdit,
+                        tieude: this.state.tieudeEdit,
                         userIdCreate: userIdCreate,
                         updatedAt: dateNow,
                         currentPage: this.state.page
                     })
                 }
+            } else {
+                alert("error")
             }
 
         } catch (e) {
@@ -586,6 +616,7 @@ class DangKyCongViec extends Component {
             nhactruoc: work.dataCalendar.nhactruoc,
             douutien: work.dataCalendar.douutien,
             chukylap: work.chukylap,
+            tieudeEdit: work.tieude,
             ngaynhacEdit: work.ngaylap,
             disabled: false,
             disabledDetail: true,
@@ -610,6 +641,7 @@ class DangKyCongViec extends Component {
             nhactruoc: work.dataCalendar.nhactruoc,
             douutien: work.dataCalendar.douutien,
             chukylap: work.chukylap,
+            tieudeEdit: work.tieude,
             ngaynhacEdit: work.ngaylap,
             disabledDetail: true,
             disabled: true,
@@ -640,7 +672,7 @@ class DangKyCongViec extends Component {
                 quy1: "quy1", quy2: "quy2", quy3: "quy3", quy4: "quy4",
                 motlan: "motlan", thang: "thang", quy: "quy", nam: "nam",
                 ngaynhacThang: "", ngaynhacNam: "", ngaynhacQuy: "", ngaynhacEdit: "",
-                tieudeMot: "", tieudeThang: "", tieudeQuy: "", tieudeNam: "",
+                tieudeMot: "", tieudeThang: "", tieudeQuy: "", tieudeNam: "", tieudeEdit: "",
                 month1: 1, month2: 2, month3: 3, month4: 4,
                 month5: 5, month6: 6, month7: 7, month8: 8,
                 month9: 9, month10: 10, month11: 11, month12: 12,
@@ -666,7 +698,7 @@ class DangKyCongViec extends Component {
             quy1, quy2, quy3, quy4, month1, month2, month3, month4, month5, month6,
             month7, month8, month9, month10, month11, month12,
             trangthai, actions, motlan, thang, ngaynhacThang, all, quy, ngaynhacQuy,
-            nam, ngaynhacNam, tieudeMot, tieudeThang, tieudeNam,
+            nam, ngaynhacNam, tieudeMot, tieudeThang, tieudeNam, tieudeEdit,
             isCheckedQuy, isCheckedMot, isCheckedThang, disabledAll, isCheckedAllThang,
             isCheckedThang1, isCheckedThang2, isCheckedThang3, isCheckedThang4,
             isCheckedThang5, isCheckedThang6, isCheckedThang7, isCheckedThang8,
@@ -759,6 +791,7 @@ class DangKyCongViec extends Component {
                                     aria-disabled={disabled}
                                     className={disabled === true ? "form-control is-disabled" : "form-control"}
                                     name="nguoithuchien"
+                                    id="nguoithuchien"
                                     value={nguoithuchien}
                                     onChange={(event) => { this.handleOnChangeInput(event, "nguoithuchien") }}
                                 />
@@ -785,6 +818,7 @@ class DangKyCongViec extends Component {
                                     aria-disabled={disabled}
                                     className={disabled === true ? "form-control is-disabled" : "form-control"}
                                     name="noidungyeucau"
+                                    id="noidungyeucau"
                                     value={noidungyeucau}
                                     onChange={(event) => { this.handleOnChangeInput(event, "noidungyeucau") }}
                                 ></textarea>
@@ -805,43 +839,6 @@ class DangKyCongViec extends Component {
                                     <option value={1}>Quan trọng</option>
                                 </select>
                             </div>
-                            {/* <div className="col-lg-4 col-md-4 col-xs-auto">
-                                <label className="form-label">
-                                    Chu kỳ lặp
-                                </label>
-                                <select
-                                    aria-disabled={disabled}
-                                    className={disabled === true ? "form-select is-disabled" : "form-select"}
-                                    name="chukylap"
-                                    value={chukylap}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "chukylap") }}
-                                >
-                                    <option></option>
-                                    <option value={0}>Một lần</option>
-                                    <option value={1}>Mỗi tháng</option>
-                                    <option value={2}>6 tháng</option>
-                                    <option value={3}>9 tháng</option>
-                                    <option value={4}>Quý I</option>
-                                    <option value={5}>Quý II</option>
-                                    <option value={6}>Quý III</option>
-                                    <option value={7}>Quý IV</option>
-                                    <option value={8}>Mỗi năm</option>
-                                </select>
-                            </div> */}
-                            {/* <div className="col-lg-4 col-md-4 col-xs-auto">
-                                <label className="form-label">
-                                    Ngày hết hạn
-                                </label>
-                                <input
-                                    type="date"
-                                    aria-disabled={disabled}
-                                    className={disabled === true ? "form-control is-disabled" : "form-control"}
-                                    name="ngaynhac"
-                                    value={ngaynhac}
-                                    onChange={(event) => { this.handleOnChangeInput(event, "ngaynhac") }}
-                                />
-                            </div> */}
-
                             <div className="col-lg-4 col-md-4 col-xs-auto">
                                 <label className="form-label">
                                     Trạng Thái
@@ -868,10 +865,21 @@ class DangKyCongViec extends Component {
                                         aria-disabled={disabledEdit}
                                         className={disabledEdit === true ? "form-control is-disabled" : "form-control"}
                                         name="ngaynhacEdit"
+                                        id="ngaynhacEdit"
                                         value={ngaynhacEdit}
                                         onChange={(event) => { this.handleOnChangeInput(event, "ngaynhacEdit") }}
                                     />
                                 </div>
+                            </div>
+                            <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-12 col-md-12 col-xs-auto" : "col-lg-12 col-md-12 col-xs-auto hidden"}>
+                                <label className="form-label">
+                                    Tiêu đề nhắc việc
+                                </label>
+                                <input type="text" name='tieudeEdit'
+                                    className={disabledEdit === true ? "form-control is-disabled" : "form-control"}
+                                    value={tieudeEdit}
+                                    onChange={(event) => { this.handleOnChangeInput(event, "tieudeEdit") }}
+                                />
                             </div>
 
                             <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-2 col-md-2 col-xs-auto hidden" : "col-lg-2 col-md-2 col-xs-auto"}>
@@ -891,13 +899,14 @@ class DangKyCongViec extends Component {
                                     aria-disabled={disabledMot}
                                     className={disabledMot === true ? "form-control is-disabled" : "form-control"}
                                     name="ngaynhac"
+                                    id="ngaynhac"
                                     value={ngaynhac}
                                     onChange={(event) => { this.handleOnChangeInput(event, "ngaynhac") }}
                                 />
                             </div>
                             <div className="col-lg-7 col-md-7 col-xs-auto"></div>
                             <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-2 col-md-2 col-xs-auto hidden" : "col-lg-2 col-md-2 col-xs-auto"}>
-                                <label>Tiêu đề chắc việc một lần</label>
+                                <label>Tiêu đề nhắc việc một lần</label>
                             </div>
                             <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-10 col-md-10 col-xs-auto hidden" : "col-lg-10 col-md-10 col-xs-auto"}>
                                 <input type="text" name='tieudeMot'
@@ -924,6 +933,7 @@ class DangKyCongViec extends Component {
                                     aria-disabled={disabledThang}
                                     className={disabledThang === true ? "form-control is-disabled" : "form-control"}
                                     name="ngaynhacThang"
+                                    id="ngaynhacThang"
                                     value={ngaynhacThang}
                                     onChange={(event) => { this.handleOnChangeInput(event, "ngaynhacThang") }}
                                 />
@@ -1088,6 +1098,7 @@ class DangKyCongViec extends Component {
                                     aria-disabled={disabledQuy}
                                     className={disabledQuy === true ? "form-control is-disabled" : "form-control"}
                                     name="ngaynhacQuy"
+                                    id="ngaynhacQuy"
                                     value={ngaynhacQuy}
                                     onChange={(event) => { this.handleOnChangeInput(event, "ngaynhacQuy") }}
                                 />
@@ -1159,6 +1170,7 @@ class DangKyCongViec extends Component {
                                     aria-disabled={disabledNam}
                                     className={disabledNam === true ? "form-control is-disabled" : "form-control"}
                                     name="ngaynhacNam"
+                                    id="ngaynhacNam"
                                     value={ngaynhacNam}
                                     onChange={(event) => { this.handleOnChangeInput(event, "ngaynhacNam") }}
                                 />

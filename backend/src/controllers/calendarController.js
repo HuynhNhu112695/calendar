@@ -104,6 +104,7 @@ let handleGetAllDeadline = async (req, res) => {
                         ngaylap: item.ngaylap,
                         trangthai: item.trangthai,
                         ngayconlai: ngayconlai,
+                        tieude: item.tieude,
                         dataCalendar: {
                             sovanban: item.dataCalendar.sovanban,
                             ngayphathanh: item.dataCalendar.ngayphathanh,
@@ -120,9 +121,6 @@ let handleGetAllDeadline = async (req, res) => {
                 }
             }
         }
-        // if (parseInt(dayNow) === 15) {
-
-        // }
     })
     let dead = Promise.all(results);
 
@@ -297,7 +295,7 @@ let handleGetAllFinished = async (req, res) => {
         if (item.trangthai === 1) {
             // if ((ngaynhacMin.getMonth() + 1) === (getDateNow.getMonth() + 1)) {
             // console.log(item.ngaylap)
-            if (dateUpdate >= ngayNhac) {
+            if (dateUpdate <= ngayNhac) {
                 // console.log(item)
                 obj = {
                     id: item.id,

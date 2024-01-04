@@ -150,7 +150,7 @@ class TableManageLate extends Component {
                                 <th>Nội dung yêu cầu</th>
                                 <th>Người thực hiện</th>
                                 {/* <th>Nhắc trước</th> */}
-                                <th>Tiến độ</th>
+                                {/* <th>Tiến độ</th> */}
                                 {/* <th>Chu kỳ nhắc</th> */}
                                 <th>Ngày nhắc</th>
                                 <th>Trạng thái</th>
@@ -184,11 +184,11 @@ class TableManageLate extends Component {
                                 return (
                                     <tr key={item.id}>
                                         {/* <td>{startIndex + index + 1}</td> */}
-                                        {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.chutheyeucau}</span></td>}
-                                        {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{(item.dataCalendar.noidungyeucau.length > 30) ? item.dataCalendar.noidungyeucau.slice(0, 30 - 1) + '...' : item.dataCalendar.noidungyeucau}</span></td>}
-                                        {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.nguoithuchien}</span></td>}
+                                        <td>{item.dataCalendar.chutheyeucau}</td>
+                                        <td>{(item.dataCalendar.noidungyeucau.length > 30) ? item.dataCalendar.noidungyeucau.slice(0, 30 - 1) + '...' : item.dataCalendar.noidungyeucau}</td>
+                                        <td>{item.dataCalendar.nguoithuchien}</td>
                                         {/* {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.nhactruoc}</span></td>} */}
-                                        {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.trangthai === 0 ? "Đang thực hiện" : "Đã hoàn thành"}</span></td>}
+                                        {/* <td>{item.trangthai === 0 ? "Đang thực hiện" : "Đã hoàn thành"}</td> */}
                                         {/* <td>{chukylap}</td> */}
                                         <td>{day}</td>
                                         <td><span className='texttrangthai'>{trangthai}</span></td>
