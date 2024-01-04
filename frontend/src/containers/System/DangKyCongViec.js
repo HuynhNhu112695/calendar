@@ -412,7 +412,7 @@ class DangKyCongViec extends Component {
                     if (ngaynhac !== "") {
                         objMot = {
                             chukylap: motlan,
-                            ngaylap: ngaynhac,
+                            ngaynhac: ngaynhac,
                             tieude: tieudeMot,
                             trangthai: trangthai
                         }
@@ -557,7 +557,7 @@ class DangKyCongViec extends Component {
                         noidungyeucau: this.state.noidungyeucau,
                         nhactruoc: this.state.nhactruoc,
                         douutien: this.state.douutien,
-                        ngaylap: this.state.ngaynhacEdit,
+                        ngaynhac: this.state.ngaynhacEdit,
                         userIdCreate: userIdCreate,
                         updatedAt: dateNow,
                         currentPage: this.state.page
@@ -882,7 +882,7 @@ class DangKyCongViec extends Component {
                                         defaultChecked={isCheckedMot}
                                         onChange={(event) => { this.toggleChange(event, "motlan") }}
                                     />
-                                    Chủ đề một lần
+                                    Nhắc việc một lần
                                 </label>
                             </div>
                             <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-3 col-md-3 col-xs-auto hidden" : "col-lg-3 col-md-3 col-xs-auto"}>
@@ -897,7 +897,7 @@ class DangKyCongViec extends Component {
                             </div>
                             <div className="col-lg-7 col-md-7 col-xs-auto"></div>
                             <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-2 col-md-2 col-xs-auto hidden" : "col-lg-2 col-md-2 col-xs-auto"}>
-                                <label>Tiêu đề một lần</label>
+                                <label>Tiêu đề chắc việc một lần</label>
                             </div>
                             <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-10 col-md-10 col-xs-auto hidden" : "col-lg-10 col-md-10 col-xs-auto"}>
                                 <input type="text" name='tieudeMot'
@@ -915,7 +915,7 @@ class DangKyCongViec extends Component {
                                         defaultChecked={isCheckedThang}
                                         onChange={(event) => { this.toggleChange(event, "thang") }}
                                     />
-                                    Chủ đề theo tháng
+                                    Nhắc việc theo tháng
                                 </label>
                             </div>
                             <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-3 col-md-3 col-xs-auto hidden" : "col-lg-3 col-md-3 col-xs-auto"}>
@@ -1057,11 +1057,11 @@ class DangKyCongViec extends Component {
                                         defaultChecked={isCheckedAllThang}
                                         onChange={(event) => { this.toggleChange(event, "all") }}
                                     />
-                                    Tất cả
+                                    Tất cả các tháng
                                 </label>
                             </div>
                             <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-2 col-md-2 col-xs-auto hidden" : "col-lg-2 col-md-2 col-xs-auto"}>
-                                <label>Tiêu đề tháng</label>
+                                <label>Tiêu đề nhắc việc tháng</label>
                             </div>
                             <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-10 col-md-10 col-xs-auto hidden" : "col-lg-10 col-md-10 col-xs-auto"}>
                                 <input type="text" name='tieudeThang'
@@ -1079,7 +1079,7 @@ class DangKyCongViec extends Component {
                                         defaultChecked={isCheckedQuy}
                                         onChange={(event) => { this.toggleChange(event, "quy") }}
                                     />
-                                    Chủ đề theo quý
+                                    Nhắc việc theo quý
                                 </label>
                             </div>
                             <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-3 col-md-3 col-xs-auto hidden" : "col-lg-3 col-md-3 col-xs-auto"}>
@@ -1135,7 +1135,7 @@ class DangKyCongViec extends Component {
                                 </label>
                             </div>
                             <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-2 col-md-2 col-xs-auto hidden" : "col-lg-2 col-md-2 col-xs-auto"}>
-                                <label>Tiêu đề quý</label>
+                                <label>Tiêu đề nhắc việc quý</label>
                             </div>
                             <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-10 col-md-10 col-xs-auto hidden" : "col-lg-10 col-md-10 col-xs-auto"}>
                                 <input type="text" name='tieudeQuy'
@@ -1150,7 +1150,7 @@ class DangKyCongViec extends Component {
                                         defaultChecked={isCheckedMot}
                                         onChange={(event) => { this.toggleChange(event, "nam") }}
                                     />
-                                    Chủ đề năm
+                                    Nhắc việc tổng kết năm
                                 </label>
                             </div>
                             <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-3 col-md-3 col-xs-auto hidden" : "col-lg-3 col-md-3 col-xs-auto"}>
@@ -1165,7 +1165,7 @@ class DangKyCongViec extends Component {
                             </div>
                             <div className="col-lg-7 col-md-7 col-xs-auto"></div>
                             <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-2 col-md-2 col-xs-auto hidden" : "col-lg-2 col-md-2 col-xs-auto"}>
-                                <label>Tiêu đề năm</label>
+                                <label>Tiêu đề tổng kết năm</label>
                             </div>
                             <div className={actions === CRUD_ACTIONS.EDIT ? "col-lg-10 col-md-10 col-xs-auto hidden" : "col-lg-10 col-md-10 col-xs-auto"}>
                                 <input type="text" name='tieudeNam'

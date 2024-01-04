@@ -135,6 +135,22 @@
     display: none;
 }
 
+.style-finish {
+    color: rgb(0, 153, 0);
+}
+
+.style-deadline {
+    color: orange;
+}
+
+.style-late {
+    color: red;
+}
+
+.style-normal {
+    color: black;
+}
+
 .btn-export {
     background-color: green;
     width: 60px;

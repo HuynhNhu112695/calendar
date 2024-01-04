@@ -152,9 +152,9 @@ class TableManageCalendar extends Component {
                                 <th>Đơn vị yêu cầu</th>
                                 <th>Nội dung yêu cầu</th>
                                 <th>Người thực hiện</th>
-                                <th>Nhắc trước (ngày)</th>
+                                <th>Độ ưu tiên</th>
+                                <th>Tiến độ</th>
                                 <th>Trạng thái</th>
-                                {/* <th>Độ ưu tiên</th> */}
                                 {/* <th>Chu kỳ nhắc</th> */}
                                 <th>Ngày nhắc</th>
                                 <th>Hành động</th>
@@ -170,37 +170,47 @@ class TableManageCalendar extends Component {
                             }
                             {calendar.length !== 0 && calendar.map((item, index) => {
                                 let day = moment(item.ngaylap).format("DD/MM/YYYY");
-                                // let chukylap = "";
-                                // if (item.chukylap === 0) {
-                                //     chukylap = "Một lần";
-                                // } else if (item.chukylap === 1) {
-                                //     chukylap = "Mỗi tháng"
-                                // }
-                                // else if (item.chukylap === 2) {
-                                //     chukylap = "Sáu tháng"
-                                // } else if (item.chukylap === 3) {
-                                //     chukylap = "Chín tháng"
-                                // } else if (item.chukylap === 4) {
-                                //     chukylap = "Quý I"
-                                // } else if (item.chukylap === 5) {
-                                //     chukylap = "Quý II"
-                                // } else if (item.chukylap === 6) {
-                                //     chukylap = "Quý III"
-                                // } else if (item.chukylap === 7) {
-                                //     chukylap = "Quý IV"
-                                // } else if (item.chukylap === 8) {
-                                //     chukylap = "Mỗi năm"
-                                // }
-                                // console.log('check map: ', item, index)
+                                let dayNow = "";
+                                let monthNow = "";
+                                let getDateNow = new Date();
+                                if (getDateNow.getDate() < 10) {
+                                    dayNow = "0" + getDateNow.getDate();
+                                } else {
+                                    dayNow = getDateNow.getDate();
+                                }
+                                if ((getDateNow.getMonth() + 1) < 10) {
+                                    monthNow = "0" + (getDateNow.getMonth() + 1);
+                                } else {
+                                    monthNow = (getDateNow.getMonth() + 1);
+                                }
+                                let dateNow = getDateNow.getFullYear() + '-' + monthNow + '-' + dayNow;
+                                let updated = new Date(item.updatedAt);
+                                let updatedAt = updated.getTime();
+                                let setNow = new Date(dateNow);
+                                let setNgaylap = new Date(item.ngaylap);
+                                let ms1 = setNow.getTime();
+                                let ms2 = setNgaylap.getTime();
+                                let trangthai = "";
+                                if (dateNow < item.ngaylap && item.trangthai === 0) {
+                                    let ngayconlai = 0;
+                                    ngayconlai = Math.ceil((ms2 - ms1) / (24 * 60 * 60 * 1000));
+                                    trangthai = "Còn " + ngayconlai + " ngày nữa đến hạn";
+                                } else if (item.ngaylap === dateNow && item.trangthai === 0) {
+                                    trangthai = "Đã đến ngày hết hạn";
+                                } else if (item.trangthai === 1 && updatedAt <= ms2) {
+                                    trangthai = "Đã hoàn thành";
+                                } else {
+                                    trangthai = "Trễ hạn";
+                                }
                                 return (
                                     <tr key={item.id}>
                                         {/* <td>{startIndex + index + 1}</td> */}
-                                        {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.chutheyeucau}</span></td>}
-                                        {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{(item.dataCalendar.noidungyeucau.length > 30) ? item.dataCalendar.noidungyeucau.slice(0, 30 - 1) + '...' : item.dataCalendar.noidungyeucau}</span></td>}
-                                        {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.nguoithuchien}</span></td>}
-                                        {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.nhactruoc}</span></td>}
-                                        <td><span>{item.trangthai === 0 ? "Đang thực hiện" : "Đã hoàn thành"}</span></td>
-                                        {/* <td>{chukylap}</td> */}
+                                        <td>{item.dataCalendar.chutheyeucau}</td>
+                                        <td>{(item.dataCalendar.noidungyeucau.length > 30) ? item.dataCalendar.noidungyeucau.slice(0, 30 - 1) + '...' : item.dataCalendar.noidungyeucau}</td>
+                                        <td>{item.dataCalendar.nguoithuchien}</td>
+                                        <td>{item.dataCalendar.douutien === 0 ? "Thông thường" : "Quan trọng"}</td>
+                                        <td><span className={item.trangthai === 0 ? "" : "style-finish"}>{item.trangthai === 0 ? "Đang thực hiện" : "Đã hoàn thành"}</span></td>
+                                        <td><span className={trangthai === "Đã đến ngày hết hạn" ? "style-deadline" : trangthai === "Đã hoàn thành" ? "style-finish" : trangthai === "Trễ hạn" ? "style-late" : "style-normal"}>{trangthai}</span></td>
                                         <td>{day}</td>
                                         <td>
                                             <button className='btn-detail' value={item.id}

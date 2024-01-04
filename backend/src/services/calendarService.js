@@ -20,7 +20,7 @@ let getAllCalendar = async (userIdCreate, searchText) => {
                             { sovanban: { [Op.like]: '%' + searchText + '%' } },
                             { chutheyeucau: { [Op.like]: '%' + searchText + '%' } }
                         ]
-                    }
+                    },
                 }
             ],
             raw: true,
@@ -112,7 +112,7 @@ let editCalendar = async (data) => {
             }, { where: { id: data.idcongviec } });
             // arrRepeat.forEach(async (e) => {
             await db.RepeatCicles.update({
-                ngaylap: data.ngaylap,
+                ngaylap: data.ngaynhac,
                 trangthai: data.trangthai,
                 updatedAt: data.updatedAt
             }, { where: { id: data.id } });

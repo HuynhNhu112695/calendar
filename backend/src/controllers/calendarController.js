@@ -41,6 +41,7 @@ let handleGetAllCalendar = async (req, res) => {
 
 let handleGetAllDeadline = async (req, res) => {
     let page = req.query.page;
+    let searchText = req.query?.search || '';
     let userIdCreate = req.query.userIdCreate;
     let limit = 10;
     let startIndex = (page - 1) * limit;
@@ -48,17 +49,21 @@ let handleGetAllDeadline = async (req, res) => {
     let calendar = [];
     let arrDeadline = [];
     let dayNow = "";
+    let monthNow = "";
     let getDateNow = new Date();
     if (getDateNow.getDate() < 10) {
         dayNow = "0" + getDateNow.getDate();
     } else {
         dayNow = getDateNow.getDate();
     }
-    let dateNow = getDateNow.getFullYear() + '-' + (getDateNow.getMonth() + 1) + '-' + dayNow;
+    if ((getDateNow.getMonth() + 1) < 10) {
+        monthNow = "0" + (getDateNow.getMonth() + 1);
+    } else {
+        monthNow = (getDateNow.getMonth() + 1);
+    }
+    let dateNow = getDateNow.getFullYear() + '-' + monthNow + '-' + dayNow;
     // console.log(dateNow)
-    calendar = await calendarService.getAllCalendar(userIdCreate);
-    // let checkNewestRepeat = await calendarService.checkNewest(userIdCreate);
-    // console.log(checkNewestRepeat)
+    calendar = await calendarService.getAllCalendar(userIdCreate, searchText);
     // console.log(calendar)
     let results = await calendar.map(async (item) => {
         let obj = {};
@@ -77,7 +82,14 @@ let handleGetAllDeadline = async (req, res) => {
         } else {
             nhacMin = nhacMin;
         }
-        let dateMin = ngaynhacMin.getFullYear() + '-' + (ngaynhacMin.getMonth() + 1) + '-' + nhacMin;
+        let thangMin = ngaynhacMin.getMonth() + 1;
+        if (thangMin < 10) {
+            thangMin = "0" + thangMin;
+        } else {
+            thangMin = thangMin;
+        }
+        let dateMin = ngaynhacMin.getFullYear() + '-' + thangMin + '-' + nhacMin;
+        // console.log(dayMin, dayNow)
         // console.log(dateMin, dateNow)
         let ngayconlai = parseInt(dayMin) - parseInt(dayNow);
         if (item.trangthai === 0) {
@@ -148,6 +160,7 @@ let handleGetAllDeadline = async (req, res) => {
 
 let handleGetAllLate = async (req, res) => {
     let page = req.query.page;
+    let searchText = req.query?.search || '';
     let userIdCreate = req.query.userIdCreate;
     let limit = 10;
     let startIndex = (page - 1) * limit;
@@ -155,6 +168,7 @@ let handleGetAllLate = async (req, res) => {
     let calendar = [];
     let arrDeadline = [];
     let dayNow = "";
+    let monthNow = "";
     let getDateNow = new Date();
     let getYearNow = getDateNow.getFullYear();
     if (getDateNow.getDate() < 10) {
@@ -162,46 +176,25 @@ let handleGetAllLate = async (req, res) => {
     } else {
         dayNow = getDateNow.getDate();
     }
-    let dateNow = getDateNow.getFullYear() + '-' + (getDateNow.getMonth() + 1) + '-' + dayNow;
-    // console.log(dateNow)
-    calendar = await calendarService.getAllCalendar(userIdCreate);
-    // let checkNewestRepeat = await calendarService.checkNewest(userIdCreate);
-    // console.log(checkNewestRepeat)
-    // console.log(calendar)
+    if ((getDateNow.getMonth() + 1) < 10) {
+        monthNow = "0" + (getDateNow.getMonth() + 1);
+    } else {
+        monthNow = (getDateNow.getMonth() + 1);
+    }
+    let dateNow = getYearNow + '-' + monthNow + '-' + dayNow;
+
+    calendar = await calendarService.getAllCalendar(userIdCreate, searchText);
+
     let results = await calendar.map(async (item) => {
         let obj = {};
-        // console.log(item)
-        let ngaynhacMin = new Date(item.ngaylap);
-        let namNhac = ngaynhacMin.getFullYear();
-        let dayMin = "";
-        if (ngaynhacMin.getDate() < 10) {
-            dayMin = "0" + ngaynhacMin.getDate();
-        } else {
-            dayMin = ngaynhacMin.getDate();
-        }
-        // console.log(ngaynhacMin)
-        let nhacMin = dayMin - item.dataCalendar.nhactruoc;
-        if (nhacMin < 10) {
-            nhacMin = "0" + nhacMin;
-        } else {
-            nhacMin = nhacMin;
-        }
-        let dateMin = ngaynhacMin.getFullYear() + '-' + (ngaynhacMin.getMonth() + 1) + '-' + nhacMin;
-        // console.log(dateMin, dateNow)
-        let ngayconlai = parseInt(dayMin) - parseInt(dayNow);
-        let dkNam = parseInt(namNhac) - parseInt(getYearNow);
         if (item.trangthai === 0) {
-            // if ((ngaynhacMin.getMonth() + 1) === (getDateNow.getMonth() + 1)) {
-            // console.log(item.ngaylap)
-            if (dateNow > item.ngaylap && dkNam <= 0) {
-                // console.log(item)
+            if (dateNow > item.ngaylap) {
                 obj = {
                     id: item.id,
                     idcongviec: item.idcongviec,
                     chukylap: item.chukylap,
                     ngaylap: item.ngaylap,
                     trangthai: item.trangthai,
-                    ngayconlai: ngayconlai,
                     dataCalendar: {
                         sovanban: item.dataCalendar.sovanban,
                         ngayphathanh: item.dataCalendar.ngayphathanh,
@@ -216,7 +209,6 @@ let handleGetAllLate = async (req, res) => {
                 }
                 await arrDeadline.push(obj);
             }
-            // }
         }
     })
     let dead = Promise.all(results);
@@ -255,6 +247,7 @@ let handleGetAllLate = async (req, res) => {
 
 let handleGetAllFinished = async (req, res) => {
     let page = req.query.page;
+    let searchText = req.query?.search || '';
     let userIdCreate = req.query.userIdCreate;
     let limit = 10;
     let startIndex = (page - 1) * limit;
@@ -271,9 +264,7 @@ let handleGetAllFinished = async (req, res) => {
     }
     let dateNow = getDateNow.getFullYear() + '-' + (getDateNow.getMonth() + 1) + '-' + dayNow;
     // console.log(dateNow)
-    calendar = await calendarService.getAllCalendar(userIdCreate);
-    // let checkNewestRepeat = await calendarService.checkNewest(userIdCreate);
-    // console.log(checkNewestRepeat)
+    calendar = await calendarService.getAllCalendar(userIdCreate, searchText);
     // console.log(calendar)
     let results = await calendar.map(async (item) => {
         let obj = {};
@@ -369,7 +360,6 @@ let handleGetAllFinished = async (req, res) => {
 //Add new
 let handleAddNewCalendar = async (request, res) => {
     let data = request.body;
-
     let message = await calendarService.addNewCalendar(data);
     return res.status(200).json({
         errCode: message.errCode,

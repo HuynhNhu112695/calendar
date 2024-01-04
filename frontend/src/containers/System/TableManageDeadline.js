@@ -207,7 +207,7 @@ class TableManageDeadline extends Component {
                                         {rowSpanImport[index] > 0 && <td className={rowSpanImport[index] > 1 ? 'styleRow' : ''} rowSpan={rowSpanImport[index]}><span className={rowSpanImport[index] > 1 ? 'spanRow' : ''}>{item.dataCalendar.douutien === 0 ? "Quan trọng" : "Thông thường"}</span></td>}
                                         {/* <td>{chukylap}</td> */}
                                         <td>{day}</td>
-                                        <td><span className='texttrangthai'>{trangthai}</span></td>
+                                        <td><span className={trangthai === "Đã đến ngày hết hạn" ? "style-late" : "style-deadline"}>{trangthai}</span></td>
                                         <td>
                                             <button className='btn-detail' value={item.id}
                                                 onClick={(e) => this.handleDetailCalendar(item)}>
