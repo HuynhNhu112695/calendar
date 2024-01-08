@@ -91,7 +91,7 @@ class ViecSapDenHan extends Component {
                         noidungyeucau: this.state.noidungyeucau,
                         nhactruoc: this.state.nhactruoc,
                         douutien: this.state.douutien,
-                        ngaylap: this.state.ngaynhac,
+                        ngaynhac: this.state.ngaynhac,
                         userIdCreate: userIdCreate,
                         tieude: this.state.tieude,
                         currentPage: this.state.page
