@@ -69,21 +69,21 @@ class Login extends Component {
             <div className='login-background'>
                 <div className='login-container'>
                     <div className='login-content row'>
-                        <div className='col-12 text-center text-login'>Login</div>
+                        <div className='col-12 text-center text-login'>ĐĂNG NHẬP</div>
                         <div className='col-12 form-group'>
                             <label>Email</label>
                             <input type="text"
                                 className='form-control login-input email'
                                 value={this.state.email}
-                                placeholder='Enter your email'
+                                placeholder='Hãy nhập email của bạn'
                                 onChange={(event) => this.handleOnChangeEmail(event)} />
                         </div>
                         <div className='col-12 form-group'>
-                            <label>Password</label>
+                            <label>Mật khẩu</label>
                             <div className='custom-input-password'>
                                 <input type={this.state.isShowPassword ? 'text' : 'password'}
                                     className='form-control login-input password'
-                                    placeholder='Enter your password'
+                                    placeholder='Hãy nhập mật khẩu của bạn'
                                     value={this.state.password}
                                     onChange={(event) => this.handleOnChangePassword(event)} />
                                 <span
@@ -96,7 +96,7 @@ class Login extends Component {
                             {this.state.errMessage}
                         </div>
                         <div className='col-12'>
-                            <button className='btn-login' onClick={() => this.handleLogin()}>Login</button>
+                            <button className='btn-login' onClick={() => this.handleLogin()}>Đăng nhập</button>
                         </div>
                         {/* <div className='col-12 text-center mt-2'>
                             <span className='forgot-password'>Forgot your password?</span>
@@ -109,7 +109,7 @@ class Login extends Component {
                             <i className='fab fa-facebook-f social-icon facebook'></i>
                         </div> */}
                         <div className='col-12 text-center mt-4 mb-4'>
-                            <span className='login-with'>WELLCOME TO PARIS NAILS FALMOUTH!</span>
+                            <span className='login-with'>CHÀO MỪNG ĐẾN VỚI PHẦN MỀM NHẮC VIỆC!</span>
                         </div>
                     </div>
                 </div>

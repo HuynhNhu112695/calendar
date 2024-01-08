@@ -26,16 +26,16 @@ let handleUserLogin = async (email, password) => {
                     userData.user = user;
                 } else {
                     userData.errCode = 3;
-                    userData.errMessage = 'Wrong password!';
+                    userData.errMessage = 'Mật khẩu không đúng!';
                 }
             } else {
                 userData.errCode = 2;
-                userData.errMessage = `User's not found!`;
+                userData.errMessage = `Không tìm thấy thông tin tài khoản!`;
             }
         } else {
             //return error
             userData.errCode = 1;
-            userData.errMessage = `Your's name isn't exist in your system. Plz try other name`;
+            userData.errMessage = `Tài khoản của bạn không tồn tại trong hệ thống. Vui lòng kiểm tra lại!`;
         }
         return userData;
     } catch (e) {
@@ -151,7 +151,7 @@ let addNewUser = async (data) => {
         if (check === true) {
             return ({
                 errCode: 1,
-                errMessage: "Your email is already in use. Please try another email!"
+                errMessage: "Email đã tồn tại, vui lòng sử dụng email khác!"
             })
         } else {
             if (data.isMenu === 'USER') {
@@ -202,7 +202,7 @@ let addNewUser = async (data) => {
 
             return ({
                 errCode: 0,
-                errMessage: "Create a new user succeed!"
+                errMessage: "Tạo tài khoản mới thành công!"
             })
         }
     } catch (e) {
@@ -218,7 +218,7 @@ let deleteUser = async (userId, isMenu) => {
         if (!user) {
             return ({
                 errCode: 1,
-                errMessage: "The user isn't exist"
+                errMessage: "Tài khoản không tồn tại!"
             })
         }
 
@@ -234,7 +234,7 @@ let deleteUser = async (userId, isMenu) => {
                 if (count === 1) {
                     return ({
                         errCode: 1,
-                        errMessage: "Delete user not succeed!"
+                        errMessage: "Xóa tài khoản không thành công!!"
                     })
                 } else {
                     await db.Users.destroy({
@@ -242,7 +242,7 @@ let deleteUser = async (userId, isMenu) => {
                     });
                     return ({
                         errCode: 0,
-                        errMessage: "Delete user succeed!"
+                        errMessage: "Xóa tài khoản thành công!"
                     })
                 }
             }
@@ -293,7 +293,7 @@ let deleteUser = async (userId, isMenu) => {
 
                 return ({
                     errCode: 0,
-                    errMessage: "Delete user succeed!"
+                    errMessage: "Xóa tài khoản thành công!"
                 })
             }
             if (isMenu === "CUSTOMER") {
@@ -324,7 +324,7 @@ let deleteUser = async (userId, isMenu) => {
 
                 return ({
                     errCode: 0,
-                    errMessage: "Delete user succeed!"
+                    errMessage: "Xóa tài khoản thành công!"
                 })
             }
         }
@@ -344,7 +344,7 @@ let editUser = async (data) => {
                 if (check === true) {
                     return ({
                         errCode: 1,
-                        errMessage: "Your email is already in used. Please try another email!"
+                        errMessage: "Email đã tồn tại, vui lòng sử dụng email khác!"
                     })
                 }
             }
@@ -363,12 +363,12 @@ let editUser = async (data) => {
             }, { where: { id: data.id } })
             return ({
                 errCode: 0,
-                errMessage: "Update the user succeed!"
+                errMessage: "Cập nhật thành công!"
             })
         } else {
             return ({
                 errCode: 1,
-                errMessage: "The user isn't exist!"
+                errMessage: "Tài khoản không tồn tại!"
             })
         }
     } catch (e) {
@@ -381,7 +381,7 @@ let getAllcodeService = async (typeInput) => {
         if (!typeInput) {
             return ({
                 errCode: 1,
-                errMessage: 'Missing required parameters!'
+                errMessage: 'Dữ liệu đầu vào rỗng!'
             });
         } else {
             let res = {};

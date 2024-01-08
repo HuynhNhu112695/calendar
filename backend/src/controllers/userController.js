@@ -7,7 +7,7 @@ let handleLogin = async (req, res) => {
     if (!email || !password) {
         return res.status(200).json({
             errCode: 1,
-            errMessage: "Missing inputs parameter!"
+            errMessage: "Vui lòng nhập đầy đủ thông tin đăng nhập!"
         })
     } else {
         let userData = await userService.handleUserLogin(email, password);

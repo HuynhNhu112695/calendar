@@ -177,7 +177,7 @@ export const editCalendar = (data) => {
         try {
             dispatch({ type: actionTypes.EDIT_CALENDAR_START })
             let res = await handleEditCalendarApi(data)
-            console.log("data edit", res)
+            // console.log("data edit", res)
             if (res && res.errCode === 0) {
                 toast.success(res.errMessage)
                 dispatch(editCalendarSuccess());
