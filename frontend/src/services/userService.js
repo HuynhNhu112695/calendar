@@ -33,6 +33,10 @@ const getAllDeadline = (calendarPage, userIdCreate, searchText) => {
     return axios.get(`/api/get-all-deadline?page=${calendarPage}&userIdCreate=${userIdCreate}${searchText ? '&search=' + searchText : ''}`);
 }
 
+const getDeadlineToday = (calendarPage, userIdCreate, searchText) => {
+    return axios.get(`/api/get-deadline-today?page=${calendarPage}&userIdCreate=${userIdCreate}${searchText ? '&search=' + searchText : ''}`);
+}
+
 const getAllLate = (calendarPage, userIdCreate, searchText) => {
     return axios.get(`/api/get-all-late?page=${calendarPage}&userIdCreate=${userIdCreate}${searchText ? '&search=' + searchText : ''}`);
 }
@@ -62,5 +66,5 @@ export {
     handleLoginApi, handleGetAllcodeApi,
     getAllUsers, findUserApi, handleCreateNewUserApi, handleEditUserApi, handleDeleteUserApi,
     getAllCalendar, handleCreateNewCalendarApi, handleEditCalendarApi, handleDeleteCalendarApi,
-    getAllDeadline, getAllLate, getAllFinished
+    getAllDeadline, getAllLate, getAllFinished, getDeadlineToday
 }

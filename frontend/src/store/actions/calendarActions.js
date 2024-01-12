@@ -1,6 +1,6 @@
 import actionTypes from './actionTypes';
 import {
-    handleCreateNewCalendarApi, getAllCalendar, getAllDeadline,
+    handleCreateNewCalendarApi, getAllCalendar, getAllDeadline, getDeadlineToday,
     handleDeleteCalendarApi, handleEditCalendarApi, getAllLate, getAllFinished
 } from '../../services/userService';
 import { toast } from 'react-toastify';
@@ -86,6 +86,33 @@ export const fetchAllDeadlineSuccess = (data) => ({
 
 export const fetchAllDeadlineFailed = () => ({
     type: actionTypes.FETCH_ALL_CALENDAR_DEAD_FAILED,
+})
+
+export const fetchDeadlineTodayStart = (currentPage, userIdCreate, searchText) => {
+    return async (dispatch, getState) => {
+        try {
+            dispatch({ type: actionTypes.FETCH_CALENDAR_DEAD_TODAY_START })
+            let res = await getDeadlineToday(currentPage, userIdCreate, searchText);
+            if (res && res.errCode === 0) {
+                dispatch(fetchDeadlineTodaySuccess(res));
+            } else {
+                toast.error("Fetch all Calendar error!")
+                dispatch(fetchDeadlineTodayFailed());
+            }
+        } catch (e) {
+            dispatch(fetchDeadlineTodayFailed());
+            console.log('fetchAllCalendarStart error', e)
+        }
+    }
+}
+
+export const fetchDeadlineTodaySuccess = (data) => ({
+    type: actionTypes.FETCH_CALENDAR_DEAD_TODAY_SUCCESS,
+    calendarDeadToday: data
+})
+
+export const fetchDeadlineTodayFailed = () => ({
+    type: actionTypes.FETCH_CALENDAR_DEAD_TODAY_FAILED,
 })
 
 export const fetchAllLateStart = (currentPage, userIdCreate, searchText) => {
