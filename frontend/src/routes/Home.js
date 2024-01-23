@@ -416,7 +416,7 @@ const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
         userRedux: state.user.userInfo,
-        calendar: state.calendar.calendarDeadToday,
+        calendarDead: state.calendar.calendarDeadToday,
     };
 };
 

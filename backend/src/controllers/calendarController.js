@@ -39,6 +39,46 @@ let handleGetAllCalendar = async (req, res) => {
     })
 }
 
+let handleGetSearchCalendar = async (req, res) => {
+    let page = req.query.page;
+    let searchText = req.query?.search || '';
+    let userIdCreate = req.query.userIdCreate;
+    let limit = 10;
+    let startIndex = (page - 1) * limit;
+    let endIndex = page * limit;
+    let calendar = [];
+
+    calendar = await calendarService.getSearchDate(userIdCreate, searchText);
+    console.log(calendar)
+    let totalCalendar = calendar.length;
+    let pageCount = Math.ceil(totalCalendar / limit);
+
+    if (endIndex < totalCalendar) {
+        calendar.next = {
+            page: page + 1,
+            limit: limit
+        }
+
+    }
+    if (startIndex > 0) {
+        calendar.prev = {
+            page: page - 1,
+            limit: limit
+        }
+    }
+    if (calendar) {
+        calendar = calendar.slice(startIndex, endIndex);
+    }
+    return res.status(200).json({
+        errCode: 0,
+        errMessage: 'Ok',
+        calendar: calendar,
+        currentPage: page,
+        pageCount: pageCount,
+        startIndex: startIndex
+    })
+}
+
 let handleGetAllDeadline = async (req, res) => {
     let page = req.query.page;
     let searchText = req.query?.search || '';
@@ -516,5 +556,6 @@ module.exports = {
     handleDeleteCalendar: handleDeleteCalendar,
     handleGetAllLate: handleGetAllLate,
     handleGetAllFinished: handleGetAllFinished,
-    handleGetDeadlineToday: handleGetDeadlineToday
+    handleGetDeadlineToday: handleGetDeadlineToday,
+    handleGetSearchCalendar: handleGetSearchCalendar
 }

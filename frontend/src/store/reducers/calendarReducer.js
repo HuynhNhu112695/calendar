@@ -69,6 +69,16 @@ const calendarReducer = (state = initialState, action) => {
             return {
                 ...state
             }
+        case actionTypes.FETCH_CALENDAR_SEARCH_DEAD_SUCCESS:
+            state.calendar = action.calendar;
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_CALENDAR_SEARCH_DEAD_FAILED:
+            state.calendar = [];
+            return {
+                ...state
+            }
         case actionTypes.FETCH_ALL_CALENDAR_LATE_SUCCESS:
             state.calendarLate = action.calendarLate;
             return {

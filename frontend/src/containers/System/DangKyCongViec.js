@@ -570,7 +570,7 @@ class DangKyCongViec extends Component {
                 }
                 if (actions === CRUD_ACTIONS.EDIT) {
                     let dateNow = new Date();
-                    console.log("edit:", this.state)
+                    // console.log("edit:", this.state)
                     await this.props.editCalendarRedux({
                         id: this.state.id,
                         idcongviec: this.state.idcongviec,

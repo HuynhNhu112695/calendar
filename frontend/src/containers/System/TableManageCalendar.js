@@ -16,6 +16,7 @@ class TableManageCalendar extends Component {
             calendarRedux: [],
             pageCount: 0,
             page: null,
+            dateSearch: '',
             search: '',
             currentPage: this.props.currentPage
         }
@@ -66,6 +67,9 @@ class TableManageCalendar extends Component {
         });
         if (copyState['search'] !== this.state.search) {
             await this.props.fetchCalendarRedux(1, this.props.userRedux.id, copyState['search']);
+        }
+        if (copyState['dateSearch'] !== this.state.dateSearch) {
+            await this.props.fetchSearchDeadline(1, this.props.userRedux.id, copyState['dateSearch']);
         }
     }
 
@@ -141,6 +145,18 @@ class TableManageCalendar extends Component {
                             name="search"
                             value={this.state.search}
                             onChange={(event) => { this.handleOnChangeInput(event, "search") }}
+                        />
+                    </div>
+                    <div className='col-lg-8 col-md-8 col-xs-auto text-search'>
+                        <FormattedMessage id="manage-order.dateWork" />
+                    </div>
+                    <div className='col-lg-4 col-md-4 col-xs-auto search'>
+                        <input
+                            type="date"
+                            className="form-control"
+                            name="dateSearch"
+                            value={this.state.dateSearch}
+                            onChange={(event) => { this.handleOnChangeInput(event, "dateSearch") }}
                         />
                     </div>
                 </form>
@@ -277,6 +293,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchCalendarRedux: (currentPage, userIdCreate, searchText) => dispatch(actions.fetchAllCalendarStart(currentPage, userIdCreate, searchText)),
+        fetchSearchDeadline: (currentPage, userIdCreate, searchText) => dispatch(actions.fetchSearchDeadlineStart(currentPage, userIdCreate, searchText)),
         deleteCalendarRedux: (id, currentPage) => dispatch(actions.deleteCalendar(id, currentPage)),
         editCalendarRedux: (user) => dispatch(actions.editCalendar(user))
     };

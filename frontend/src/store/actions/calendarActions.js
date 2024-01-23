@@ -1,7 +1,8 @@
 import actionTypes from './actionTypes';
 import {
     handleCreateNewCalendarApi, getAllCalendar, getAllDeadline, getDeadlineToday,
-    handleDeleteCalendarApi, handleEditCalendarApi, getAllLate, getAllFinished
+    handleDeleteCalendarApi, handleEditCalendarApi, getAllLate, getAllFinished,
+    getSearchDeadline
 } from '../../services/userService';
 import { toast } from 'react-toastify';
 
@@ -115,6 +116,35 @@ export const fetchDeadlineTodayFailed = () => ({
     type: actionTypes.FETCH_CALENDAR_DEAD_TODAY_FAILED,
 })
 
+export const fetchSearchDeadlineStart = (currentPage, userIdCreate, searchText) => {
+    return async (dispatch, getState) => {
+        try {
+            console.log(searchText)
+            dispatch({ type: actionTypes.FETCH_CALENDAR_SEARCH_DEAD_START })
+            let res = await getSearchDeadline(currentPage, userIdCreate, searchText);
+            console.log(res)
+            if (res && res.errCode === 0) {
+                dispatch(fetchSearchDeadlineSuccess(res));
+            } else {
+                toast.error("Fetch all Calendar error!")
+                dispatch(fetchSearchDeadlineFailed());
+            }
+        } catch (e) {
+            dispatch(fetchSearchDeadlineFailed());
+            console.log('fetchSearchDeadlineStart error', e)
+        }
+    }
+}
+
+export const fetchSearchDeadlineSuccess = (data) => ({
+    type: actionTypes.FETCH_CALENDAR_SEARCH_DEAD_SUCCESS,
+    calendar: data
+})
+
+export const fetchSearchDeadlineFailed = () => ({
+    type: actionTypes.FETCH_CALENDAR_SEARCH_DEAD_FAILED,
+})
+
 export const fetchAllLateStart = (currentPage, userIdCreate, searchText) => {
     return async (dispatch, getState) => {
         try {
@@ -210,11 +240,13 @@ export const editCalendar = (data) => {
                 dispatch(editCalendarSuccess());
                 dispatch(fetchAllCalendarStart(data.currentPage, data.userIdCreate, ""));
                 dispatch(fetchAllDeadlineStart(data.currentPage, data.userIdCreate, ""));
+                dispatch(fetchDeadlineTodayStart(data.currentPage, data.userIdCreate, ""));
             } else {
                 toast.error(res.errMessage)
                 dispatch(editCalendarFailed());
                 dispatch(fetchAllCalendarStart(data.currentPage, data.userIdCreate, ""));
                 dispatch(fetchAllDeadlineStart(data.page, data.userIdCreate, ""));
+                dispatch(fetchDeadlineTodayStart(data.currentPage, data.userIdCreate, ""));
             }
         } catch (e) {
             dispatch(editCalendarFailed());

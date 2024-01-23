@@ -32,6 +32,42 @@ let getAllCalendar = async (userIdCreate, searchText) => {
     }
 }
 
+let getSearchDate = async (userIdCreate, searchText) => {
+    try {
+        let calendar = await db.RepeatCicles.findAll({
+            order: [
+                ['createdAt', 'DESC']
+            ],
+            include: [
+                {
+                    model: db.Calendars, as: 'dataCalendar', attributes: ['sovanban',
+                        'ngayphathanh', 'chutheyeucau', 'nguoithuchien', 'noidungyeucau',
+                        'nhactruoc', 'donviphathanh', 'trichyeunoidung', 'douutien', 'userIdCreate'],
+                    where: {
+                        userIdCreate: userIdCreate,
+                        // [Op.or]: [
+                        //     { noidungyeucau: { [Op.like]: '%' + searchText + '%' } },
+                        //     { nguoithuchien: { [Op.like]: '%' + searchText + '%' } },
+                        //     { sovanban: { [Op.like]: '%' + searchText + '%' } },
+                        //     { chutheyeucau: { [Op.like]: '%' + searchText + '%' } }
+                        // ]
+                    },
+                }
+            ],
+            where: {
+                [Op.or]: [
+                    { ngaylap: { [Op.like]: '%' + searchText + '%' } }
+                ]
+            },
+            raw: true,
+            nest: true
+        });
+        return calendar;
+    } catch (e) {
+        return e;
+    }
+}
+
 let addNewCalendar = async (data) => {
     try {
         let arrNN = data.arrNgayNhac;
@@ -137,4 +173,5 @@ module.exports = {
     addNewCalendar: addNewCalendar,
     deleteCalendar: deleteCalendar,
     editCalendar: editCalendar,
+    getSearchDate: getSearchDate
 }

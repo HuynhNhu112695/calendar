@@ -35,6 +35,9 @@ class ManageDeadlineToday extends Component {
         if (copyState['search'] !== this.state.search) {
             await this.props.fetchDeadlineToday(1, this.props.userRedux.id, copyState['search']);
         }
+        if (copyState['dateSearch'] !== this.state.dateSearch) {
+            await this.props.fetchSearchDeadline(1, this.props.userRedux.id, copyState['dateSearch']);
+        }
     }
 
     handleDeleteCalendar = (user) => {
@@ -216,6 +219,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchDeadlineToday: (currentPage, userIdCreate, searchText) => dispatch(actions.fetchDeadlineTodayStart(currentPage, userIdCreate, searchText)),
+        fetchSearchDeadline: (currentPage, userIdCreate, searchText) => dispatch(actions.fetchSearchDeadlineStart(currentPage, userIdCreate, searchText)),
         deleteCalendarRedux: (id, currentPage) => dispatch(actions.deleteCalendar(id, currentPage)),
         editCalendarRedux: (user) => dispatch(actions.editCalendar(user))
     };
